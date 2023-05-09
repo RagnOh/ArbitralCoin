@@ -8,6 +8,9 @@ class FrontController extends Controller
 {
    public function getHome()
    {
-       return view('tablePage.index');
+       
+       return view('mainPage.firstPage');
+       
+    
    }
 }

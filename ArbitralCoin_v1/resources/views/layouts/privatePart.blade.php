@@ -19,6 +19,10 @@
    </head>
     <body>
       @yield('navBar')
+
+      <div class="container">
+        @yield('tabella')
+    </div>
    </body>
 
 
