@@ -4,13 +4,13 @@ namespace App\Models;
 
 class DataLayer {
 
-    //private $binanceUrl="https://api.binance.com/api/v3/ticker/price'";
-    //protected $krakenUrl="https://api.kraken.com/0/public/Ticker?";
-    //protected $cryptodotcomUrl="";
+    protected $binanceUrl="https://api.binance.com/api/v3/ticker/price";
+    protected $krakenUrl="https://api.kraken.com/0/public/Ticker?";
+    protected $cryptoUrl="https://api.crypto.com/v2/public/get-ticker";
 
    
     
-    public function listPairs()
+    /*public function listPairs()
     {
         $binanceUrl="https://api.binance.com/api/v3/ticker/price";
         $krakenUrl="https://api.kraken.com/0/public/Ticker?";
@@ -85,39 +85,93 @@ foreach($listPairsC['result']['data'] as $data=>$dataSet){
         //simbol e price
     }
 
+*/
+    public function getPairs(){
+
+        $binanceList = $this->parseBinance();
+        $krakenList = $this->parseKraken();
+        $cryptocomList = $this->parseCryptoCom();
+
+        $listPairs2=[];
+        foreach ($krakenList as $pairK){
+
+            $partialList = [];
+            $match=0;
+            foreach ($cryptocomList as $pairC){
+
+                foreach ($binanceList as $pairB){
+
+                    if($pairK[0] == $pairC[0] && $pairC [0] == $pairB[0]){
+                      
+                        array_push($partialList,$pairB[0],$pairB[1]);
+                        array_push($partialList,$pairK[1],$pairC[1]);
+
+                        $match=1;
+
+                    }
+
+
+                }
+            }
+
+            if($match==1){
+                array_push($listPairs2,$partialList);
+            }
+            
+
+        }
+
+        return $listPairs2;
+
+
+
+    } 
+
 //Funzioni di parsing adattate per ogni exchange
 //Exchange Binance
-    public function parseBinance($listPairs){
+    protected function parseBinance(){
 
+        $data= file_get_contents($this->binanceUrl);
+        $listPairs= json_decode($data,true);
         $parsingList=[];
-        foreach($listPairs as $itemB){
 
-            array_push($parsingList,$itemB['symbol'],$itemB['price']);
+        foreach($listPairs as $item){
+            $preArray=[];
+            array_push($preArray, $item['symbol'],$item['price']);
+            array_push($parsingList,$preArray);
+            
         }
 
         return $parsingList;
     }
 //Exchange Kraken
-    public function parseKraken($listPairs){
+    protected function parseKraken(){
 
+        $data= file_get_contents($this->krakenUrl);
+        $listPairs= json_decode($data,true);
         $parsingList=[];
 
         foreach($listPairs['result'] as $pair=>$pairData){
-
-            array_push($parsingList,$pair,$pairData['c'][0]);
+            $preArray=[];
+            array_push($preArray,$pair,$pairData['c'][0] );
+            array_push($parsingList,$preArray);
         }
 
         return $parsingList;    
     }
 //Exchange Crypto.com
-    public function parseCryptoCom($listPairs){
+    protected function parseCryptoCom(){
 
+        $data= file_get_contents($this->cryptoUrl);
+        $listPairs= json_decode($data,true);
         $parsingList=[];
 
         foreach($listPairs['result']['data'] as $data=>$dataSet){
             $ph=str_replace(array('_','-'),'',$dataSet['i']);
+            $preArray=[];
+            array_push($preArray,$ph,$dataSet['a'] );
 
-            array_push($parsingList,$ph,$dataSet['a']);
+            array_push($parsingList,$preArray);
         }
 
 

@@ -10,7 +10,7 @@ class TableController extends Controller
     public function index(){
     
         $dl= new DataLayer();
-        $pairs=$dl->listPairs();
+        $pairs=$dl->getPairs();
         
 
     
