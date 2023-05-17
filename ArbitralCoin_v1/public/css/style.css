@@ -1,48 +1,27 @@
-#menu{
-    width: 100%;
-    font-size: medium;
-    float: left;
-    background-color: lightgray;
-}
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-feb-2020, 12.24.39
+    Author     : devis
+*/
 
-#menu ul{
-    list-style-type: none;
-    margin: 0;
-}
-
-#menu li{
-    float: left;
-    padding: 5px;
-    width: 150px;
-}
-
-#menu a{
-    text-decoration: none;
-    color:black;
-}
-
-#menu a:hover{
-    background-color: darkgray;
-}
-
-#menu li ul {
-    display: none;
-}
-
-#menu li:hover ul{
-    display: block;
-    position: absolute;
-    z-index: 1;
-    background-color: lightgray;
+.navbar-brand {
     width: 160px;
+    text-indent: 9999cm;
+    margin-left: 100px;
+    background: url(../img/pretty-2-th.jpg) center center no-repeat;
 }
 
-
-header{
-    font-size: large;
+.header-sezione {
+    border-bottom: 2px solid #357ebd;
+    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
-blockquote{
+blockquote {
     padding: 10px 20px;
     margin: 0 0 20px;
     border-left: 5px solid #eeeeee;
@@ -61,28 +40,73 @@ blockquote small {
     color: #999999;
 }
 
-/*NEW*/
-.navbar-brand {
-    width: 100px;
-    height: 40px;
-    background: url("../img/pretty-2-th.jpg") center no-repeat;     
-}
-
-.current {
-    background-color: lightgrey;   
-}
-
 .breadcrumb {
     margin-top: 15px;
 }
 
-#header-sezione{
-    margin-top: 2em;
-    border-bottom: 2px solid #357ebd;
-    margin-bottom: 2em;
+.current {
+    background-color: lightgrey;
 }
 
-table{
-    padding-top: 2em;
+/*
+Menu minimal version
+*/
+
+div#menu {
     width: 100%;
+    float: left;
+    background: lightgrey;
+}
+
+div#menu ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+div#menu li
+{
+    float:left;
+    padding: 5px;
+    border-right: 1px solid black;
+    color:black;
+}
+
+div#menu a
+{
+    display: block;
+    padding: 5px;
+    color: #000;
+    text-decoration: none;
+}
+
+div#menu a:hover
+{
+    background-color: darkgrey;
+}
+
+div#menu li ul
+{
+    display: none
+}
+
+div#menu li:hover ul
+{
+    display: block;
+    position: absolute;
+    z-index:1;
+    width:160px;
+    border:1px solid black;
+    background: white;
+}
+
+div#menu li li { border:none; width:150px; }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
 }

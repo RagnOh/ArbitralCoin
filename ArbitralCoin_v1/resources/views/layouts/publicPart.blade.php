@@ -26,15 +26,14 @@
            <!--<img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
            @yield('titolo')
          </a>
-         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Accedi
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+       
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">My Library</a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Books's list</a></li>
+        <li><a class="dropdown-item" href="#">Authors' list</a></li>
+    </ul>
+</li>
        </div>
 </nav>  
    

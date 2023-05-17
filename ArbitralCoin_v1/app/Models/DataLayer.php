@@ -178,4 +178,19 @@ foreach($listPairsC['result']['data'] as $data=>$dataSet){
         return $parsingList;
     }
 
+
+    public function validUser($email,$password){
+        $users = User::where('email',$email)->get(['password']);
+        if(count($users)==0)
+        {
+            return false;
+        }
+
+        return (md5($password)==($users[0]->password));
+    }
+
+    public function getUserName($email){
+        $users = User::where('email',$email)->get();
+        return $users[0]->name;
+    }
 }
