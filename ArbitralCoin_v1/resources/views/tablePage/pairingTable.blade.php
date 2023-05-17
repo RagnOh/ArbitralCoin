@@ -33,7 +33,7 @@ ArbitralCoin
             <col width='10%'>
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Pair</th>
                     <th>Binance</th>
                     <th>Kraken</th>
                     <th>Crypto.com</th>
@@ -42,16 +42,22 @@ ArbitralCoin
             </thead>
 
             <tbody>
-                
+            @foreach($pairs_list as $pair)
                     <tr>
-                        <td>pair</td>
-                        <td>65</td>
-                        <td>65</td>
-                        <td>65</td>
+                        
+                        
+                        <td>{{ $pair[0]}}</td>
+                        <td>{{ $pair[2]}}</td>
+                        <td>{{ $pair[1]}}</td>
+                        <td>{{ $pair[3]}}</td>
+                        
+                        
+                        
                         
                             
                         
                     </tr>
+                    @endforeach
                
             </tbody>
         </table>

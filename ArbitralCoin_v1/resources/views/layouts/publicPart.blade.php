@@ -10,6 +10,8 @@
      <!-- Fogli di stile -->
      <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css">
      <link rel="stylesheet" href="{{ url('/') }}/css/@yield('stile')">
+     <link rel="stylesheet" href="{{ url('/') }}/css/frontPage.css">
+     
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!--icone -->
 
      <!-- jQuery e plugin JavaScript  -->
@@ -25,7 +27,7 @@
            @yield('titolo')
          </a>
          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Nome
+            Accedi
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
@@ -34,6 +36,12 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
        </div>
+</nav>  
+   
+      <div class="container">
+        
+       @yield('contenuto')
+      </div>
 
     </body>
 

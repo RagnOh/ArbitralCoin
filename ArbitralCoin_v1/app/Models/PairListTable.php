@@ -30,6 +30,8 @@ class PairListTable extends Model
         $jsonC=json_decode($dataC);
 
         
+
+        
     }
 
 

@@ -1,0 +1,79 @@
+
+h1 {
+  font-size: 9vmin;
+  color: black;
+  text-align: center;
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+/* Typewriter effect 1 */
+@keyframes typing {
+  0.0000%, 27.3488% { content: ""; }
+  1.1395%, 26.2093% { content: "R"; }
+  2.2791%, 25.0698% { content: "RB"; }
+  3.4186%, 23.9302% { content: "RBI"; }
+  4.5581%, 22.7907% { content: "RBIT"; }
+  5.6977%, 21.6512% { content: "RBITR"; }
+  6.8372%, 20.5116% { content: "RBITRA"; }
+  7.9767%, 19.3721% { content: "RBITRAL"; }
+  9.1163%, 18.2326% { content: "RBITRALC"; }
+  10.2558%, 18.0930% { content: "RBITRALCO"; }
+  10.2558%, 18.0930% { content: "RBITRALCOI"; }
+  10.2558%, 18.0930% { content: "RBITRALCOIN"; }
+
+
+
+
+
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter {
+  --caret: currentcolor;
+}
+
+.typewriter::before {
+  content: "";
+  animation: typing 13.5s infinite;
+}
+
+.typewriter::after {
+  content: "";
+  border-right: 1px solid var(--caret);
+  animation: blink 0.5s linear infinite;
+}
+
+.typewriter.thick::after {
+  border-right: 1ch solid var(--caret);
+}
+
+.typewriter.nocaret::after {
+  border-right: 0;
+}
+
+
+@media (prefers-reduced-motion) {
+  .typewriter::after {
+    animation: none;
+  }
+  
+  @keyframes sequencePopup {
+    0%, 100% { content: "arbitalcoin"; }
+   
+  }
+
+  .typewriter::before {
+    content: "arbitralcoin";
+    animation: sequencePopup 12s linear infinite;
+  }
+}
+
+/**/
