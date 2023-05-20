@@ -11,15 +11,14 @@ ArbitralCoin
            <!--<img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
            @yield('titolo')
          </b>
-         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Nome
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+         <ul class="nav navbar-nav navbar-right">
+                    @if($logged)
+                       <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout')}}"> Logout</a>  </li>
+                    @else
+                       <li><a class="btn btn-outline-dark" href="{{ route('user.login')}}"> Logint</a></li>
+
+                    @endif
+                </ul>    
     </div>
 </nav>
 @endsection

@@ -26,14 +26,18 @@
            <!--<img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
            @yield('titolo')
          </a>
+
+         <ul class="nav navbar-nav navbar-right">
+                
+         @if($logged)
+                    <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout') }}">Logout <i class="bi-box-arrow-left"></i></a></li>
+                    @else
+                    <li><a class="btn btn-outline-dark" href="{{ route('user.login') }}"><i class="bi-door-open-fill"></i> Login</a></li>
+                    @endif
+                    
+                </ul>
        
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">My Library</a>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Books's list</a></li>
-        <li><a class="dropdown-item" href="#">Authors' list</a></li>
-    </ul>
-</li>
+
        </div>
 </nav>  
    

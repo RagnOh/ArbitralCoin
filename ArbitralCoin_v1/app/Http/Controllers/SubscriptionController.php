@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 class SubscriptionController extends Controller
 {
     public function index(){
+
+        
         return view('subscription.userRegistration');
         }
 }

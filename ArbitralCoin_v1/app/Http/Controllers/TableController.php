@@ -11,9 +11,10 @@ class TableController extends Controller
     
         $dl= new DataLayer();
         $pairs=$dl->getPairs();
+        $userID=$dl->getUserID($_SESSION["loggedEmail"]);
         
 
     
-    return view('tablePage.pairingTable')->with('pairs_list',$pairs);
+    return view('tablePage.pairingTable')->with('logged',true)->with('loggedName',$_SESSION["loggedName"])->with('pairs_list',$pairs);
     }
 }
