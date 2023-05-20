@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KrakenController;
+use App\Http\Controllers\BinanceController;
+use App\Http\Controllers\CryptocomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,5 @@ use App\Http\Controllers\KrakenController;
 });*/
 
 Route::get('/kraken/ticker', [KrakenController::class,'ticker']);
+Route::get('/binance/ticker', [BinanceController::class,'ticker']);
+Route::get('/cryptocom/ticker', [CryptocomController::class,'ticker']);
