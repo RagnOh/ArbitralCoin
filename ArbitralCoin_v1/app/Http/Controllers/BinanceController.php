@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use App\Models\DataLayer;
 
 class BinanceController extends Controller
 {
@@ -20,6 +21,12 @@ class BinanceController extends Controller
         {
            $filteredData[$pair['symbol']]=$pair['price'];
         }
+
+        /*$dl=new Datalayer();
+        foreach($filteredData as $pair=>$price){
+
+            $dl->addPair("Binance",$pair,$price);
+        }*/
 
         return response()->json([$filteredData]);
     }

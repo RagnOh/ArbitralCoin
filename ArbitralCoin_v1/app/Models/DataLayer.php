@@ -9,7 +9,7 @@ class DataLayer {
     protected $cryptoUrl="https://api.crypto.com/v2/public/get-ticker";
 
    
-    public function getPairs(){
+   /* public function getPairs(){
 
         $binanceList = $this->parseBinance();
         $krakenList = $this->parseKraken();
@@ -48,7 +48,7 @@ class DataLayer {
 
 
 
-    } 
+    }*/ 
 
 //Funzioni di parsing adattate per ogni exchange
 //Exchange Binance
@@ -129,4 +129,61 @@ class DataLayer {
         $users = User::where('email',$email)->get();
         return $users[0]->name;
     }
+
+   /* public function listPairs()
+    {
+       $pairs = PairTable::select('price')->groupBy('pair')->havingRow('COUNT(DISTINCT exchange)= ?',[count($exchanges)])->get();
+       
+       return $pairs;
+    }*/
+
+    public function addPair($exchangeName,$pair,$price)
+    {
+      $pairTable=new PairTable();
+      
+        
+        $pairTable->exchange =$exchangeName;
+        $pairTable->pair = $pair;
+        $pairTable->price = $price;
+        $pairTable->save();
+       
+      
+    }
+
+    public function getPairs()
+    {
+        $exchanges = PairTable::select('exchange')->distinct()->pluck('exchange')->toArray();
+        $priceData = [];
+$formattedArray = [];
+$commonPairs = PairTable::whereIn('exchange', $exchanges)
+    ->select('pair')
+    ->groupBy('pair')
+    ->havingRaw('COUNT(DISTINCT exchange) = ?', [count($exchanges)])
+    ->pluck('pair')
+    ->toArray();
+
+foreach ($exchanges as $exchange) {
+    $prices = Pairtable::where('exchange', $exchange)
+        ->whereIn('pair', $commonPairs)
+        ->pluck('price', 'pair')
+        ->toArray();
+
+    $priceData[$exchange] = $prices;
+}
+
+foreach ($commonPairs as $pair) {
+    $formattedRow = [$pair];
+    
+    foreach ($exchanges as $exchange) {
+        $formattedRow[] = $priceData[$exchange][$pair] ?? '-';
+    }
+
+    $formattedArray[] = $formattedRow;
+}
+
+return response()->json($formattedArray);
+        
+    }
+
+    
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use App\Models\DataLayer;
 
 class CryptocomController extends Controller
 {
@@ -33,6 +34,12 @@ class CryptocomController extends Controller
             }
            
         }
+
+        /*$dl=new Datalayer();
+        foreach($filteredData as $pair=>$price){
+
+            $dl->addPair("Cryptocom",$pair,$price);
+        }*/
        
        
 

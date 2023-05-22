@@ -41,22 +41,14 @@ ArbitralCoin
             </thead>
 
             <tbody>
-            @foreach($pairs_list as $pair)
-                    <tr>
-                        
-                        
-                        <td>{{ $pair[0]}}</td>
-                        <td>{{ $pair[2]}}</td>
-                        <td>{{ $pair[1]}}</td>
-                        <td>{{ $pair[3]}}</td>
-                        
-                        
-                        
-                        
-                            
-                        
-                    </tr>
-                    @endforeach
+            @foreach ($pairs_list as $row)
+                <tr>
+                    <td>{{ $row[0] }}</td>
+                    @for ($i = 1; $i < count($row); $i++)
+                        <td>{{ $row[$i] }}</td>
+                    @endfor
+                </tr>
+            @endforeach
                
             </tbody>
         </table>
