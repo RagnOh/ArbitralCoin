@@ -18,10 +18,37 @@
 
    </head>
     <body>
-      @yield('navBar')
+    <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+         <b class="navbar-brand" >
+           <!--<img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
+           @yield('titolo')
+         </b>
+         <ul class="navbar-nav col-lg-6">
+         <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="{{ route('userPreferences.index') }}">Settings</a>
+    <a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Pairs Table</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link"  href="{{ route('bestPairs.index') }}">bestPairs</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" aria-current="page" href="{{ route('favPairs.index') }}">favoritePairs</a>
+</li>
+                </ul>
+         <ul class="nav navbar-nav navbar-right">
+                    @if($logged)
+                       <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout')}}"> Logout</a>  </li>
+                    @else
+                       <li><a class="btn btn-outline-dark" href="{{ route('user.login')}}"> Logint</a></li>
+
+                    @endif
+                </ul>    
+    </div>
+</nav>
 
       <div class="container">
-        @yield('tabella')
+        @yield('contenuto')
     </div>
    </body>
 

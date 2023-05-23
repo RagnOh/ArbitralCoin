@@ -5,6 +5,9 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PreferencesController;
+use App\Http\Controllers\FavPairsController;
+use App\Http\Controllers\BestPairsController;
 
 
 /*
@@ -28,6 +31,9 @@ Route::get('/registrationEmailCheck', [AuthController::class, 'registrationCheck
 Route::middleware(['authCustom'])->group(function () {
 
 Route::get('/privateSection',[TableController::class,'index'])->name('privateSection.index');
+Route::get('/preferencesSettings',[PreferencesController::class,'index'])->name('userPreferences.index');
+Route::get('/bestPairs',[BestPairsController::class,'index'])->name('bestPairs.index');
+Route::get('/favPairs',[FavPairsController::class,'index'])->name('favPairs.index');
 
 
 });
