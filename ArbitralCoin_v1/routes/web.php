@@ -31,7 +31,8 @@ Route::get('/registrationEmailCheck', [AuthController::class, 'registrationCheck
 Route::middleware(['authCustom'])->group(function () {
 
 Route::get('/privateSection',[TableController::class,'index'])->name('privateSection.index');
-Route::get('/preferencesSettings',[PreferencesController::class,'index'])->name('userPreferences.index');
+//Route::get('/preferencesSettings',[PreferencesController::class,'index'])->name('userPreferences.index');
+Route::resource('preferenceSettings',PreferencesController::class);
 Route::get('/bestPairs',[BestPairsController::class,'index'])->name('bestPairs.index');
 Route::get('/favPairs',[FavPairsController::class,'index'])->name('favPairs.index');
 

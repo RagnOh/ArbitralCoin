@@ -1,19 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use App\Models\DataLayer;
+use GuzzleHttp\Client;
 
 class KrakenController extends Controller
 {
+    protected $url = 'https://api.kraken.com/0/public/Ticker';
+
     public function ticker()
     {
         $client=new Client();
         $dl= new DataLayer();
 
-        $response= $client->get('https://api.kraken.com/0/public/Ticker');
+        $response= $client->get($this->url);
         $tickerData= json_decode($response->getBody(), true);
 
         $filteredData=[];

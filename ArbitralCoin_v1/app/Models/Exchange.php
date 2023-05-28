@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exchange extends Model
 {
-    protected $table ="exchange_table";
+    protected $table ="exchanges";
     public $timestamps=false;
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','user_pref_id'];
+
+
+    public function userPreferences()
+    {
+        return $this->belongsTo(UserPreferences::class);
+    }
 }

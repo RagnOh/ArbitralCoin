@@ -14,4 +14,12 @@ class PreferencesController extends Controller
 
         return view('tablePage.preferencesSettings')->with('logged',true)->with('loggedName',$_SESSION["loggedName"]);
     }
+
+    public function storeSettings(Request $request)
+    {
+        $dl = new DataLayer();
+        $dl->addUserPreferences($request->input('depositAmount'),$request->input('favoriteValute'),$request->input('minGain'));
+
+        return Redirect::to(route('bestPairs.index'));
+    }
 }

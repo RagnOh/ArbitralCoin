@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PairTable extends Model
 {
-   protected $table = "pair_table";
+   protected $table = "pair_t";
    public $timestamps = false;
    use HasFactory;
 

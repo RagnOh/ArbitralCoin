@@ -13,18 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pairs', function (Blueprint $table) 
-        {
+        Schema::create('fav_pairs',function(Blueprint $table){
             $table->id();
-            $table->string('exchange');
             $table->string('pair');
-            $table->decimal('price',12,3);
-            
-            
+            $table->bigInteger('user_preferences_id')->unsigned();
+            $table->foreign('user_preferences_id')->references('id')->on('user_preferences');
 
         });
-
-        
     }
 
     /**
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pairs');
+        Schema::dropIfExists('fav_pairs');
     }
 };

@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\KrakenController;
-use App\Http\Controllers\BinanceController;
-use App\Http\Controllers\CryptocomController;
+use App\Http\Controllers\api\KrakenController;
+use App\Http\Controllers\api\BinanceController;
+use App\Http\Controllers\api\CryptocomController;
 
 /*
 |--------------------------------------------------------------------------

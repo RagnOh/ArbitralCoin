@@ -7,9 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserPreferences extends Model
 {
-    protected $table = "user_preferences_table";
+    protected $table = "user_preferences";
     protected $timestamp = false;
     use HasFactory;
 
-    protected $fillable =['deposito','valuta','guadagno'];
+    protected $fillable =['deposito','valuta','guadagno','user_id'];
+
+    public function exchange()
+    {
+        return $this->hasMany(Exchange::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function favPair()
+    {
+        return $this->hasMany(FavPair::class);
+    }
 }

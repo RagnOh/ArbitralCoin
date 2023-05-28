@@ -139,7 +139,7 @@ class DataLayer {
 
     public function addPair($exchangeName,$pair,$price)
     {
-      $pairTable=new PairTable();
+      $pairTable=new Pair();
       
         
         $pairTable->exchange =$exchangeName;
@@ -150,12 +150,12 @@ class DataLayer {
       
     }
 
-    public function getPairs()
+    public function getPairs($exchange_list)
     {
-        $exchanges = PairTable::select('exchange')->distinct()->pluck('exchange')->toArray();
+        $exchanges = $exchange_list;
         $priceData = [];
 $formattedArray = [];
-$commonPairs = PairTable::whereIn('exchange', $exchanges)
+$commonPairs = Pair::whereIn('exchange', $exchanges)
     ->select('pair')
     ->groupBy('pair')
     ->havingRaw('COUNT(DISTINCT exchange) = ?', [count($exchanges)])
@@ -163,7 +163,7 @@ $commonPairs = PairTable::whereIn('exchange', $exchanges)
     ->toArray();
 
 foreach ($exchanges as $exchange) {
-    $prices = Pairtable::where('exchange', $exchange)
+    $prices = Pair::where('exchange', $exchange)
         ->whereIn('pair', $commonPairs)
         ->pluck('price', 'pair')
         ->toArray();
@@ -184,6 +184,47 @@ foreach ($commonPairs as $pair) {
 return response()->json($formattedArray);
         
     }
+
+
+public function updateKrakenPairs(){
+    
+}
+
+public function addUserPreferences($deposito,$valuta,$minGuadagno)
+{
+    $userPref= new UserPreferences();
+    $userPref->deposito =$deposito;
+    $userPref->valuta = $valuta;
+    $userPref->guadagno = $minGuadagno;
+    $userPref->save();
+    
+}
+
+public function findUserPreferencesByID($userId)
+{
+    return UserPreferences::find($userId);
+}
+
+public function getBestPairs($userPref,$pairtable)
+{
+    $minGuadagno = $userPref->guadagno;
+    $deposito = $userPref->deposito;
+
+    $pairList=getPairs($exchanges); //ottengo tutti i pairs
+
+
+
+
+
+}
+
+private function confrontValue($pair,$exchange_list)
+{
+    $exchanges=$exchange_list;
+    
+}
+
+
 
     
 }

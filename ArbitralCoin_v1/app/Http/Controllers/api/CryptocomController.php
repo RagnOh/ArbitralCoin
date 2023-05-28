@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use App\Models\DataLayer;
+use GuzzleHttp\Client;
 
 class CryptocomController extends Controller
 {
+    protected $url= 'https://api.crypto.com/v2/public/get-ticker';
+    
     public function ticker()
     {
         $client=new Client();
 
-        $response= $client->get('https://api.crypto.com/v2/public/get-ticker');
+        $response= $client->get($this->url);
         $tickerData= json_decode($response->getBody(), true);
 
         $filteredData=[];
@@ -35,11 +38,11 @@ class CryptocomController extends Controller
            
         }
 
-        /*$dl=new Datalayer();
+        $dl=new Datalayer();
         foreach($filteredData as $pair=>$price){
 
             $dl->addPair("Cryptocom",$pair,$price);
-        }*/
+        }
        
        
 

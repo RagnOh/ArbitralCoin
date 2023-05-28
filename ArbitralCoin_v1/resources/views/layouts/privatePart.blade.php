@@ -26,7 +26,7 @@
          </b>
          <ul class="navbar-nav col-lg-6">
          <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="{{ route('userPreferences.index') }}">Settings</a>
+    <a class="nav-link" aria-current="page" href="{{ route('preferenceSettings.index') }}">Settings</a>
     <a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Pairs Table</a>
 </li>
 <li class="nav-item">

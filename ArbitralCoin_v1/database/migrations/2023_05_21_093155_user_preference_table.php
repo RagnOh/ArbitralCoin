@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exchange_table', function (Blueprint $table) 
+        Schema::create('user_preferences', function (Blueprint $table) 
         {
             $table->id();
-            $table->string('name');
-            
+            $table->decimal('deposito',10,3);
+            $table->string('valuta');
+            $table->decimal('guadagno',10,3);
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exchange_table');
+        Schema::dropIfExists('user_preferences');
     }
 };

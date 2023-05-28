@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use App\Models\DataLayer;
+use GuzzleHttp\Client;
 
 class BinanceController extends Controller
 {
+    protected $url = 'https://api.binance.com/api/v3/ticker/price';
+    
     public function ticker()
     {
         $client=new Client();
 
-        $response= $client->get('https://api.binance.com/api/v3/ticker/price');
+        $response= $client->get($this->url);
         $tickerData= json_decode($response->getBody(), true);
 
         $filteredData=[];
@@ -22,11 +25,11 @@ class BinanceController extends Controller
            $filteredData[$pair['symbol']]=$pair['price'];
         }
 
-        /*$dl=new Datalayer();
+        $dl=new Datalayer();
         foreach($filteredData as $pair=>$price){
 
             $dl->addPair("Binance",$pair,$price);
-        }*/
+        }
 
         return response()->json([$filteredData]);
     }

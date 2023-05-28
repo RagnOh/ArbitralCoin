@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pair extends Model
 {
-    protected $table = 'pair';
-    protected $fillable = ['symbol','value'];
+    protected $table = 'pairs';
+    public $timestamps = false;
+    protected $fillable = ['exchange','pair','price'];
 
+
+   
 
     
 }

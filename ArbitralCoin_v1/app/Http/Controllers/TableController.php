@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
+use App\Models\Pair;
 
 class TableController extends Controller
 {
     public function index(){
     
         $dl= new DataLayer();
-        $pairs=$dl->getPairs();
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
-        $response=$dl->getPairs();
+        $exchanges=Pair::select('exchange')->distinct()->pluck('exchange')->toArray();
+        $response=$dl->getPairs($exchanges);
         $pairList=$response->getOriginalContent();
         
 
