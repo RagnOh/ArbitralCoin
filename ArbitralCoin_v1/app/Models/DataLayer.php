@@ -9,97 +9,88 @@ class DataLayer {
     protected $cryptoUrl="https://api.crypto.com/v2/public/get-ticker";
 
    
-   /* public function getPairs(){
-
-        $binanceList = $this->parseBinance();
-        $krakenList = $this->parseKraken();
-        $cryptocomList = $this->parseCryptoCom();
-
-        $listPairs2=[];
-        foreach ($krakenList as $pairK){
-
-            $partialList = [];
-            $match=0;
-            foreach ($cryptocomList as $pairC){
-
-                foreach ($binanceList as $pairB){
-
-                    if($pairK[0] == $pairC[0] && $pairC [0] == $pairB[0]){
-                      
-                        array_push($partialList,$pairB[0],$pairB[1]);
-                        array_push($partialList,$pairK[1],$pairC[1]);
-
-                        $match=1;
-
-                    }
-
-
-                }
-            }
-
-            if($match==1){
-                array_push($listPairs2,$partialList);
-            }
-            
-
-        }
-
-        return $listPairs2;
-
-
-
-    }*/ 
 
 //Funzioni di parsing adattate per ogni exchange
 //Exchange Binance
     protected function parseBinance(){
 
         $data= file_get_contents($this->binanceUrl);
-        $listPairs= json_decode($data,true);
-        $parsingList=[];
+        $tickerData= json_decode($data, true);
 
-        foreach($listPairs as $item){
-            $preArray=[];
-            array_push($preArray, $item['symbol'],$item['price']);
-            array_push($parsingList,$preArray);
-            
+        $filteredData=[];
+
+        foreach($tickerData as $pair)
+        {
+           $filteredData[$pair['symbol']]=$pair['price'];
         }
 
-        return $parsingList;
+        
+        foreach($filteredData as $pair=>$price){
+
+            $this->addPair("Binance",$pair,$price);
+        }
+
+        return response()->json([$filteredData]);
+        
     }
 //Exchange Kraken
     protected function parseKraken(){
 
         $data= file_get_contents($this->krakenUrl);
-        $listPairs= json_decode($data,true);
-        $parsingList=[];
+        $tickerData= json_decode($data, true);
 
-        foreach($listPairs['result'] as $pair=>$pairData){
-            $preArray=[];
-            array_push($preArray,$pair,$pairData['c'][0] );
-            array_push($parsingList,$preArray);
+        $filteredData=[];
+
+        foreach($tickerData['result'] as $pair=>$data)
+        {
+           
+           $filteredData[$pair]=$data['c'][0];
         }
 
-        return $parsingList;    
+        
+        foreach($filteredData as $pair=>$price){
+
+            $this->addPair("Kraken",$pair,$price);
+        }
+        
+        return response()->json([$filteredData]);   
     }
 //Exchange Crypto.com
     protected function parseCryptoCom(){
 
         $data= file_get_contents($this->cryptoUrl);
-        $listPairs= json_decode($data,true);
-        $parsingList=[];
+        $tickerData= json_decode($data, true);
 
-        foreach($listPairs['result']['data'] as $data=>$dataSet){
-            $ph=str_replace(array('_','-'),'',$dataSet['i']);
-            $preArray=[];
-            array_push($preArray,$ph,$dataSet['a'] );
+        $filteredData=[];
 
-            array_push($parsingList,$preArray);
+        foreach($tickerData['result']['data'] as $data=>$pair)
+        {
+            $sub=str_replace(array('_','-'),'',$pair['i']);
+            if(!(strpos($sub,'D36500')==true && substr($sub,-3)==='500'))
+            {
+                if(!(strpos($sub,'PERP')==true && substr($sub,-3)==='ERP'))
+                {
+                    if(!(strpos($sub,'365LTV')==true && substr($sub,-3)==='LTV'))
+                    {
+                        $filteredData[$sub]=$pair['a'];
+                    }
+                    
+                }
+                
+            }
+           
         }
 
+       
+        foreach($filteredData as $pair=>$price){
 
-        return $parsingList;
+            $this->addPair("Cryptocom",$pair,$price);
+        }
+       
+        return response()->json([$filteredData]);
     }
+
+/////////////////////////////////////////
 
     public function validUser($username, $password) {
         $users = User::where('email',$username)->get(['password']);
@@ -137,7 +128,7 @@ class DataLayer {
        return $pairs;
     }*/
 
-    public function addPair($exchangeName,$pair,$price)
+    private function addPair($exchangeName,$pair,$price)
     {
       $pairTable=new Pair();
       
@@ -148,6 +139,14 @@ class DataLayer {
         $pairTable->save();
        
       
+    }
+
+    public function updateTable()
+    {
+        Pair::truncate();
+        $this->parseKraken();
+        $this->parseBinance();
+        $this->parseCryptoCom();
     }
 
     public function getPairs($exchange_list)
@@ -186,16 +185,14 @@ return response()->json($formattedArray);
     }
 
 
-public function updateKrakenPairs(){
-    
-}
 
-public function addUserPreferences($deposito,$valuta,$minGuadagno)
+public function addUserPreferences($deposito,$valuta,$minGuadagno,$userID)
 {
     $userPref= new UserPreferences();
     $userPref->deposito =$deposito;
     $userPref->valuta = $valuta;
     $userPref->guadagno = $minGuadagno;
+    $userPref->user_id = $userID;
     $userPref->save();
     
 }
@@ -205,15 +202,18 @@ public function findUserPreferencesByID($userId)
     return UserPreferences::find($userId);
 }
 
-public function getBestPairs($userPref,$pairtable)
+public function getBestForEachPair($pairName,$minGuadagno,$deposito)
 {
-    $minGuadagno = $userPref->guadagno;
-    $deposito = $userPref->deposito;
+   
+   //ottengo il prezzo dello stesso pair su più exchange
+   $samePair= Pair::where('pair',$pairName)
+             ->orderBy('price','desc')
+              ->pluck('exchange')
+              ->toArray();
+   //ordino da prezzo più alto a quello più basso
 
-    $pairList=getPairs($exchanges); //ottengo tutti i pairs
 
-
-
+  return response()->json($samePair);
 
 
 }

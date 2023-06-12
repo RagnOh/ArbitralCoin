@@ -8,7 +8,7 @@ ArbitralCoin
 
 @section('contenuto')
 <table class="table table-striped table-hover table-responsive" 
-            style="width:100%">
+            style="width:100%" id="pairTable">
             <col width='20%'>
             <col width='20%'>
             <col width='20%'>
@@ -24,7 +24,7 @@ ArbitralCoin
             </thead>
 
             <tbody>
-            @foreach ($pairs_list as $row)
+          <!--  @foreach ($pairs_list as $row)
                 <tr>
                     <td>{{ $row[0] }}</td>
                     @for ($i = 1; $i < count($row); $i++)
@@ -32,7 +32,7 @@ ArbitralCoin
                     @endfor
                 </tr>
             @endforeach
-               
+-->
             </tbody>
         </table>
 

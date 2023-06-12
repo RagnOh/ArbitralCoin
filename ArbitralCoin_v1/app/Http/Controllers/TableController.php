@@ -20,4 +20,11 @@ class TableController extends Controller
     
     return view('tablePage.pairingTable')->with('logged',true)->with('loggedName',$_SESSION["loggedName"])->with('pairs_list',$pairList);
     }
+
+    public function ajaxUpdate()
+    {
+       $dl=new DataLayer();
+
+       return $dl->getPairs(Pair::select('exchange')->distinct()->pluck('exchange')->toArray());
+    }
 }

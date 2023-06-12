@@ -9,12 +9,15 @@
 
      <!-- Fogli di stile -->
      <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css">
-     <link rel="stylesheet" href="{{ url('/') }}/css/@yield('stile')">
+     <link rel="stylesheet" href="{{ url('/') }}/css/syle.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!--icone -->
 
      <!-- jQuery e plugin JavaScript  -->
      <script src="http://code.jquery.com/jquery.js"></script>
-     <script src="{ url('/') }}/js/bootstrap.bundle.min.js"></script>
+     <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>
+     <script src="{{ url('/') }}/js/tableScript.js"></script>
+     <script src="{{ url('/') }}/js/inputControls.js"></script>
+     @yield('pageScript')
 
    </head>
     <body>

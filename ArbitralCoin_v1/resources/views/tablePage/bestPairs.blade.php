@@ -4,6 +4,10 @@
 ArbitralCoin
 @endsection
 
+@section('pageScript')
+<script src="{{ url('/') }}/js/bestPairsScripts.js"></script>
+@endsection
+
 @section('contenuto')
 <table class="table table-striped table-hover table-responsive" 
             style="width:100%">

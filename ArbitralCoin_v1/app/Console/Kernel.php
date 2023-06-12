@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\DataLayer;
+use App\Models\Pair;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,6 +18,20 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        $schedule->call(function () {
+            $secondi_update=2;
+            $x=60/$secondi_update;
+            do{
+            $dl = new DataLayer();
+
+           Pair::truncate();
+           $dl->updateTable();
+           $x=$x-1;
+           sleep(5);
+            }while($x>0);
+            
+        })->everyMinute();
     }
 
     /**

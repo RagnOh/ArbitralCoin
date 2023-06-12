@@ -33,9 +33,12 @@ Route::middleware(['authCustom'])->group(function () {
 Route::get('/privateSection',[TableController::class,'index'])->name('privateSection.index');
 //Route::get('/preferencesSettings',[PreferencesController::class,'index'])->name('userPreferences.index');
 Route::resource('preferenceSettings',PreferencesController::class);
+Route::post('/preferenceSettings',[PreferencesController::class,'storeSettings'])->name('preferenceSettings.storeSettings');
 Route::get('/bestPairs',[BestPairsController::class,'index'])->name('bestPairs.index');
 Route::get('/favPairs',[FavPairsController::class,'index'])->name('favPairs.index');
-
+Route::get('/ajaxUpdateTable',[TableController::class,'ajaxUpdate']);
+Route::get('/ajaxStoreSettings',[TableController::class,'storeSettings']);
+Route::get('/ajaxUpdateBestPairs',[BestPairsController::class,'ajaxGetBest']);
 
 });
 

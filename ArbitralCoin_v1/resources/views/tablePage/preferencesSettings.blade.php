@@ -6,7 +6,8 @@ ArbitralCoin
 
 
 @section('contenuto')
-<form class="form-horizontal" name="userPreferences" method="post" action="{{ route('preferenceSettings.index')}}">
+<form class="form-horizontal" name="userPreferences" method="post" action="{{ route('preferenceSettings.storeSettings')}}">
+@csrf
 <div class="form-group">
    <input type="deposito" name="depositAmount" class="form-control" placeholder="Cifra_Deposito"/>
 </div>
@@ -18,7 +19,7 @@ ArbitralCoin
 </div>
 
 <label for="mySubmit" class="btn btn-primary"><i class="bi-check-lg"></i> Save</label>
-<input id="mySubmit" type="submit" value="Save" class="hidden" onclick="event.preventDefault(); checkBook('Save')"/>
+<input id="mySubmit" type="submit" value="Save" class="hidden" onclick="event.preventDefault(); checkPreferences('Save')"/>
 </form>
 @endsection
 
