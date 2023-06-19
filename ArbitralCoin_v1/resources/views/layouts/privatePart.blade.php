@@ -9,7 +9,7 @@
 
      <!-- Fogli di stile -->
      <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css">
-     <link rel="stylesheet" href="{{ url('/') }}/css/syle.css">
+     <link rel="stylesheet" href="{{ url('/') }}/css/@yield('stile')">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!--icone -->
 
      <!-- jQuery e plugin JavaScript  -->
@@ -21,16 +21,21 @@
 
    </head>
     <body>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <ul class="logo">
     <div class="container-fluid">
          <b class="navbar-brand" >
            <!--<img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
            @yield('titolo')
          </b>
+</ul>
          <ul class="navbar-nav col-lg-6">
          <li class="nav-item">
     <a class="nav-link" aria-current="page" href="{{ route('preferenceSettings.index') }}">Settings</a>
-    <a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Pairs Table</a>
+    
+</li>
+<li class="nav-item">
+<a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Pairs Table</a>
 </li>
 <li class="nav-item">
     <a class="nav-link"  href="{{ route('bestPairs.index') }}">bestPairs</a>

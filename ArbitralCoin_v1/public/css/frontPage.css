@@ -1,79 +1,93 @@
 
-h1 {
-  font-size: 9vmin;
-  color: black;
-  text-align: center;
-  font-family: Lato, sans-serif;
-  font-weight: 700;
+.content{
   margin-left: auto;
   margin-right: auto;
+}
+.navbar-brand{
+  color: white;
+  text-align: center;
+  margin-left: 0px;
   
 }
+.btn-outline-light{
 
-/* Typewriter effect 1 */
-@keyframes typing {
-  0.0000%, 27.3488% { content: ""; }
-  1.1395%, 26.2093% { content: "R"; }
-  2.2791%, 25.0698% { content: "RB"; }
-  3.4186%, 23.9302% { content: "RBI"; }
-  4.5581%, 22.7907% { content: "RBIT"; }
-  5.6977%, 21.6512% { content: "RBITR"; }
-  6.8372%, 20.5116% { content: "RBITRA"; }
-  7.9767%, 19.3721% { content: "RBITRAL"; }
-  9.1163%, 18.2326% { content: "RBITRALC"; }
-  10.2558%, 18.0930% { content: "RBITRALCO"; }
-  10.2558%, 18.0930% { content: "RBITRALCOI"; }
-  10.2558%, 18.0930% { content: "RBITRALCOIN"; }
+  border-radius: 30px;
+  padding: 12px 15px 11px;
+  line-height: 11px;
+  transition: opacity .2s linear 0s;
+}
 
+.btn-crea{
+  margin-left: 16px;
+}
 
+.bg-primary{
+  margin-top: 100px;
+}
 
+.content-container{
 
+  background: url(../img/blue_adventure.jpg);
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+height: 100%;
+justify-content: left;
+padding: 200px ; 
+position: absolute;
+top: 0;
+width: 100%;
+z-index: 3;
+}
+
+.content-words{
+  align-items: left;
+  -webkit-font-smoothing: antialiased;
+font-feature-settings: "tnum" on,"lnum" on;
+color: #131722;
+font-family: -apple-system,BlinkMacSystemFont,Trebuchet MS,Roboto,Ubuntu,sans-serif;
+
+margin:0px;
+}
+
+h1.title{
+  display: block;
+  margin-block-start: 0.67em;
+margin-block-end: 1.67em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+font-weight: bold;
+color: rgba(255, 255, 237, 0.972);
 
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.typewriter {
-  --caret: currentcolor;
-}
-
-.typewriter::before {
-  content: "";
-  animation: typing 13.5s infinite;
-}
-
-.typewriter::after {
-  content: "";
-  border-right: 1px solid var(--caret);
-  animation: blink 0.5s linear infinite;
-}
-
-.typewriter.thick::after {
-  border-right: 1ch solid var(--caret);
-}
-
-.typewriter.nocaret::after {
-  border-right: 0;
-}
-
-
-@media (prefers-reduced-motion) {
-  .typewriter::after {
-    animation: none;
-  }
+.motto{
+  font-size: 85px;
+ 
   
-  @keyframes sequencePopup {
-    0%, 100% { content: "arbitalcoin"; }
-   
-  }
-
-  .typewriter::before {
-    content: "arbitralcoin";
-    animation: sequencePopup 12s linear infinite;
-  }
-}
-
 /**/
+}
+.motto2{
+  font-size: 85px;
+  
+}
+
+.description{
+  font-size: 22px;
+}
+
+.arrow-block{
+  bottom: 20px;
+
+justify-content: center;
+left: 0;
+opacity: 0;
+position: absolute;
+width: 100%;
+z-index: 1;
+}
+
+.arrow{
+  animation: bubbleAnimation-W8bRhUdr 2s ease-in-out 0s infinite;
+color: #000208;
+}

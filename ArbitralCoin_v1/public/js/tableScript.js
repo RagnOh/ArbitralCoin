@@ -16,9 +16,9 @@ $(document).ready(function(){
 
                 var newRow = '<tr>' +
                    '<td>' + pair[0]+ '</td>' +
-                   '<td>' + pair[2] + '</td>' +
                    '<td>' + pair[1] + '</td>' +
-                   '<td>' + pair[3] + '</td>' +
+                   '<td>' + pair[2] + '</td>' +
+                   '<td>' + pair[3]+ '</td>' +
                   '</tr>';
 
                 $('#pairTable tbody').append(newRow);

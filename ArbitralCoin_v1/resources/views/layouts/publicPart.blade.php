@@ -11,37 +11,39 @@
      <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css">
      <link rel="stylesheet" href="{{ url('/') }}/css/@yield('stile')">
      <link rel="stylesheet" href="{{ url('/') }}/css/frontPage.css">
+     <link rel="stylesheet" href="{{ url('/') }}/css/style2.css">
      
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!--icone -->
 
      <!-- jQuery e plugin JavaScript  -->
      <script src="http://code.jquery.com/jquery.js"></script>
-     <script src="{ url('/') }}/js/bootstrap.bundle.min.js"></script>
+     <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>
 
    </head>
-   <body>
-     <nav class="navbar bg-body-tertiary">
-       <div class="container-fluid">
-         <a class="navbar-brand" >
-           <!--<img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
-           @yield('titolo')
-         </a>
-
-         <ul class="nav navbar-nav navbar-right">
+   <body id="page-top">
+    <div class="container fluid">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container-fluid">
                 
-         @if($logged)
-                    <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout') }}">Logout <i class="bi-box-arrow-left"></i></a></li>
-                    @else
-                    <li><a class="btn btn-outline-dark" href="{{ route('user.login') }}"><i class="bi-door-open-fill"></i> Login</a></li>
-                    @endif
-                    
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <ul class="logo">
+                <a class="navbar-brand" href="#page-top">@yield('titolo')</a>
                 </ul>
-       
-
-       </div>
-</nav>  
+                <ul class="nav navbar-nav navbar-right">
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                @if($logged)
+                       <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  </li>
+                    @else
+                       <li><a class="btn btn-outline-light " href="{{ route('user.login')}}"> Accedi</a></li>
+                       <li class="btn-crea"><a class="btn btn-outline-light " href="{{ route('user.login')}}" > Registrati</a></li>
+                    @endif
+                </div>
+</ul>
+            </div>
+</div>
+        </nav>
    
-      <div class="container">
+      <div class="main-container">
         
        @yield('contenuto')
       </div>

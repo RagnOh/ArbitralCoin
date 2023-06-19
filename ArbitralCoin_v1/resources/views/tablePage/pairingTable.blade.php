@@ -4,6 +4,7 @@
 ArbitralCoin
 @endsection
 
+@section('stile', 'style.css')
 
 
 @section('contenuto')

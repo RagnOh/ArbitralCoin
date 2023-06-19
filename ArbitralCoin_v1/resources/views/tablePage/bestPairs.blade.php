@@ -4,13 +4,15 @@
 ArbitralCoin
 @endsection
 
+@section('stile', 'style.css')
+
 @section('pageScript')
 <script src="{{ url('/') }}/js/bestPairsScripts.js"></script>
 @endsection
 
 @section('contenuto')
 <table class="table table-striped table-hover table-responsive" 
-            style="width:100%">
+            style="width:100%" id="bestTable">
             <col width='20%'>
             <col width='20%'>
             <col width='20%'>
@@ -18,12 +20,16 @@ ArbitralCoin
             <thead>
                 <tr>
                     <th>Pair</th>
-                    <th>Binance</th>
-                    <th>Kraken</th>
-                    <th>Crypto.com</th>
+                    <th>From</th>
+                    <th>To</th>
                     <th></th>
                 </tr>
             </thead>
+
+            <tbody>
+
+
+            </tbody>
             
         </table>
 

@@ -213,7 +213,7 @@ public function getBestForEachPair($pairName,$minGuadagno,$deposito)
    //ordino da prezzo più alto a quello più basso
 
 
-  return response()->json($samePair);
+  return response()->json($samePair)->getOriginalContent();
 
 
 }
