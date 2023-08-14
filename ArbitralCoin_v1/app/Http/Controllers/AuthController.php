@@ -24,6 +24,14 @@ class AuthController extends Controller
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = $user_name;
             $_SESSION['loggedEmail'] = $req->input('email'); 
+            $_SESSION['admin']= $dl->isAdmin($user_name);
+            
+           /* if($dl->isAdmin($_SESSION['loggedName'])){
+
+                return Redirect::to(route('administrator.dashboardView'));
+            }*/
+            
+
             return Redirect::to(route('privateSection.index')); //Se utente è valido vado su una rotta
         }
         return view('auth.authErrorPage'); //Altrimenti apro pagina errore

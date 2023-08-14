@@ -14,7 +14,7 @@ function updateBestPairsTable()
 
                     var newRow = '<tr>' +
                     '<td>' + pair[0]+ '</td>' +
-                    '<td>' + pair[0] + '</td>' +
+                    '<td>' + pair[1] + '</td>' +
                     '<td>' + pair[2] + '</td>' +
                    '</tr>';
  

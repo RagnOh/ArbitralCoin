@@ -27,9 +27,9 @@
 
 .content-container{
 
-  background: url(../img/blue_adventure.jpg);
 box-sizing: border-box;
 display: flex;
+direction: ltr;
 flex-direction: row;
 height: 100%;
 justify-content: left;
@@ -37,6 +37,7 @@ padding: 200px ;
 position: absolute;
 top: 0;
 width: 100%;
+object-fit: cover;
 z-index: 3;
 }
 
@@ -76,18 +77,22 @@ color: rgba(255, 255, 237, 0.972);
   font-size: 22px;
 }
 
-.arrow-block{
-  bottom: 20px;
-
-justify-content: center;
-left: 0;
-opacity: 0;
-position: absolute;
-width: 100%;
-z-index: 1;
+.pricing{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    margin: 0;
+    max-width: 40%;
+}
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 10px;
 }
 
-.arrow{
-  animation: bubbleAnimation-W8bRhUdr 2s ease-in-out 0s infinite;
-color: #000208;
+th, tr {
+  border: 1px solid black;
+  padding: 10px;
 }

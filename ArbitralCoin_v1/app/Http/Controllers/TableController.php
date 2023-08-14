@@ -12,7 +12,7 @@ class TableController extends Controller
     
         $dl= new DataLayer();
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
-        $exchanges=Pair::select('exchange')->distinct()->pluck('exchange')->toArray();
+        $exchanges=$dl->getExchangeList($userID);//Pair::select('exchange')->distinct()->pluck('exchange')->toArray();
         $response=$dl->getPairs($exchanges);
         $pairList=$response->getOriginalContent();
         
@@ -24,7 +24,9 @@ class TableController extends Controller
     public function ajaxUpdate()
     {
        $dl=new DataLayer();
+       $userID=$dl->getUserID($_SESSION["loggedEmail"]);
+       $exchanges=$dl->getExchangeList($userID);
 
-       return $dl->getPairs(Pair::select('exchange')->distinct()->pluck('exchange')->toArray());
+       return $dl->getPairs($exchanges);//Pair::select('exchange')->distinct()->pluck('exchange')->toArray());
     }
 }

@@ -23,7 +23,7 @@ class BestPairsController extends Controller
     {
         $dl=new DataLayer();
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
-        $exchanges=Pair::select('exchange')->distinct()->pluck('exchange')->toArray();
+        $exchanges=$dl->getExchangeList($userID);
         $response=$dl->getPairs($exchanges);
         $list=$response->getOriginalContent();
 
@@ -31,14 +31,15 @@ class BestPairsController extends Controller
         $miglioriFormattato=[];
         foreach($list as $element)
         {
-            $bestValue=$dl->getBestForEachPair($element[0],4,5);
+            $bestValue=$dl->getBestForEachPair($element[0],$userID);
             array_push($migliori,$element[0]);
-            array_push($migliori,$bestValue);
+            array_push($migliori,reset($bestValue));
+            array_push($migliori,end($bestValue));
             
-            
+            array_push($miglioriFormattato,$migliori);
         }
         
-        return $migliori;
+        return $miglioriFormattato;
     }
 
 }

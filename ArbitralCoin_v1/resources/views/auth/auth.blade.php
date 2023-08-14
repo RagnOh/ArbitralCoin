@@ -15,17 +15,23 @@
     </head>
 
     <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container-fluid">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <ul class="logo">
+                <a class="navbar-brand" href="#page-top">ArbitralCoin</a>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+              
+</ul>
+            </div>
+</div>
+        </nav>
         <div class="container">
             <div class="row" style="margin-top: 4em">
                 <div>
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" type="button" role="tab" aria-controls="pills-login" aria-selected="true">Login</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-register-tab" data-bs-toggle="pill" data-bs-target="#pills-register" type="button" role="tab" aria-controls="pills-register" aria-selected="false">Register</button>
-                        </li>
-                    </ul>
+                    <p> Accedi </p>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab" tabindex="0">
                             <form id="login-form" action="{{ route('user.login') }}" method="post" style="margin-top: 2em">
@@ -45,31 +51,7 @@
                         
                             </form>
                         </div>
-                        <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab" tabindex="0">
-                            <form id="register-form" action="{{ route('user.register') }}" method="post" style="margin-top: 2em">
-                                @csrf
-                                <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Name" value=""/>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" name="email" class="form-control" placeholder="Email" value=""/>
-                                </div>
-
-                                <div class="form-group text-center">
-                                    <input type="password" name="password" class="form-control" placeholder="Password" value=""/>
-                                </div>
-
-                                <div class="form-group text-center">
-                                    <input type="password" name="confirm-password" class="form-control" placeholder="Confirm password" value=""/>
-                                </div>
-
-                                <a href="{{ route('home') }}" class="btn btn-secondary"><i class="bi-box-arrow-left"></i> Back</a>
-                                <label for="Register" class="btn btn-primary"><i class="bi-check-lg"></i> Register</label>
-                                <input id="Register" type="submit" value="Register" class="hidden"/>
-
-                            </form>
-                        </div>
+                     
                     </div>
 
                 </div>

@@ -33,9 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                 @if($logged)
                        <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  </li>
+                       <li><i>Admin setup</i> <a class="btn btn-outline-light" href="{{ route('administrator.dashboardView')}}"> Admin</a>  </li>
                     @else
                        <li><a class="btn btn-outline-light " href="{{ route('user.login')}}"> Accedi</a></li>
-                       <li class="btn-crea"><a class="btn btn-outline-light " href="{{ route('user.login')}}" > Registrati</a></li>
+                       <li class="btn-crea"><a class="btn btn-outline-light " href="{{ route('user.registration')}}" > Registrati</a></li>
                     @endif
                 </div>
 </ul>
@@ -43,10 +44,10 @@
 </div>
         </nav>
    
-      <div class="main-container">
+      
         
        @yield('contenuto')
-      </div>
+     
 
     </body>
 

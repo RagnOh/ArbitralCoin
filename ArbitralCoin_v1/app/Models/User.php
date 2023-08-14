@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'admin',
+        
     ];
 
     /**
@@ -45,5 +47,10 @@ class User extends Authenticatable
     public function userPreferences()
     {
         return $this->hasOne(UserPreferences::class);
+    }
+
+    public function exchange()
+    {
+        return $this->hasMany(Exchange::class);
     }
 }

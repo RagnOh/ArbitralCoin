@@ -13,10 +13,7 @@ class UserPreferences extends Model
 
     protected $fillable =['deposito','valuta','guadagno','user_id'];
 
-    public function exchange()
-    {
-        return $this->hasMany(Exchange::class);
-    }
+    
 
     public function user()
     {

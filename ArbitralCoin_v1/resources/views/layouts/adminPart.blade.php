@@ -15,7 +15,7 @@
      <!-- jQuery e plugin JavaScript  -->
      <script src="http://code.jquery.com/jquery.js"></script>
      <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>
-     <script src="{{ url('/') }}/js/tableScript.js"></script>
+
      <script src="{{ url('/') }}/js/inputControls.js"></script>
      @yield('pageScript')
 
@@ -31,21 +31,18 @@
 </ul>
          <ul class="navbar-nav col-lg-6">
          <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="{{ route('preferenceSettings.index') }}">Settings</a>
+    <a class="nav-link" aria-current="page" href="{{ route('administrator.dashboardView') }}">Users List</a>
     
 </li>
 <li class="nav-item">
-<a class="nav-link" aria-current="page" href="{{ route('administrator.dashboardView') }}">admin</a>
+<a class="nav-link" aria-current="page" href="{{ route('administrator.mockupView') }}">Mockup data</a>
 </li>
+
 <li class="nav-item">
-<a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Pairs Table</a>
+    <a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Users view</a>
+    
 </li>
-<li class="nav-item">
-    <a class="nav-link"  href="{{ route('bestPairs.index') }}">bestPairs</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" aria-current="page" href="{{ route('favPairs.index') }}">favoritePairs</a>
-</li>
+
                 </ul>
          <ul class="nav navbar-nav navbar-right">
                     @if($logged)

@@ -11,11 +11,11 @@ class Exchange extends Model
     public $timestamps=false;
     use HasFactory;
 
-    protected $fillable = ['name','user_pref_id'];
+    protected $fillable = ['name','user_id'];
 
 
     public function userPreferences()
     {
-        return $this->belongsTo(UserPreferences::class);
+        return $this->belongsTo(User::class);
     }
 }

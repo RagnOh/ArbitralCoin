@@ -105,7 +105,7 @@ class DataLayer {
 
     public function addUser($name, $password, $email) {
         $user = new User();
-        $user->name = $name;
+        $user->username = $name;
         $user->password = md5($password);
         $user->email = $email;
         $user->save();
@@ -118,7 +118,17 @@ class DataLayer {
 
     public function getUserName($email) {
         $users = User::where('email',$email)->get();
-        return $users[0]->name;
+        return $users[0]->username;
+    }
+
+    public function isAdmin($username){
+        $user= User::where('username',$username)->get();
+
+        if($user[0]->admin==0){
+           return false;
+        }
+
+        return true;
     }
 
    /* public function listPairs()
@@ -197,12 +207,65 @@ public function addUserPreferences($deposito,$valuta,$minGuadagno,$userID)
     
 }
 
+public function deleteFavExchanges($id) {
+    $favTable = Exchange::where('user_preferences_id',$id);
+    $favTable->delete();
+}
+
+public function addFavExchanges($binance,$kraken,$crypto,$mockup,$userID)
+{
+
+    //Rimuovere da tabella exchange per questo utente
+    
+    
+ 
+    if($binance)
+    {
+        $addExchange= new Exchange();
+      $addExchange->name="Binance";
+      $addExchange->user_preferences_id=$userID;
+      $addExchange->save();
+    }
+    if($kraken)
+    {
+        $addExchange= new Exchange();
+      $addExchange->name="Kraken";
+      $addExchange->user_preferences_id=$userID;
+      $addExchange->save();
+    }
+    if($crypto)
+    {
+        $addExchange= new Exchange();
+      $addExchange->name="Crypto";
+      $addExchange->user_preferences_id=$userID;
+      $addExchange->save();
+    }
+    if($mockup)
+    {
+        $addExchange= new Exchange();
+      $addExchange->name="Mockup";
+      $addExchange->user_preferences_id=$userID;
+      $addExchange->save();
+    }
+
+
+}
+
+public function getExchangeList($userId){
+ 
+    $exchange_list=Exchange::where('user_preferences_id',$userId)->pluck('name')->toArray();
+
+    return $exchange_list;
+
+}
+
+
 public function findUserPreferencesByID($userId)
 {
     return UserPreferences::find($userId);
 }
 
-public function getBestForEachPair($pairName,$minGuadagno,$deposito)
+public function getBestForEachPair($pairName,$userId)
 {
    
    //ottengo il prezzo dello stesso pair su più exchange
@@ -212,9 +275,23 @@ public function getBestForEachPair($pairName,$minGuadagno,$deposito)
               ->toArray();
    //ordino da prezzo più alto a quello più basso
 
+   $minGuadagno= UserPreferences::where('user_id',$userId)->value('guadagno');
+   $deposito= UserPreferences::where('user_id',$userId)->value('deposito');
+   $differenza=end($samePair)-reset($samePair);
 
-  return response()->json($samePair)->getOriginalContent();
 
+
+   if($differenza!=0){
+   if($deposito/$differenza<$minGuadagno)
+   {
+    
+    return $samePair;
+   }
+
+}
+   $vuoto=[];
+  return $vuoto;
+   
 
 }
 
