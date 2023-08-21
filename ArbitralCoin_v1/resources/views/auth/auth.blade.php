@@ -1,37 +1,17 @@
-<!DOCTYPE html>
-<htm>
-    <head>
-        <meta charset="UTF-8">
-        <title>User authentication</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <!-- Fogli di stile -->
-        <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ url('/') }}/css/style.css">
-        <!-- Icone Bootstrap -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <!-- jQuery e plugin JavaScript -->
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>
-    </head>
+@extends('layouts.navBarbase')
 
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <div class="container-fluid">
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <ul class="logo">
-                <a class="navbar-brand" href="#page-top">ArbitralCoin</a>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-              
-</ul>
-            </div>
-</div>
-        </nav>
-        <div class="container">
+@section('titolo')
+ArbitralCoin
+@endsection
+
+
+@section('contenuto')
             <div class="row" style="margin-top: 4em">
                 <div>
-                    <p> Accedi </p>
+                    <p class="testo-accesso"> Accedi </p>
+                    @if($pagamento)
+                    <p>Account registrato correttamente, accedi per continuare </p>
+                    @endif
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab" tabindex="0">
                             <form id="login-form" action="{{ route('user.login') }}" method="post" style="margin-top: 2em">
@@ -50,12 +30,12 @@
 
                         
                             </form>
+
+                            <a href="/user/registration" class="my-3 bottom-link">First time? Register an account</a>
                         </div>
                      
                     </div>
 
                 </div>
             </div>
-        </div>
-    </body>
-</htm>
+@endsection

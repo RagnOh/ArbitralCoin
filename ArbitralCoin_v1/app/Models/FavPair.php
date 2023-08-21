@@ -13,9 +13,9 @@ class FavPair extends Model
 
    protected $fillable = ['pair','user_pref_id'];
 
-   public function userPreferences()
-    {
-        return $this->belongsTo(UserPreferences::class);
-    }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

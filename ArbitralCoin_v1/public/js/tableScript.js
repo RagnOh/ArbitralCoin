@@ -1,6 +1,9 @@
 
+
+
 $(document).ready(function(){
 
+    
     function updateTable()
     {
     $.ajax('\ajaxUpdateTable',{
@@ -9,18 +12,25 @@ $(document).ready(function(){
         type:'GET',
         success: function(data){
             
-            
+           
+            console.log(data);
             $('#pairTable tbody').empty();
 
+            
             $.each(data,function(index,pair){
 
+                console.log(pair);
+                
                 var newRow = '<tr>' +
-                   '<td>' + pair[0]+ '</td>' +
-                   '<td>' + pair[1] + '</td>' +
-                   '<td>' + pair[2] + '</td>' +
-                   '<td>' + pair[3]+ '</td>' +
+                   '<td>' + pair['pair']+ '</td>' +
+                   '<td>' + pair['binance'] + '</td>' +
+                   '<td>' + pair['kraken'] + '</td>' +
+                   '<td>' + pair['crypto']+ '</td>' +
+                   '<td>' + pair['mockup']+ '</td>' +
                   '</tr>';
 
+
+                
                 $('#pairTable tbody').append(newRow);
                 
         });
@@ -35,6 +45,6 @@ $(document).ready(function(){
     
 
 
-    setInterval(updateTable,8000);
+    setInterval(updateTable,5000);
 
 });

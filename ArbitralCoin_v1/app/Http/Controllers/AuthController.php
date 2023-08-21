@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 class AuthController extends Controller
 {
     public function authentication() {
-        return view('auth.auth');
+        return view('auth.auth')->with('pagamento',false);
 
     }
 

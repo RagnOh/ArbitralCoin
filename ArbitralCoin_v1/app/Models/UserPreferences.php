@@ -20,8 +20,5 @@ class UserPreferences extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function favPair()
-    {
-        return $this->hasMany(FavPair::class);
-    }
+    
 }

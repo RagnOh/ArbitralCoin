@@ -15,7 +15,7 @@
      <!-- jQuery e plugin JavaScript  -->
      <script src="http://code.jquery.com/jquery.js"></script>
      <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>
-     <script src="{{ url('/') }}/js/tableScript.js"></script>
+    <!-- <script src="{{ url('/') }}/js/tableScript.js"></script> -->
      <script src="{{ url('/') }}/js/inputControls.js"></script>
      @yield('pageScript')
 
@@ -24,10 +24,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <ul class="logo">
     <div class="container-fluid">
-         <b class="navbar-brand" >
-           <!--<img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
-           @yield('titolo')
-         </b>
+    <a class="navbar-brand" href="{{ route('home') }}">@yield('titolo')</a>
 </ul>
          <ul class="navbar-nav col-lg-6">
          <li class="nav-item">
@@ -35,16 +32,16 @@
     
 </li>
 <li class="nav-item">
-<a class="nav-link" aria-current="page" href="{{ route('administrator.dashboardView') }}">admin</a>
+<a class="nav-link" aria-current="page" href="{{ route('adminUserList.index') }}">Admin</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Pairs Table</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link"  href="{{ route('bestPairs.index') }}">bestPairs</a>
+    <a class="nav-link"  href="{{ route('bestPairs.index') }}">BestPairs</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="{{ route('favPairs.index') }}">favoritePairs</a>
+    <a class="nav-link" aria-current="page" href="{{ route('favPairs.index') }}">FavoritePairs</a>
 </li>
                 </ul>
          <ul class="nav navbar-nav navbar-right">

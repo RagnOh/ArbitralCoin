@@ -31,15 +31,13 @@ class BestPairsController extends Controller
         $miglioriFormattato=[];
         foreach($list as $element)
         {
-            $bestValue=$dl->getBestForEachPair($element[0],$userID);
-            array_push($migliori,$element[0]);
-            array_push($migliori,reset($bestValue));
-            array_push($migliori,end($bestValue));
+            $bestValue=$dl->getBestForEachPair($element['pair'],$userID);
             
-            array_push($miglioriFormattato,$migliori);
+            
+            array_push($miglioriFormattato,$bestValue);
         }
         
-        return $miglioriFormattato;
+        return response()->json($miglioriFormattato);
     }
 
 }

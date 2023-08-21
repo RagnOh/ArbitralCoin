@@ -13,9 +13,10 @@ function updateBestPairsTable()
                 $.each(data,function(index,pair){
 
                     var newRow = '<tr>' +
-                    '<td>' + pair[0]+ '</td>' +
-                    '<td>' + pair[1] + '</td>' +
-                    '<td>' + pair[2] + '</td>' +
+                    '<td>' + pair['pair']+ '</td>' +
+                    '<td>' + pair['primo'] + '</td>' +
+                    '<td>' + pair['ultimo'] + '</td>' +
+                    '<td>' + pair['guadagno'] + '</td>' +
                    '</tr>';
  
                  $('#bestTable tbody').append(newRow);

@@ -5,8 +5,9 @@ ArbitralCoin
 @endsection
 
 @section('contenuto')
-<a class="btn btn-danger" 
-                                href="{{ route('administrator.addNewMockup')}}"><i class="bi-trash3"></i> Aggiungi elemento</a>
+<a class="btn btn-primary" 
+
+                                href="{{ route('administrator.addNewMockup')}}"><i class="bi bi-plus"></i> Aggiungi elemento</a>
 <table class="table table-striped table-hover table-responsive" 
             style="width:100%">
             <col width='20%'>
@@ -30,9 +31,16 @@ ArbitralCoin
                            
                         </td>
                         <td>
-                            <a class="btn btn-danger" 
-                                href="{{ route('administrator.removeMockup', ['pair' => $pair->pair]) }}"><i class="bi-trash3"></i> Delete</a>
+                            <a class="btn btn-primary" 
+                                href="{{ route('adminMockup.edit', ['pair' => $pair->pair]) }}"><i class="bi-pencil-square"></i> Edit</a>
                         </td>
+                        <td>
+                         
+                        <a class="btn btn-primary" 
+                                href="{{ route('adminMockup.destroy.confirm', ['pair' => $pair->pair]) }}"><i class="bi-pencil-square"></i> Delete</a>
+                       
+                        </td>
+                        
                     </tr>
                 @endforeach
             

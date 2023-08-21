@@ -21,19 +21,22 @@
 
    </head>
    <body id="page-top">
-    <div class="container fluid">
+    <div class="container fluid ">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container-fluid">
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <ul class="logo">
-                <a class="navbar-brand" href="#page-top">@yield('titolo')</a>
+                <div class="container justify-content-md-end">
+                <a class="navbar-brand centered" id="logo" href="#page-top">@yield('titolo')</a>
+                </div>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+   
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                 @if($logged)
                        <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  </li>
-                       <li><i>Admin setup</i> <a class="btn btn-outline-light" href="{{ route('administrator.dashboardView')}}"> Admin</a>  </li>
+                       
                     @else
                        <li><a class="btn btn-outline-light " href="{{ route('user.login')}}"> Accedi</a></li>
                        <li class="btn-crea"><a class="btn btn-outline-light " href="{{ route('user.registration')}}" > Registrati</a></li>

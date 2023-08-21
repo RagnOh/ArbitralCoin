@@ -22,7 +22,7 @@ ArbitralCoin
                     <th>Pair</th>
                     <th>From</th>
                     <th>To</th>
-                    <th></th>
+                    <th>Guadagno</th>
                 </tr>
             </thead>
 

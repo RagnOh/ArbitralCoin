@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'admin',
+        'pagante',
         
     ];
 
@@ -52,5 +53,10 @@ class User extends Authenticatable
     public function exchange()
     {
         return $this->hasMany(Exchange::class);
+    }
+
+    public function favPair()
+    {
+        return $this->hasMany(FavPair::class);
     }
 }

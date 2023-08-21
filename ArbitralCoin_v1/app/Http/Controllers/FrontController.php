@@ -11,7 +11,7 @@ class FrontController extends Controller
         session_start();
 
         if (isset($_SESSION['logged'])) {
-          return view('mainPage.firstPage')->with('logged', false)->with('loggedName', $_SESSION['loggedName']);
+          return view('mainPage.firstPage')->with('logged', true)->with('loggedName', $_SESSION['loggedName']);
         } else {
             return view('mainPage.firstPage')->with('logged', false);
         }

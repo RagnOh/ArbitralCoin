@@ -16,7 +16,7 @@ class TableController extends Controller
         $response=$dl->getPairs($exchanges);
         $pairList=$response->getOriginalContent();
         
-
+     //penso di modificare qui il fatto che l'utente abbia pagato o meno
     
     return view('tablePage.pairingTable')->with('logged',true)->with('loggedName',$_SESSION["loggedName"])->with('pairs_list',$pairList);
     }

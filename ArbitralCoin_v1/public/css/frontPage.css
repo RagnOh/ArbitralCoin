@@ -6,9 +6,13 @@
 .navbar-brand{
   color: white;
   text-align: center;
+  justify-content: space-between;
   margin-left: 0px;
   
 }
+
+
+
 .btn-outline-light{
 
   border-radius: 30px;
@@ -83,7 +87,7 @@ color: rgba(255, 255, 237, 0.972);
     align-items: center;
     margin-left: 50px;
     margin: 0;
-    max-width: 40%;
+    max-width: 100%;
 }
 .table{
   width: 100%;
@@ -96,3 +100,74 @@ th, tr {
   border: 1px solid black;
   padding: 10px;
 }
+
+.what_site_do{
+  height: 900px; /* Altezza desiderata */
+  background-color: #0d2423;
+}
+
+.supported_exchanges{
+  height: 900px; /* Altezza desiderata */
+  background-color: #6a7d7c;
+
+}
+
+
+
+.format1{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+   padding-top: 80px;
+   padding-left: 30px;
+    max-width: 60%;
+}
+
+.info1{
+  font-size: 33px;
+  color: white;
+}
+
+.format2{
+  display: flex;
+    justify-content: left;
+    align-items: left;
+   padding-top: 200px;
+   padding-left: 30px;
+    max-width: 50%;
+}
+
+.info2{
+  font-size: 23px;
+  color: white;
+}
+
+.intro-exchanges{
+  padding-top: 30px;
+  padding-left: 30px;
+  font-size: 23px;
+  color: white;
+}
+
+.exchangeName{
+  padding-top: 90px;
+  padding-left: 30px;
+  font-size: 23px;
+  color: white;
+}
+
+
+
+  .panel-heading {
+    color: #fff !important;
+    background-color: #f4511e !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+    background-color: white !important;
+  }

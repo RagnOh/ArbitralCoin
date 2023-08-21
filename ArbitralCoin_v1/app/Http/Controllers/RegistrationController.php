@@ -11,23 +11,36 @@ class RegistrationController extends Controller
     public function userRegistration() {
 
         
-        return view('subscription.userRegistration')->with('logged', false);
+        return view('subscription.userRegistration')->with('logged', false)->with('pagato',false);
 
     }
 
     public function registration(Request $req) {
         
+        session_start();
         $dl = new DataLayer();
         
         $dl->addUser($req->input('name'), $req->input('password'), $req->input('email'));
        
-        return Redirect::to(route('user.login'));
+        return Redirect::to(route('processTransaction'));
     }
 
     public function registrationCheckForEmail(Request $req) {
         $dl = new DataLayer();
         
         if($dl->checkEmail($req->input('email')))
+        {
+            $response = array('found'=>true);
+        } else {
+            $response = array('found'=>false);
+        }
+        return response()->json($response);
+    }
+
+    public function registrationCheckForUsername(Request $req) {
+        $dl = new DataLayer();
+        
+        if($dl->checkUsername($req->input('email')))
         {
             $response = array('found'=>true);
         } else {

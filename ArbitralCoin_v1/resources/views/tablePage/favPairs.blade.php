@@ -4,16 +4,24 @@
 ArbitralCoin
 @endsection
 
+@section('pageScript')
+<script src="{{ url('/') }}/js/favPairsScript.js"></script>
+<script src="{{ url('/') }}/js/favPairInputControl.js"></script>
+@endsection
+
+
+
 @section('contenuto')
-<form class="form-horizontal" name="userPreferences" method="post" action="{{ route('FavPairsController.storeFavPair')}}">
+<form class="form-horizontal" id="favPairInsert" name="userPreferences" method="post" action="{{ route('favPairs.store')}}">
 @csrf
 
 <div class="form-group">
    <input type="deposito" name="insertPair" class="form-control" placeholder="Aggiungi Pair"/>
+   <span class="invalid-input" id="invalid-Input"></span>
 </div>
 
 <label for="mySubmit" class="btn btn-primary"><i class="bi-check-lg"></i> Add</label>
-        <input id="mySubmit" type="submit" value="Save" class="hidden" onclick="event.preventDefault(); checkPreferences('Save')"/>
+        <input id="mySubmit" type="submit" value="Save" class="hidden" onclick="event.preventDefault(); checkPairInput()"/>
 </form>  
 
 <table class="table table-striped table-hover table-responsive" 

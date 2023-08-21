@@ -3,6 +3,7 @@
    <head>
     
      <meta charset="utf-8">
+     <meta name="csrf-token" content="{{ csrf_token() }}" />
      <title> @yield('titolo')</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0, 
               user-scalable=no">
@@ -31,11 +32,11 @@
 </ul>
          <ul class="navbar-nav col-lg-6">
          <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="{{ route('administrator.dashboardView') }}">Users List</a>
+    <a class="nav-link" aria-current="page" href="{{ route('adminUserList.index') }}">Users List</a>
     
 </li>
 <li class="nav-item">
-<a class="nav-link" aria-current="page" href="{{ route('administrator.mockupView') }}">Mockup data</a>
+<a class="nav-link" aria-current="page" href="{{ route('adminMockup.index') }}">Mockup data</a>
 </li>
 
 <li class="nav-item">

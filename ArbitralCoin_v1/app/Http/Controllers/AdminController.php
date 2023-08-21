@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
+use App\Models\DataLayer;
 
 
 class AdminController extends Controller
 {
    
 
-   public function dashboardView(){
+   public function index(){
 
    
     return view('admin.dashboard')->with('logged',true)->with('loggedName',$_SESSION["loggedName"]);
@@ -23,18 +25,39 @@ class AdminController extends Controller
       return response()->json($users);
    }
    
-   public function deleteUser($userId)
+   public function destroy($userName)
    {
-      $csrfToken = bin2hex(random_bytes(32));
 
-// Salva il token nella sessione
-$_SESSION['csrf_token'] = $csrfToken;
-      $user=User::where('id',$userId);
+      $userID=$dl->getUserID($_SESSION["loggedEmail"]);
+      $dl->deleteUserPreferences($userID);
+      $dl->deleteFavExchanges($userID);
+      $user=User::where('userName',$userName);
       $user->delete();
+
+      return Redirect::to(route('adminUserList.index'));
    }
 
-   public function addUser()
+   public function confirmDestroy($userName)
    {
+       $dl = new DataLayer();
+       $user = $dl->findUser($userName);
+       if ($user !== null) {
+         
+           return view('admin.deleteUser')->with('logged', true)->with('loggedName', $_SESSION["loggedName"])->with('user', $userName);
+       } else {
+           return view('admin.deleteUserErrorPage')->with('logged', true)->with('loggedName', $_SESSION["loggedName"]);
+       }
+   }
 
+   public function createNewUser()
+   {
+      return view('admin.addUser')->with('logged',true)->with('loggedName',$_SESSION["loggedName"]);
+   }
+
+   public function store(Request $request)
+   {
+      
+
+      return Redirect::to(route('adminUserList.index'));
    }
 }
