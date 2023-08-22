@@ -29,7 +29,7 @@ function checkPairInput() {
                    
                 } else {
                     error = true;
-                    regInput_msg.html("This pair doesnt exist");
+                    regInput_msg.html("The pair doesnt exist or is already inside the table");
                 }
             }
 

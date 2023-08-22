@@ -51,7 +51,7 @@ class FavPairsController extends Controller
        $dl = new DataLayer();
        $pair = $dl->findFavPair($pairName);
        if ($pair !== null) {
-           return view('tablePage.deleteFavPair')->with('logged', true)->with('loggedName', $_SESSION["loggedName"])->with('pair', $pair);
+           return view('tablePage.deleteFavPair')->with('logged', true)->with('loggedName', $_SESSION["loggedName"])->with('pair', $pairName);
        } else {
            return view('tablePage.deleteFavPairErrorPage')->with('logged', true)->with('loggedName', $_SESSION["loggedName"]);
        }
@@ -79,10 +79,18 @@ class FavPairsController extends Controller
         
         if($dl->checkPair($req->input('insertPair')))
         {
-            $response = array('found'=>true);
+            
+            if($dl->findFavPair($req->input('insertPair'))){
+                $response = array('found'=>false);
+            }else {
+                $response = array('found'=>true);
+            }
         } else {
             $response = array('found'=>false);
         }
+
+          
+        
         return response()->json($response);
     }
 

@@ -25,7 +25,7 @@ ArbitralCoin
 </form>  
 
 <table class="table table-striped table-hover table-responsive" 
-            style="width:100%">
+            style="width:100%" id="bestTable">
             <col width='20%'>
             <col width='20%'>
             <col width='20%'>

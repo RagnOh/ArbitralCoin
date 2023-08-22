@@ -15,33 +15,28 @@ $(document).ready(function(){
                         '<td>' + pair['pair']+ '</td>' +
                         '<td>' + pair['binance'] + '</td>' +
                         '<td>' + pair['kraken'] + '</td>' +
-                        '<td>' + pair['cryptocom'] + '</td>' +
+                        '<td>' + pair['crypto'] + '</td>' +
                         '<td><button class="delete-button">Delete</button></td>'+
                        '</tr>';
      
                      $('#bestTable tbody').append(newRow);
-                     $('.delete-button').on('click', function() {
-                        $(this).closest('tr').remove();
-                    });
+                     
 
                     $('.delete-button').on('click', function() {
                         var row = $(this).closest('tr');
-                        var pair = row.find('td:first').text(); // Assuming the first column is the username
+                        var favPair = row.find('td:first').text(); // Assuming the first column is the username
                         var csrfToken = $('meta[name="csrf-token"]').attr('content');
                         $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            url: "/favPairs/" + pair,
-                            method: "DELETE",
-                            data: {
-                                _token: csrfToken
-                            },
+                            
+                            url: "/favPairs/" + favPair + "/destroy/confirm",
+                            method: "GET",
+                            data:{pairName: favPair},
                             success: function(response) {
+                                window.location.href = "/favPairs/" + favPair + "/destroy/confirm";
                                 row.remove();
                             },
                             error: function(error) {
-                                console.log("Error deleting user: " + error.responseText);
+                                console.log("Error deleting favPair: " + error.responseText);
                             }
                         });
                     });

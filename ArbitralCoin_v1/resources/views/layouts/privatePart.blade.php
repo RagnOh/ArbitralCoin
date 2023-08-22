@@ -15,8 +15,7 @@
      <!-- jQuery e plugin JavaScript  -->
      <script src="http://code.jquery.com/jquery.js"></script>
      <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="{{ url('/') }}/js/tableScript.js"></script> -->
-     <script src="{{ url('/') }}/js/inputControls.js"></script>
+    
      @yield('pageScript')
 
    </head>

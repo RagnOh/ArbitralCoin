@@ -322,9 +322,9 @@ public function addFavExchanges($binance,$kraken,$crypto,$userID)
 
 public function getExchangeList($userId){
  
-    $exchange_list=Exchange::where('user_preferences_id',$userId)->get();//->pluck('name')->toArray();
+    $exchange_list=Exchange::where('user_preferences_id',$userId)->pluck('name')->toArray();
 
-    return response()->json($exchange_list); 
+    return $exchange_list;//response()->json($exchange_list); 
 
 }
 
@@ -347,7 +347,7 @@ public function getBestForEachPair($pairName,$userId)
    
    //ottengo il prezzo dello stesso pair su più exchange
    $samePair= Pair::where('pair',$pairName)
-             ->orderBy('price','desc')
+             ->orderBy('price','asc')
               ->get();
               
               
@@ -380,32 +380,38 @@ public function getBestForEachPair($pairName,$userId)
        $ultimoExchage=$pair['exchange'];
    }
 
-   $differenza=$primo-$ultimo;
-
-   if($differenza!=0)
-   {
-    $guadagno=$deposito/$differenza;
-   }
-   else{
+   
+   if($primo != 0){
+   $numPurchasedCoins=$deposito/$primo;
+   
+   
+   $guadagno=($numPurchasedCoins*$ultimo)-$deposito;
+   if($guadagno<0){
     $guadagno=0;
    }
-  
+}
+else{$guadagno=0;}
 
    $orderResult= array("pair"=>$pairName,"primo"=>$primoExchage,"ultimo"=>$ultimoExchage,"guadagno"=>$guadagno);
-   if($differenza!=0){
+   
    if($guadagno>$minGuadagno)
    {
     
     
 
 
-    return $samePair;
+    return $orderResult;
    }
 
-}
+
    $vuoto=[];
-  return response()->json($orderResult);
+  return $orderResult;
    
+
+}
+
+private function parseWithFiat($pairList)
+{
 
 }
 
@@ -459,6 +465,16 @@ public function checkUsername($username) {
 
 public function checkPair($pair) {
     $occurence = Pair::where('pair',$pair)->get();
+    if (count($occurence) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+public function findFavPair($pair)
+{
+    $occurence = FavPair::where('pair',$pair)->get();
     if (count($occurence) == 0) {
         return false;
     } else {

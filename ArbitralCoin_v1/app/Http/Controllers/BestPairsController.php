@@ -33,7 +33,7 @@ class BestPairsController extends Controller
         {
             $bestValue=$dl->getBestForEachPair($element['pair'],$userID);
             
-            
+            if($bestValue['guadagno'])
             array_push($miglioriFormattato,$bestValue);
         }
         

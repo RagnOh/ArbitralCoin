@@ -26,7 +26,12 @@ ArbitralCoin
             </div>
             <div class='card-body'>
                 <p>The User <strong>will be removed</strong> from the database</p>
-                <p><a class="btn btn-danger" href="{{ route('favPairs.destroy', ['pair' => $pair->pair]) }}"><i class="bi-trash3"></i> Remove</a></p>
+                <form class="form-horizontal" name="destroy" method="POST" action="{{ route('favPairs.destroy', ['favPair' => $pair]) }}">
+                @csrf
+                @method('DELETE')
+                <button type='submit' class="btn btn-danger" data-toggle="tooltip" ><i class="bi-trash3"></i> Elimina </button>
+               </form>
+                
             </div>
         </div>
     </div>
