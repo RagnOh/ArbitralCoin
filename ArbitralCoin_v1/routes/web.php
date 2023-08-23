@@ -37,6 +37,7 @@ Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout
 Route::get('/registrationEmailCheck', [RegistrationController::class, 'registrationCheckForEmail']);
 Route::get('/registrationUsernameCheck', [RegistrationController::class, 'registrationCheckForUsername']);
 
+//Route per pagamenti
 Route::get('create-transaction', [PayPalController::class, 'createTransaction'])->name('createTransaction');
 Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
@@ -69,6 +70,7 @@ Route::middleware(['authCustom'])->group(function () {
 
 Route::get('/privateSection',[TableController::class,'index'])->name('privateSection.index');
 Route::get('/ajaxUpdateTable',[TableController::class,'ajaxUpdate']);
+Route::get('/ajaxCheckUpdate',[TableController::class,'ajaxCheckUpdate']);
 Route::get('/ajaxStoreSettings',[TableController::class,'storeSettings']);
 
 Route::resource('preferenceSettings',PreferencesController::class);

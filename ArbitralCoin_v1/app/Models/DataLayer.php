@@ -152,6 +152,41 @@ class DataLayer {
       
     }
 
+    public function updateTableStatus()
+    {
+        $status=UpdateStatus::where('id',1)->get();
+        $risposta=0;
+        foreach($status as $element){
+            if($element['done'] == 0){
+                $risposta=1;
+               }
+        }
+        
+        UpdateStatus::truncate();
+        
+        $tableStatus=new UpdateStatus();
+        $tableStatus->done = $risposta;
+
+        $tableStatus->save();
+
+    }
+
+    public function setDone()
+    {
+        $tableStatus=new UpdateStatus();
+        $tableStatus->done = 1;
+
+        $tableStatus->save();
+    }
+
+    public function resetDone()
+    {
+        $tableStatus=new UpdateStatus();
+        $tableStatus->done = 0;
+
+        $tableStatus->save();
+    }
+
     public function updateTable()
     {
         Pair::truncate();
@@ -205,6 +240,8 @@ $intersection=Pair::whereIn('pair',$commonPairs)
               ->select('exchange','pair','price')
               ->orderBy('pair')
               ->get();
+ 
+                          
   
               
         return $this->pairArrayOptim($commonPairs,$exchanges);
@@ -245,16 +282,19 @@ $intersection=Pair::whereIn('pair',$commonPairs)
 
                 }
                 else{
-                    $mockupPrice=Pair::where('exchange',$exchange)
-                    ->where('pair',$currentPair['pair'])
-                    ->value('price');
 
                 }
+                    
+
+                
 
                 
                 
             }
-            $supportArray= array("pair"=>$currentPair['pair'], "kraken"=>$krakenPrice, "binance"=>$binancePrice, "crypto"=>$cryptoPrice);
+            $mockupPrice=Mockup::where('pair',$currentPair['pair'])
+                    ->value('price');
+
+            $supportArray= array("pair"=>$currentPair['pair'], "kraken"=>$krakenPrice, "binance"=>$binancePrice, "crypto"=>$cryptoPrice , "mockup"=>$mockupPrice);
                 array_push($formattedArray,$supportArray);
 
           }
@@ -410,9 +450,40 @@ else{$guadagno=0;}
 
 }
 
-private function parseWithFiat($pairList)
+private function parseWithFiat($pairList,$userID)
 {
+    
+    $valuta= UserPreferences::where('user_id',$userID)->get('valuta');
+    
 
+    foreach($pairList as $pair)
+    {
+       switch($valuta){
+
+        case "EUR":
+           if(substr($pair,-3) == "EUR"){
+            
+           }
+            break;
+
+        case "USD":
+            if(substr($pair,-3) == "USD"){
+            
+            }
+
+            break;
+            
+        case "AUD":
+            if(substr($pair,-3) == "AUD"){
+            
+            }
+
+             break;    
+
+
+       }
+    }
+    
 }
 
 private function confrontValue($pair,$exchange_list)
@@ -482,6 +553,11 @@ public function findFavPair($pair)
     }
 }
 
+public function deleteUserNotPaying()
+{
+    $users=User::where('pagante',0);
+    $users->delete();
 
+}
     
 }

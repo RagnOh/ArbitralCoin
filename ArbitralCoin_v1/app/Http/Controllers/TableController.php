@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
 use App\Models\Pair;
+use App\Models\UpdateStatus;
 
 class TableController extends Controller
 {
@@ -24,9 +25,18 @@ class TableController extends Controller
     public function ajaxUpdate()
     {
        $dl=new DataLayer();
+       
        $userID=$dl->getUserID($_SESSION["loggedEmail"]);
        $exchanges=$dl->getExchangeList($userID);
 
        return $dl->getPairs($exchanges);//Pair::select('exchange')->distinct()->pluck('exchange')->toArray());
+    }
+
+    public function ajaxCheckUpdate()
+    {
+        $dl=new DataLayer();
+        $status=UpdateStatus::select('done')->get();
+
+        return $status;
     }
 }
