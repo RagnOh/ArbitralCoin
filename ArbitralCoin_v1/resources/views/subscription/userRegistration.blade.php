@@ -33,14 +33,14 @@ ArbitralCoin
                                 </div>
 
                                 
-                                
+                                <a href="{{ route('home') }}" class="btn btn-secondary"><i class="bi-box-arrow-left"></i> Back</a>
                                 <label for="Register" class="btn btn-primary"><i class="bi-check-lg"></i> Procedi con il pagamento</label>
                                 <input id="Register" type="submit" value="Register" class="hidden" onclick="event.preventDefault(); checkRegistrationData();"/>
                                 
                                 
                                
                             </form>
-                            <a href="{{ route('home') }}" class="btn btn-secondary"><i class="bi-box-arrow-left"></i> Back</a>
+                            
 
                             
                             <a href="/user/login" class="my-3 bottom-link">Already have an account? Log In!</a>

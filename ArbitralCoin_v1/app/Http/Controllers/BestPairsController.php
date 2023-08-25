@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
 use App\Models\Pair;
+use App\Models\UserPreferences;
 
 class BestPairsController extends Controller
 {
@@ -15,7 +16,10 @@ class BestPairsController extends Controller
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
         $bestPairs=$dl->getBestForEachPair("ALGOUSDT",4,5);
 
-        return view('tablePage.bestPairs')->with('logged',true)->with('loggedName',$_SESSION["loggedName"]);
+        $minGuadagno= UserPreferences::where('user_id',$userID)->value('guadagno');
+        $deposito= UserPreferences::where('user_id',$userID)->value('deposito');
+
+        return view('tablePage.bestPairs')->with('logged',true)->with('loggedName',$_SESSION["loggedName"])->with('deposito',$deposito)->with('guadagno',$minGuadagno);
 
     }
 
@@ -25,13 +29,15 @@ class BestPairsController extends Controller
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
         $exchanges=$dl->getExchangeList($userID);
         $response=$dl->getPairs($exchanges);
+        
         $list=$response->getOriginalContent();
+        $fiatResponse=$dl->parseWithFiat($list,$userID);
 
         $migliori=[];
         $miglioriFormattato=[];
-        foreach($list as $element)
+        foreach($fiatResponse as $element)
         {
-            $bestValue=$dl->getBestForEachPair($element['pair'],$userID);
+            $bestValue=$dl->getBestForEachPair($element,$userID);
             
             if($bestValue['guadagno'])
             array_push($miglioriFormattato,$bestValue);

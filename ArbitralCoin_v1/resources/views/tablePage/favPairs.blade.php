@@ -20,7 +20,7 @@ ArbitralCoin
    <span class="invalid-input" id="invalid-Input"></span>
 </div>
 
-<label for="mySubmit" class="btn btn-primary"><i class="bi-check-lg"></i> Add</label>
+        <label for="mySubmit" class="btn btn-primary"><i class="bi-check-lg"></i> Add</label>
         <input id="mySubmit" type="submit" value="Save" class="hidden" onclick="event.preventDefault(); checkPairInput()"/>
 </form>  
 

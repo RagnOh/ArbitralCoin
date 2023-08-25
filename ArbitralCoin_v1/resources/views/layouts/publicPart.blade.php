@@ -21,25 +21,26 @@
 
    </head>
    <body id="page-top">
-    <div class="container fluid ">
+    <div class="container fluid t">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <div class="container-fluid">
+            <div class="container-fluid text-centered row">
                 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <ul class="logo">
-                <div class="container justify-content-md-end">
+               
+                
+                <div class="container justify-content-md-end col col-lg-9 col-md-6 col-sm-6 col-5">
                 <a class="navbar-brand centered" id="logo" href="#page-top">@yield('titolo')</a>
                 </div>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                
+               
+                
    
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="  col-lg-3 col-md-4 col-sm-4 col-7" id="navbarResponsive">
                 @if($logged)
-                       <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  </li>
+                       <i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  
                        
                     @else
-                       <li><a class="btn btn-outline-light " href="{{ route('user.login')}}"> Accedi</a></li>
-                       <li class="btn-crea"><a class="btn btn-outline-light " href="{{ route('user.registration')}}" > Registrati</a></li>
+                       <a class="btn btn-outline-light " href="{{ route('user.login')}}"> Accedi</a>
+                       <a class="btn btn-outline-light " href="{{ route('user.registration')}}" > Registrati</a>
                     @endif
                 </div>
 </ul>

@@ -37,45 +37,30 @@ direction: ltr;
 flex-direction: row;
 height: 100%;
 justify-content: left;
-padding: 200px ; 
+padding-top: 20vw ; 
+padding-left: 2.7vw ; 
 position: absolute;
 top: 0;
-width: 100%;
+width: 80%;
 object-fit: cover;
 z-index: 3;
 }
 
-.content-words{
-  align-items: left;
-  -webkit-font-smoothing: antialiased;
-font-feature-settings: "tnum" on,"lnum" on;
-color: #131722;
-font-family: -apple-system,BlinkMacSystemFont,Trebuchet MS,Roboto,Ubuntu,sans-serif;
 
-margin:0px;
-}
 
 h1.title{
-  display: block;
-  margin-block-start: 0.67em;
-margin-block-end: 1.67em;
-margin-inline-start: 0px;
-margin-inline-end: 0px;
-font-weight: bold;
+  
 color: rgba(255, 255, 237, 0.972);
 
 }
 
 .motto{
-  font-size: 85px;
+  color: rgba(255, 255, 237, 0.972);
  
   
 /**/
 }
-.motto2{
-  font-size: 85px;
-  
-}
+
 
 .description{
   font-size: 22px;
@@ -118,13 +103,13 @@ th, tr {
   display: flex;
     justify-content: center;
     align-items: center;
-   padding-top: 80px;
-   padding-left: 30px;
+   padding-top: 5vw;
+   padding-left: 3vw;
     max-width: 60%;
 }
 
-.info1{
-  font-size: 33px;
+.info{
+  
   color: white;
 }
 
@@ -132,15 +117,12 @@ th, tr {
   display: flex;
     justify-content: left;
     align-items: left;
-   padding-top: 200px;
-   padding-left: 30px;
+   padding-top: 8vw;
+   padding-left: 3vw;
     max-width: 50%;
 }
 
-.info2{
-  font-size: 23px;
-  color: white;
-}
+
 
 .intro-exchanges{
   padding-top: 30px;

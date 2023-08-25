@@ -11,6 +11,15 @@ ArbitralCoin
 @endsection
 
 @section('contenuto')
+<div class="User-Param">
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">Deposito= {{$deposito}}</li>
+  <li class="list-group-item">Guadagno= {{$guadagno}}</li>
+  
+</ul>
+
+
+</div>
 <table class="table table-striped table-hover table-responsive" 
             style="width:100%" id="bestTable">
             <col width='20%'>

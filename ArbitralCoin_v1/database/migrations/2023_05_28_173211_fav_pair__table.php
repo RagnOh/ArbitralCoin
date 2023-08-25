@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('fav_pairs',function(Blueprint $table){
             $table->id();
             $table->string('pair');
-            $table->bigInteger('user_preferences_id')->unsigned();
-            $table->foreign('user_preferences_id')->references('id')->on('user_preferences');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
     }

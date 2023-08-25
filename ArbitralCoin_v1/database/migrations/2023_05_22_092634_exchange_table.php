@@ -17,8 +17,8 @@ return new class extends Migration
         {
             $table->id();
             $table->string('name');
-            $table->bigInteger('user_preferences_id')->unsigned();
-            $table->foreign('user_preferences_id')->references('id')->on('user_preferences');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             
 
         });

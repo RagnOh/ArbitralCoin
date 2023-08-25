@@ -11,7 +11,7 @@ class FavPair extends Model
    public $timestamps = false;
    use HasFactory;
 
-   protected $fillable = ['pair','user_pref_id'];
+   protected $fillable = ['pair','user_id'];
 
 
     public function user()

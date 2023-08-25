@@ -18,12 +18,12 @@ ArbitralCoin
      
 
 
-    <div class="content-container">
+    <div class="content-container col-md-4">
                     <div class="content-words">
                         <h1 class="title">
-                          <p class="motto"> Save Time/ </p>
-                          <p class="motto2"> Earn more. <p>
-                          <p class="description"> Le migliori opportunità davanti a te <p>
+                          <h2 class="motto" style="font-size: 4vw;"> Save Time/ </h2>
+                          <h3 class="motto" style="font-size: 4vw;"> Earn more. </h3>
+                          <h4 class="motto" style="font-size: 1.5vw;"> Le migliori opportunità davanti a te </h4>
                         </h1>
                         
                     </div>
@@ -35,23 +35,23 @@ ArbitralCoin
   <div class="what_site_do">
   
   <div class="format1">
-  <p class="info1"> Confronta i prezzi delle criptovalute sugli exchanges più importanti del mercato
-      e cogli le occasioni di arbitraggio più ghiotte </p>
+  <h1 class="info" style="font-size: 2.8vw;"> Confronta i prezzi delle criptovalute sugli exchanges più importanti del mercato
+      e cogli  le occasioni di arbitraggio più ghiotte </h1>
 </div>
 
 <div class="format2">
-  <p class="info2"> Personalizzazione completa dei parmetri di calcolo </p>
+  <h1 class="info" style="font-size: 2.8vw;"> Personalizzazione completa dei parmetri di calcolo </h1>
 </div>
 </div>
 
 <div class="supported_exchanges">
 
-<p class="intro-exchanges"> Supporto agli exchanges più famosi </p>
+<h1 class="intro-exchanges " style="font-size: 2.8vw;"> Supporto agli exchanges più famosi </h1>
 
 
-  <p class="exchangeName">Kraken</p>
-  <p class="exchangeName">Binance</p>
-  <p class="exchangeName">Crypto.com</p>
+  <p class="exchangeName" style="font-size: 2.8vw;">Kraken</p>
+  <p class="exchangeName" style="font-size: 2.8vw;">Binance</p>
+  <p class="exchangeName" style="font-size: 2.8vw;">Crypto.com</p>
 
 </div>
 

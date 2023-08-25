@@ -12,8 +12,9 @@ class PreferencesController extends Controller
 
         $dl=new DataLayer();
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
+        $fiatList=array("EUR","USD","AUD","GBP","USDT");
 
-        return view('tablePage.preferencesSettings')->with('logged',true)->with('loggedName',$_SESSION["loggedName"]);
+        return view('tablePage.preferencesSettings')->with('logged',true)->with('loggedName',$_SESSION["loggedName"])->with('fiatList',$fiatList);
     }
 
     public function store(Request $request)

@@ -59,8 +59,12 @@ ArbitralCoin
    <span class="invalid-deposit" id="invalid-deposit"></span>
 </div>
 <div class="form-group">
-   <input type="valuta preferita" name="favoriteValute" class="form-control" placeholder="Fav_Valuta"/>
-   <span class="invalid-valuta" id="invalid-valuta"></span>
+<select class="form-select" name="favoriteValute">
+                @foreach($fiatList as $type)
+                 
+                    <option value="{{ $type }}" selected="selected">{{ $type }}</option>
+                @endforeach
+                </select>
 </div>
 <div class="form-group">
    <input type="minimo guadagno" name="minGain" class="form-control" placeholder="Min_Guadagno"/>

@@ -28,7 +28,7 @@ class FavPairsController extends Controller
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
 
         $favourite->pair=$request->input('insertPair');
-        $favourite->user_preferences_id=$userID;
+        $favourite->user_id=$userID;
 
         $favourite->save();     
 
@@ -62,6 +62,7 @@ class FavPairsController extends Controller
 
        $dl=new DataLayer();
        $userID=$dl->getUserID($_SESSION["loggedEmail"]);
+       $exch=array("Kraken","Binance","Cryptocom");
        $exchanges=$dl->getExchangeList($userID);
 
        $commonPairs=$dl->getFavPairs($userID)->getOriginalContent();

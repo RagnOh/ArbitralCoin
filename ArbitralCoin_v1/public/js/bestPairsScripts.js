@@ -22,7 +22,7 @@ function updateBestPairsTable()
                  $('#bestTable tbody').append(newRow);
                 
 
-                    console.log(pair);
+                    
 
                 });
             },
@@ -33,5 +33,5 @@ function updateBestPairsTable()
             });
     }
 
-    setInterval(updateBestPairsTable,5000);
+    setInterval(updateBestPairsTable,1000);
 });

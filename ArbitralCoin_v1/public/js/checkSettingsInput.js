@@ -4,12 +4,12 @@ function checkSettingsInput() {
     krakenInput= $("form[id=user-pref] input[name=Kraken]");
     cryptoInput= $("form[id=user-pref] input[name=Crypto]");
     depositInput=$("form[id=user-pref] input[name=depositAmount]");
-    valutaInput=$("form[id=user-pref] input[name=favoriteValute]");
+   
     minGainInput=$("form[id=user-pref] input[name=minGain]");
     
     regSwitch_msg = $("#invalid-Switch");
     regDeposit_msg = $("#invalid-deposit");
-    regValuta_msg = $("#invalid-valuta");
+    
     regGain_msg = $("#invalid-gain");
 
     switchvalue=0;
@@ -24,14 +24,7 @@ function checkSettingsInput() {
         regDeposit_msg.html("");
     }
 
-    if (valutaInput.val().trim() === "")
-    {
-        regValuta_msg.html("The valuta field must not be empty");
-        valutaInput.focus();
-        error = true;
-    } else {
-        regValuta_msg.html("");
-    }
+   
 
     if (minGainInput.val().trim() === "")
     {
@@ -58,7 +51,7 @@ function checkSettingsInput() {
         
     }
 
-    if (switchvalue < 3)
+    if (switchvalue < 2)
     {
         regSwitch_msg.html("you need at least 2 exchanges");
         

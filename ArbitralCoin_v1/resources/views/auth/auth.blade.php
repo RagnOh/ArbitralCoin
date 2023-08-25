@@ -17,7 +17,7 @@ ArbitralCoin
                             <form id="login-form" action="{{ route('user.login') }}" method="post" style="margin-top: 2em">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="email" class="form-control" placeholder="Username"/>
+                                    <input type="text" name="email" class="form-control" placeholder="Email"/>
                                 </div>
 
                                 <div class="form-group">

@@ -200,47 +200,17 @@ class DataLayer {
     public function getPairs($exchange_list)
     {
         $exchanges = $exchange_list;
-/*        $priceData = [];
-$formattedArray = [];
-$commonPairs = Pair::whereIn('exchange', $exchanges)
-    ->select('pair')
-    ->groupBy('pair')
-    ->havingRaw('COUNT(DISTINCT exchange) = ?', [count($exchanges)])
-    ->pluck('pair')
-    ->toArray();
 
-foreach ($exchanges as $exchange) {
-    $prices = Pair::where('exchange', $exchange)
-        ->whereIn('pair', $commonPairs)
-        ->pluck('price', 'pair')
-        ->toArray();
 
-    $priceData[$exchange] = $prices;
-}
-
-foreach ($commonPairs as $pair) {
-    $formattedRow = [$pair];
-    
-    foreach ($exchanges as $exchange) {
-        $formattedRow[] = $priceData[$exchange][$pair] ?? '-';
-    }
-
-    $formattedArray[] = $formattedRow;
-}
-*/
 
 $commonPairs=Pair::whereIn('exchange',$exchanges)
              ->select('pair')
              ->groupBy('pair')
-             ->having(Pair::raw('COUNT(DISTINCT exchange)'), '>', 1)
+             ->havingRaw('COUNT(DISTINCT exchange) = ?', [count($exchanges)])
              ->orderBy('pair')
              ->get('pair');
 
-$intersection=Pair::whereIn('pair',$commonPairs)
-              ->select('exchange','pair','price')
-              ->orderBy('pair')
-              ->get();
- 
+
                           
   
               
@@ -323,7 +293,7 @@ public function deleteUserPreferences($userID)
 }
 
 public function deleteFavExchanges($id) {
-    $favTable = Exchange::where('user_preferences_id',$id);
+    $favTable = Exchange::where('user_id',$id);
     $favTable->delete();
 }
 
@@ -338,31 +308,35 @@ public function addFavExchanges($binance,$kraken,$crypto,$userID)
     {
         $addExchange= new Exchange();
       $addExchange->name="Binance";
-      $addExchange->user_preferences_id=$userID;
+      $addExchange->user_id=$userID;
       $addExchange->save();
     }
     if($kraken)
     {
         $addExchange= new Exchange();
       $addExchange->name="Kraken";
-      $addExchange->user_preferences_id=$userID;
+      $addExchange->user_id=$userID;
       $addExchange->save();
     }
     if($crypto)
     {
         $addExchange= new Exchange();
       $addExchange->name="Cryptocom";
-      $addExchange->user_preferences_id=$userID;
+      $addExchange->user_id=$userID;
       $addExchange->save();
     }
     
+    $addExchange= new Exchange();
+      $addExchange->name="Mockup";
+      $addExchange->user_id=$userID;
+      $addExchange->save();
 
 
 }
 
 public function getExchangeList($userId){
  
-    $exchange_list=Exchange::where('user_preferences_id',$userId)->pluck('name')->toArray();
+    $exchange_list=Exchange::where('user_id',$userId)->pluck('name')->toArray();
 
     return $exchange_list;//response()->json($exchange_list); 
 
@@ -371,7 +345,7 @@ public function getExchangeList($userId){
 
 public function findUserPreferencesByID($userId)
 {
-    $occurence=Exchange::where('user_preferences_id',$userId)->get();
+    $occurence=Exchange::where('user_id',$userId)->get();
     if (count($occurence) == 0) {
         return false;
     } else {
@@ -385,10 +359,23 @@ public function findUserPreferencesByID($userId)
 public function getBestForEachPair($pairName,$userId)
 {
    
+    $exchange=$this->getExchangeList($userId);
+    
+    //$mockupPrice=Mockup::where('pair',$pairName)->get();
+
+    /*if (count($mockupPrice) != 0) {
+        
+        $this->addPair($mockupPrice['exchange'],$mockupPrice['pair'],$mockupPrice['price']);
+    } 
+*/
+
    //ottengo il prezzo dello stesso pair su più exchange
-   $samePair= Pair::where('pair',$pairName)
+   $samePair= Pair::whereIn('exchange',$exchange)
+             ->where('pair',$pairName)
              ->orderBy('price','asc')
               ->get();
+
+          
               
               
            
@@ -426,7 +413,7 @@ public function getBestForEachPair($pairName,$userId)
    
    
    $guadagno=($numPurchasedCoins*$ultimo)-$deposito;
-   if($guadagno<0){
+   if($guadagno<0 || $guadagno<$minGuadagno){
     $guadagno=0;
    }
 }
@@ -434,7 +421,7 @@ else{$guadagno=0;}
 
    $orderResult= array("pair"=>$pairName,"primo"=>$primoExchage,"ultimo"=>$ultimoExchage,"guadagno"=>$guadagno);
    
-   if($guadagno>$minGuadagno)
+   if($guadagno>=$minGuadagno)
    {
     
     
@@ -450,40 +437,34 @@ else{$guadagno=0;}
 
 }
 
-private function parseWithFiat($pairList,$userID)
+public function parseWithFiat($pairList,$userID)
 {
     
-    $valuta= UserPreferences::where('user_id',$userID)->get('valuta');
+    $valuta= UserPreferences::where('user_id',$userID)->value('valuta');
+
     
+    $valuePairs=[];
 
     foreach($pairList as $pair)
     {
-       switch($valuta){
 
-        case "EUR":
-           if(substr($pair,-3) == "EUR"){
-            
-           }
-            break;
-
-        case "USD":
-            if(substr($pair,-3) == "USD"){
-            
+        if($valuta=="USDT"){
+            if(substr($pair['pair'],-4)==$valuta)
+            {
+                array_push($valuePairs,$pair['pair']);
             }
-
-            break;
             
-        case "AUD":
-            if(substr($pair,-3) == "AUD"){
-            
+        }else
+        {
+            if(substr($pair['pair'],-3)==$valuta)
+            {
+               array_push($valuePairs,$pair['pair']);
             }
-
-             break;    
-
-
-       }
+        }
+      
     }
-    
+     
+    return $valuePairs;
 }
 
 private function confrontValue($pair,$exchange_list)
@@ -494,7 +475,7 @@ private function confrontValue($pair,$exchange_list)
 
 public function getFavPairs($userId)
 {
-    $userFavPairs= FavPair::where('user_preferences_id',$userId)->get('pair');
+    $userFavPairs= FavPair::where('user_id',$userId)->get('pair');
     
     $pairs=Pair::whereIn('pair',$userFavPairs)->get();
 
