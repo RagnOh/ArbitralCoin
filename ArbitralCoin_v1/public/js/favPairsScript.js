@@ -8,7 +8,7 @@ $(document).ready(function(){
                 type:'GET',
                 success: function(data){
     
-                    $('#bestTable tbody').empty();
+                    $('#favTable tbody').empty();
                     $.each(data,function(index,pair){
     
                         var newRow = '<tr>' +
@@ -19,7 +19,7 @@ $(document).ready(function(){
                         '<td><button class="delete-button">Delete</button></td>'+
                        '</tr>';
      
-                     $('#bestTable tbody').append(newRow);
+                     $('#favTable tbody').append(newRow);
                      
 
                     $('.delete-button').on('click', function() {

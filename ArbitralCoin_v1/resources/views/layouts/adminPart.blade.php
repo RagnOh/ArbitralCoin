@@ -13,6 +13,7 @@
      <link rel="stylesheet" href="{{ url('/') }}/css/@yield('stile')">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!--icone -->
 
+     @yield('cssResource')
      <!-- jQuery e plugin JavaScript  -->
      <script src="http://code.jquery.com/jquery.js"></script>
      <script src="{{ url('/') }}/js/bootstrap.bundle.min.js"></script>

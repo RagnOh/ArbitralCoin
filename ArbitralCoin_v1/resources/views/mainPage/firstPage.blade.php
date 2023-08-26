@@ -55,63 +55,25 @@ ArbitralCoin
 
 </div>
 
-<div id="pricing" class="container-fluid">
-  <div class="text-center">
-    <h2>Pricing</h2>
-  
-  </div>
-  <div class="row slideanim">
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          
+<div class="col-lg-4 mb-5 mb-lg-0 pricing">
+        <div class="bg-white p-5  rounded-lg shadow">
+          <h1 class="h6 text-uppercase font-weight-bold mb-4">Standard</h1>
+          <h2 class="h1 font-weight-bold">$50<span class="text-small font-weight-normal ml-2">/ month</span></h2>
+
+          <div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+          <ul class="list-unstyled my-5 text-small text-left font-weight-normal">
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Live data</li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> 3 different exchanges</li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Full personalization</li>
+            
+          </ul>
+          <a href="{{ route('user.registration')}}" class="btn btn-primary btn-block p-2 shadow rounded-pill">Subscribe now!</a>
         </div>
-        <div class="panel-body">
-          
-        </div>
-        <div class="panel-footer">
-          
-        </div>
-      </div>      
-    </div>     
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h1>Basic</h1>
-        </div>
-        <div class="panel-body">
-          <p><strong>Live data</strong> </p>
-          <p><strong>3 Exchanges</strong> </p>
-          <p><strong>Custom parameter</strong> </p>
-          
-         
-        </div>
-        <div class="panel-footer">
-          <h3>$50</h3>
-          <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
-        </div>
-      </div>      
-    </div>       
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-        
-        </div>
-        <div class="panel-body">
-          
-        </div>
-        <div class="panel-footer">
-          
-          
-        </div>
-      </div>      
-    </div>    
-  </div>
-</div>
-    
-  </div>
-</div>
+      </div>
 
 
 

@@ -1,5 +1,11 @@
 @extends('layouts.adminPart')
 
+
+@section('cssResource')
+<link rel="stylesheet" href="{{ url('/') }}/css/customTable.css">
+<link rel="stylesheet" href="{{ url('/') }}/css/userList.css">
+@endsection
+
 @section('pageScript')
 <script src="{{ url('/') }}/js/userTableScript.js"></script>
 
@@ -11,18 +17,19 @@ ArbitralCoin
 
 @section('contenuto')
 
-<table class="table table-striped table-hover table-responsive" 
+<div class="main-Table ">
+<table class="table table-hover table-responsive shadow" 
             style="width:100%" id="userTable">
             <col width='20%'>
             <col width='20%'>
             <col width='20%'>
             <col width='10%'>
-            <thead>
+            <thead class="table-head">
                 
                 <tr>
-                    <th>UserName</th>
-                    <th>Mail</th>
-                    <th>Pagante</th>
+                    <th class="head">UserName</th>
+                    <th class="head">Mail</th>
+                    <th class="head">Pagante</th>
                     
                     
                     <th></th>
@@ -34,4 +41,5 @@ ArbitralCoin
                
             </tbody>
         </table>
+</div>
 @endsection

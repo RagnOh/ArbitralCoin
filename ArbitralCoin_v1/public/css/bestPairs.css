@@ -1,0 +1,29 @@
+
+.User-Param{
+    display: flex;
+    justify-content: left;
+    
+   
+}
+#setting-logo{
+    background-color: #36304a;
+    height: 2vw;
+    margin-top: 2vw;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden; 
+    
+}
+
+.lista{
+    text-align: center;
+    border-bottom-color: #36304a;
+    border-left-color: #36304a;
+    border-radius: 1px;
+    overflow: hidden; 
+}
+
+#lista-ultimo{
+    border-radius: 5px;
+}

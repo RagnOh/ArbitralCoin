@@ -21,7 +21,7 @@
             <div class="container-fluid text-centered row">
                 
             <div class="container justify-content-md-end col col-lg-9 col-md-6 col-sm-6 col-5">
-                <a class="navbar-brand centered" id="logo" href="#page-top">@yield('titolo')</a>
+                <a class="navbar-brand centered" id="logo" href="{{ route('home') }}">@yield('titolo')</a>
                 </div>
 
                 <div class="  col-lg-3 col-md-4 col-sm-4 col-7" id="navbarResponsive">

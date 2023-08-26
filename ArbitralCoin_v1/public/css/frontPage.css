@@ -87,12 +87,12 @@ th, tr {
 }
 
 .what_site_do{
-  height: 900px; /* Altezza desiderata */
+  height: 55vw; /* Altezza desiderata */
   background-color: #0d2423;
 }
 
 .supported_exchanges{
-  height: 900px; /* Altezza desiderata */
+  height: 40vw; /* Altezza desiderata */
   background-color: #6a7d7c;
 
 }
@@ -141,8 +141,8 @@ th, tr {
 
 
   .panel-heading {
-    color: #fff !important;
-    background-color: #f4511e !important;
+    color: #fff ;
+    background-color: #f4511e ;
     padding: 25px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 0px;
@@ -151,5 +151,41 @@ th, tr {
     border-bottom-right-radius: 0px;
   }
   .panel-footer {
-    background-color: white !important;
+    background-color: white ;
+  }
+
+  .rounded-lg {
+    border-radius: 1rem ;
+  }
+  
+  .text-small {
+    font-size: 0.9rem ;
+  }
+  
+  .custom-separator {
+    width: 5rem;
+    height: 6px;
+    border-radius: 1rem;
+  }
+  
+  .text-uppercase {
+    letter-spacing: 0.2em;
+  }
+  
+  /*
+  *
+  * ==========================================
+  * FOR DEMO PURPOSES
+  * ==========================================
+  *
+  */
+  
+  .pricing{
+    
+    width:100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3vw;
+  padding-bottom: 3vw;
+   
   }

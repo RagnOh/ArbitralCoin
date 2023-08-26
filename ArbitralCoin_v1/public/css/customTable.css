@@ -1,0 +1,26 @@
+
+.main-Table{
+    display: flex;
+    justify-content: center;
+  
+    height: 80vh;
+}
+.table{
+    -webkit-border-horizontal-spacing: 5px;
+-webkit-border-vertical-spacing: 2px;
+text-indent: initial;
+border-radius: 10px;
+    overflow: hidden; 
+
+
+}
+.table-head{
+    
+    background-color: #36304a;
+    height: 4vw;
+    
+}
+
+.head{
+    color: white;
+}

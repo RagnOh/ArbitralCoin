@@ -1,25 +1,32 @@
 @extends('layouts.adminPart')
 
+@section('cssResource')
+<link rel="stylesheet" href="{{ url('/') }}/css/customTable.css">
+<link rel="stylesheet" href="{{ url('/') }}/css/mockup.css">
+@endsection
+
 @section('titolo')
 ArbitralCoin
 @endsection
 
 @section('contenuto')
-<a class="btn btn-primary" 
+<a class="btn btn-primary" id="btn-aggiunta"
 
                                 href="{{ route('administrator.addNewMockup')}}"><i class="bi bi-plus"></i> Aggiungi elemento</a>
-<table class="table table-striped table-hover table-responsive" 
-            style="width:100%">
+<table class="table  table-hover table-responsive shadow" 
+            style="width:100%" id="mockupTable">
             <col width='20%'>
             <col width='20%'>
             <col width='20%'>
             <col width='10%'>
-            <thead>
+            <thead class="table-head">
                 <tr>
-                    <th>Pair</th>
-                    <th>Price</th>
+                    <th class="head">Pair</th>
+                    <th class="head">Price</th>
                     
-                    <th></th>
+                    <th class="head"></th>
+                    <th class="head"></th>
+                    <th class="head"></th>
                 </tr>
             </thead>
             <tbody>
@@ -36,8 +43,8 @@ ArbitralCoin
                         </td>
                         <td>
                          
-                        <a class="btn btn-primary" 
-                                href="{{ route('adminMockup.destroy.confirm', ['pair' => $pair->pair]) }}"><i class="bi-pencil-square"></i> Delete</a>
+                        <a class="btn  btn-danger" 
+                                href="{{ route('adminMockup.destroy.confirm', ['pair' => $pair->pair]) }}"><i class="bi bi-trash3-fill"></i> Delete</a>
                        
                         </td>
                         

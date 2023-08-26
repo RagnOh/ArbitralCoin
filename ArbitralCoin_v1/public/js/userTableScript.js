@@ -17,7 +17,7 @@ $(document).ready(function(){
                    '<td>' + user["username"]+ '</td>' +
                    '<td>' + user["email"] + '</td>' +
                    '<td>' + user["pagante"] + '</td>' +
-                   '<td><button class="delete-button">Delete</button></td>'+
+                   '<td><button class="delete-button btn  btn-danger "><i class="bi bi-trash3-fill"></i>Delete</button></td>'+
                   '</tr>';
 
                 $('#userTable tbody').append(newRow);
