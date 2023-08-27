@@ -56,6 +56,9 @@
                 </ul>    
     </div>
 </nav>
+<div class="container">
+        @yield('breadcrumb')
+    </div>
 
       <div class="container">
         @yield('contenuto')

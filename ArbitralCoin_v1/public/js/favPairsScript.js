@@ -16,7 +16,7 @@ $(document).ready(function(){
                         '<td>' + pair['binance'] + '</td>' +
                         '<td>' + pair['kraken'] + '</td>' +
                         '<td>' + pair['crypto'] + '</td>' +
-                        '<td><button class="delete-button">Delete</button></td>'+
+                        '<td><button class="delete-button btn  btn-danger "><i class="bi bi-trash3-fill"></i>Delete</button></td>'+
                        '</tr>';
      
                      $('#favTable tbody').append(newRow);

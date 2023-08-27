@@ -109,6 +109,7 @@ class DataLayer {
         $user->username = $name;
         $user->password = md5($password);
         $user->email = $email;
+        $user->pagante = false;
         $user->save();
     }
     
@@ -194,6 +195,7 @@ class DataLayer {
         $this->parseBinance();
         $this->parseCryptoCom();
 
+        $this->setDone();
         //return Redirect::to(route('pair.updateDone'));
     }
 
@@ -326,10 +328,7 @@ public function addFavExchanges($binance,$kraken,$crypto,$userID)
       $addExchange->save();
     }
     
-    $addExchange= new Exchange();
-      $addExchange->name="Mockup";
-      $addExchange->user_id=$userID;
-      $addExchange->save();
+  
 
 
 }
@@ -361,20 +360,17 @@ public function getBestForEachPair($pairName,$userId)
    
     $exchange=$this->getExchangeList($userId);
     
-    //$mockupPrice=Mockup::where('pair',$pairName)->get();
-
-    /*if (count($mockupPrice) != 0) {
-        
-        $this->addPair($mockupPrice['exchange'],$mockupPrice['pair'],$mockupPrice['price']);
-    } 
-*/
+    $mockupPrice=Mockup::where('pair',$pairName)->get();
 
    //ottengo il prezzo dello stesso pair su più exchange
    $samePair= Pair::whereIn('exchange',$exchange)
              ->where('pair',$pairName)
              ->orderBy('price','asc')
               ->get();
-
+   
+   //unisco a tabella mockup
+   $union= $mockupPrice->concat($samePair);
+   $pairResults = $union->sortBy('price');
           
               
               
@@ -392,7 +388,7 @@ public function getBestForEachPair($pairName,$userId)
    $ultimo=0;
    $ultimoExchage=0;
    $orderResult=[];
-   foreach($samePair as $pair)
+   foreach($pairResults as $pair)
    {
        if($x==0){
         $primo=$pair['price'];
@@ -539,6 +535,11 @@ public function deleteUserNotPaying()
     $users=User::where('pagante',0);
     $users->delete();
 
+}
+
+public function editPagamento($username)
+{
+    User::where('username',$username)->update(['pagante'=>1]);
 }
     
 }

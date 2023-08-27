@@ -15,6 +15,16 @@ ArbitralCoin
 <script src="{{ url('/') }}/js/tableScript.js"></script>
 @endsection
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+        <li class="breadcrumb-item" aria-current="page">PairsTable</li>
+       
+    </ol>
+</nav>
+@endsection
+
 @section('contenuto')
 <div class="main-Table ">
 <table class="table  table-hover table-responsive shadow" 
@@ -27,9 +37,9 @@ ArbitralCoin
             <thead class="table-head">
                 <tr>
                     <th class="head">Pair</th>
-                    <th class="head">Binance</th>
-                    <th class="head">Kraken</th>
-                    <th class="head">Crypto.com</th>
+                    <th class="head" id="binancehead">Binance</th>
+                    <th class="head" id="krakenhead">Kraken</th>
+                    <th class="head" id="cryptohead">Crypto.com</th>
                     <th class="head">Mockup</th>
                 </tr>
             </thead>

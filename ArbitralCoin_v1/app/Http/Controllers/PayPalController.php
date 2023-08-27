@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\DataLayer;
+use App\Models\User;
 
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 class PayPalController extends Controller
 {
+    private $username;
     /**
      * create transaction.
      *
@@ -22,7 +25,7 @@ class PayPalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function processTransaction(Request $request)
+    public function processTransaction(Request $request,$username)
     {
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
@@ -46,6 +49,8 @@ class PayPalController extends Controller
             // redirect to approve href
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
+                    $this->username= $username;
+                    
                     return redirect()->away($links['href']);
                 }
             }
@@ -71,9 +76,11 @@ class PayPalController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             
+            $user=User::where('username',$this->username);
+            $user->update(['pagante'=> 1]);
             return redirect()
-                ->route('user.login')
-                ->with('pagamento',true);
+                ->route('user.login');
+              
                 
         } else {
             return redirect()

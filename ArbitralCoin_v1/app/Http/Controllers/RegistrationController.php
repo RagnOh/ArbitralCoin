@@ -21,8 +21,10 @@ class RegistrationController extends Controller
         $dl = new DataLayer();
         
         $dl->addUser($req->input('name'), $req->input('password'), $req->input('email'));
+
        
-        return Redirect::to(route('processTransaction'));
+       
+        return Redirect::to(route('processTransaction',['username' =>$req->input('name')]));
     }
 
     public function registrationCheckForEmail(Request $req) {

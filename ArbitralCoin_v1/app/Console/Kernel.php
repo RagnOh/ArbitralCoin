@@ -20,18 +20,18 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         $schedule->call(function () {
-            $secondi_update=10;
+            $secondi_update=20;
             $x=60/$secondi_update;
             do{
             $dl = new DataLayer();
             $dl->deleteUserNotPaying();
            $dl->resetDone();
-           sleep(1);
+           sleep(4);
            Pair::truncate();
            $dl->updateTable();
-           $dl->setDone();
+           
            $x=$x-1;
-           sleep(8);
+           sleep(11);
             }while($x>0);
             
         })->everyMinute();

@@ -27,7 +27,7 @@ class AdminController extends Controller
    
    public function destroy($userName)
    {
-
+      $dl=new DataLayer();
       $userID=$dl->getUserID($_SESSION["loggedEmail"]);
       $dl->deleteUserPreferences($userID);
       $dl->deleteFavExchanges($userID);

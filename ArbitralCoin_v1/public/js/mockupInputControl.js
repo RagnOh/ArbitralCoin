@@ -15,18 +15,20 @@ function checkPairInput() {
         regInput_msg.html("");
     }
 
-    if (!jQuery.isNumeric(priceInput.val()))
+    
+
+    if (priceInput.val().trim() === "")
     {
-        regPrice_msg.html("The price field must be positive");
+        regPrice_msg.html("The price field must not be empty");
         priceInput.focus();
         error = true;
     } else {
         regPrice_msg.html("");
     }
 
-    if (priceInput.val().trim() === "")
+    if (isNaN(priceInput.val()))
     {
-        regPrice_msg.html("The price field must not be empty");
+        regPrice_msg.html("The price field must be a number");
         priceInput.focus();
         error = true;
     } else {

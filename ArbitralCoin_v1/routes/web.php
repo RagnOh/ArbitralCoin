@@ -30,6 +30,7 @@ use App\Http\Controllers\PayPalController;
 
 Route::get('/',[FrontController::class,'getHome'])->name('home');
 Route::get('/user/login', [AuthController::class, 'authentication'])->name('user.login'); //metodo authentication viene chiamato quando creo la form
+
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
 Route::get('/user/registration', [RegistrationController::class, 'userRegistration'])->name('user.registration');
 Route::post('/user/register', [RegistrationController::class, 'registration'])->name('user.register');
@@ -39,7 +40,7 @@ Route::get('/registrationUsernameCheck', [RegistrationController::class, 'regist
 
 //Route per pagamenti
 Route::get('create-transaction', [PayPalController::class, 'createTransaction'])->name('createTransaction');
-Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
+Route::get('process-transaction/{username}', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 

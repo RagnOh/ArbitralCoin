@@ -24,11 +24,29 @@ function checkSettingsInput() {
         regDeposit_msg.html("");
     }
 
+    if (isNaN(depositInput.val()))
+    {
+        regDeposit_msg.html("The deposit field must be a number");
+        depositInput.focus();
+        error = true;
+    } else {
+        regDeposit_msg.html("");
+    }
+
    
 
     if (minGainInput.val().trim() === "")
     {
         regGain_msg.html("The min guadagno field must not be empty");
+        minGainInput.focus();
+        error = true;
+    } else {
+        regGain_msg.html("");
+    }
+
+    if (isNaN(minGainInput.val()))
+    {
+        regGain_msg.html("The min guadagno field must be a number");
         minGainInput.focus();
         error = true;
     } else {
