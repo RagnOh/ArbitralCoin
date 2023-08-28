@@ -56,11 +56,11 @@ ArbitralCoin
 </div>
 
 <div class="col-lg-4 mb-5 mb-lg-0 pricing">
-        <div class="bg-white p-5  rounded-lg shadow">
+        <div class="bg-white p-5 price-table rounded-lg shadow">
           <h1 class="h6 text-uppercase font-weight-bold mb-4">Standard</h1>
           <h2 class="h1 font-weight-bold">$50<span class="text-small font-weight-normal ml-2">/ month</span></h2>
 
-          <div class="custom-separator my-4 mx-auto bg-primary"></div>
+          <div class="custom-separator  my-4 mx-auto bg-primary"></div>
 
           <ul class="list-unstyled my-5 text-small text-left font-weight-normal">
             <li class="mb-3">

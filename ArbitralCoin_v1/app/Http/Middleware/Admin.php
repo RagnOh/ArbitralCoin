@@ -18,13 +18,13 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-       
+       $admin=true;
         if($_SESSION['admin'] == 1){
             return $next($request);
 
         }
 
-        return response(['accesso negato, non disponi dei privilegi'],403);
+        return Redirect::to(route('admin.loginError'));
     }
 
 }

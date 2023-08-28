@@ -1,4 +1,6 @@
-
+.main-Table{
+    padding-top: 2vw;
+}
 .User-Param{
     display: flex;
     justify-content: left;

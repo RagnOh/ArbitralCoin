@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+    var alertShown = false;
+
 function updateBestPairsTable()
     {
         $.ajax('\ajaxUpdateBestPairs',{
@@ -8,6 +10,12 @@ function updateBestPairsTable()
        
             type:'GET',
             success: function(data){
+
+                if (!alertShown && data.length === 0) {
+                    alert('Nessun risultato, modifica le tue preferenze');
+                    alertShown = true; // Imposta la variabile su true per evitare ulteriori alert
+                    return;
+                }
 
                 $('#bestTable tbody').empty();
                 $.each(data,function(index,pair){

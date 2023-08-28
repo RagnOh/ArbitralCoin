@@ -17,6 +17,7 @@
     </head>
 
     <body>
+        
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container-fluid text-centered row">
                 
@@ -32,6 +33,9 @@
 </div>
         </nav>
 
+        <div class="container">
+        @yield('breadcrumb')
+    </div>
         <div class="container">
         @yield('contenuto')
     </div>

@@ -70,9 +70,10 @@ color: rgba(255, 255, 237, 0.972);
   display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 50px;
+    
     margin: 0;
     max-width: 100%;
+    background-color: #F9F8F7;
 }
 .table{
   width: 100%;
@@ -180,12 +181,13 @@ th, tr {
   *
   */
   
+  
+
   .pricing{
     
     width:100%;
   display: flex;
   justify-content: center;
-  margin-top: 3vw;
   padding-bottom: 3vw;
-   
+  
   }

@@ -8,6 +8,23 @@
 ArbitralCoin
 @endsection
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('adminUserList.index') }}">Admin</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('adminMockup.index') }}">MockupData</a></li>
+        @if(isset($pair))
+        <li class="breadcrumb-item" aria-current="page">Edit Mockup</li>
+        @else
+        <li class="breadcrumb-item" aria-current="page">Add Mockup</li>
+        @endif
+        
+       
+    </ol>
+</nav>
+@endsection
+
 
 @section('contenuto')
 @if(isset($pair))

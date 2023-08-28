@@ -13,6 +13,11 @@ class AuthController extends Controller
 
     }
 
+    public function registrationSuccess(){
+
+        return view('auth.auth')->with('pagamento',true);
+    }
+
     public function login(Request $req){
         session_start();
         $dl = new DataLayer();
@@ -63,6 +68,11 @@ class AuthController extends Controller
             $response = array('found'=>false);
         }
         return response()->json($response);
+    }
+
+    public function utenteNonPagante()
+    {
+        return view('defaultErrorPage')->with('admin', false);
     }
 
    

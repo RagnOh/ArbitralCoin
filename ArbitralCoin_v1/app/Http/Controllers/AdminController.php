@@ -60,4 +60,9 @@ class AdminController extends Controller
 
       return Redirect::to(route('adminUserList.index'));
    }
+
+   public function adminAccessError()
+   {
+      return view('defaultErrorPage')->with('admin', true);
+   }
 }

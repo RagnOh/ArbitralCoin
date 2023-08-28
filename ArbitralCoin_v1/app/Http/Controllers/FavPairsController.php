@@ -63,7 +63,7 @@ class FavPairsController extends Controller
        $dl=new DataLayer();
        $userID=$dl->getUserID($_SESSION["loggedEmail"]);
        $exch=array("Kraken","Binance","Cryptocom");
-       $exchanges=$dl->getExchangeList($userID);
+       //$exchanges=$dl->getExchangeList($userID);
 
        $commonPairs=$dl->getFavPairs($userID)->getOriginalContent();
 
@@ -71,17 +71,18 @@ class FavPairsController extends Controller
       
        
 
-       return $dl->pairArrayOptim($commonPairs,$exchanges);
+       return $dl->pairArrayOptim($commonPairs,$exch);
         
     }
 
     public function favPairCheckForPair(Request $req) {
         $dl = new DataLayer();
+        $userID=$dl->getUserID($_SESSION["loggedEmail"]);
         
         if($dl->checkPair($req->input('insertPair')))
         {
             
-            if($dl->findFavPair($req->input('insertPair'))){
+            if($dl->findFavPair($req->input('insertPair'),$userID)){
                 $response = array('found'=>false);
             }else {
                 $response = array('found'=>true);

@@ -520,15 +520,17 @@ public function checkPair($pair) {
     }
 }
 
-public function findFavPair($pair)
+public function findFavPair($pair,$userID)
 {
-    $occurence = FavPair::where('pair',$pair)->get();
+    $occurence = FavPair::where('pair',$pair)->where('user_id',$userID)->get();
     if (count($occurence) == 0) {
         return false;
     } else {
         return true;
     }
 }
+
+
 
 public function deleteUserNotPaying()
 {
@@ -540,6 +542,16 @@ public function deleteUserNotPaying()
 public function editPagamento($username)
 {
     User::where('username',$username)->update(['pagante'=>1]);
+}
+
+public function checkPagamento($userName)
+{
+    $occurence = User::where('username',$userName)->where('pagante',1)->get();
+    if (count($occurence) == 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
     
 }

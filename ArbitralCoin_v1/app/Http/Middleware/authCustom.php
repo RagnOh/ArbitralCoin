@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DataLayer;
 
 class authCustom
 {
@@ -30,9 +31,15 @@ class authCustom
     public function handle(Request $request, Closure $next)
     {
         session_start();
+        $dl=new DataLayer();
 
         if (!isset($_SESSION['logged'])) {
             return Redirect::to(route('user.login'));
+        }
+
+        if(!$dl->checkPagamento($_SESSION['loggedName'])){
+           
+            return Redirect::to(route('user.notPayed'));
         }
 
         return $next($request);

@@ -19,6 +19,7 @@ ArbitralCoin
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('adminUserList.index') }}">Admin</a></li>
         <li class="breadcrumb-item" aria-current="page">UsersList</li>
        
     </ol>
@@ -26,6 +27,10 @@ ArbitralCoin
 @endsection
 
 @section('contenuto')
+
+<a class="btn btn-primary" id="btn-aggiunta"
+
+                                href="{{ route('adminUserList.register')}}"><i class="bi bi-plus"></i> Aggiungi utente</a>
 
 <div class="main-Table ">
 <table class="table table-hover table-responsive shadow" 

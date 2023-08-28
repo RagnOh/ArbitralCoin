@@ -42,6 +42,18 @@ class BestPairsController extends Controller
             if($bestValue['guadagno'])
             array_push($miglioriFormattato,$bestValue);
         }
+
+        //ordino in ordine decrescente
+        usort($miglioriFormattato, function($a, $b) {
+           
+            $guadagnoA = $a['guadagno'];
+            $guadagnoB = $b['guadagno'];
+        
+            if ($guadagnoA == $guadagnoB) {
+                return 0;
+            }
+            return ($guadagnoB < $guadagnoA) ? -1 : 1;
+        });
         
         return response()->json($miglioriFormattato);
     }

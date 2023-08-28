@@ -3,6 +3,7 @@
 
 $(document).ready(function(){
 
+    var alertShown = false;
 
     function checkStatus(){
 
@@ -11,6 +12,7 @@ $(document).ready(function(){
        
             type:'GET',
             success: function(data){
+                
                 
                
                 console.log(data);
@@ -35,7 +37,11 @@ $(document).ready(function(){
         type:'GET',
         success: function(data){
             
-           
+            if (!alertShown && data.length === 0) {
+                alert('Inserisci le tue preferenze');
+                alertShown = true; // Imposta la variabile su true per evitare ulteriori alert
+                return;
+            }
            
             $('#pairTable tbody').empty();
 

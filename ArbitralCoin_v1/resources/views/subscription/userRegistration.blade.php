@@ -8,10 +8,31 @@
 ArbitralCoin
 @endsection
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+        @if($admin)
+        <li class="breadcrumb-item"><a href="{{ route('adminUserList.index') }}">Admin</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('adminMockup.index') }}">UsersList</a></li>
+        <li class="breadcrumb-item" aria-current="page">Add User</li>
+        @else
+        <li class="breadcrumb-item"><a>Registration</a></li>
+        @endif
+        
+       
+    </ol>
+</nav>
+@endsection
+
 @section('contenuto')
 <div class="row" style="margin-top: 4em">
+                            @if($admin)
+                            <form id="register-form" action="{{ route('adminUserList.addUser') }}" method="post" style="margin-top: 2em">
+                            @else
                             <form id="register-form" action="{{ route('user.register') }}" method="post" style="margin-top: 2em">
-                                @csrf
+                             @endif   
+                            @csrf
                                 <div class="form-group">
                                     <input type="text" name="name" class="form-control" placeholder="Name" value=""/>
                                     <span class="invalid-input" id="invalid-registrationName"></span>
@@ -32,9 +53,13 @@ ArbitralCoin
                                     <span class="invalid-input" id="invalid-passwdConfirm"></span>
                                 </div>
 
-                                
+                                @if($admin)
+                                <a href="{{ route('adminUserList.index') }}" class="btn btn-secondary"><i class="bi-box-arrow-left"></i> Back</a>
+                                <label for="Register" class="btn btn-primary"><i class="bi-check-lg"></i> Inserisci utente</label>
+                                @else
                                 <a href="{{ route('home') }}" class="btn btn-secondary"><i class="bi-box-arrow-left"></i> Back</a>
                                 <label for="Register" class="btn btn-primary"><i class="bi-check-lg"></i> Procedi con il pagamento</label>
+                                @endif
                                 <input id="Register" type="submit" value="Register" class="hidden" onclick="event.preventDefault(); checkRegistrationData();"/>
                                 
                                 
@@ -42,8 +67,8 @@ ArbitralCoin
                             </form>
                             
 
-                            
+                            @if(!$admin)
                             <a href="/user/login" class="my-3 bottom-link">Already have an account? Log In!</a>
-                      
+                            @endif
 <div>        
 @endsection        

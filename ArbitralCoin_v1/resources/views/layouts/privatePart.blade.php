@@ -22,11 +22,15 @@
    </head>
     <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <ul class="logo">
-    <div class="container-fluid">
-    <a class="navbar-brand" href="{{ route('home') }}">@yield('titolo')</a>
-</ul>
-         <ul class="navbar-nav col-lg-6">
+      
+    <div class="container-fluid text-centered row">
+    
+    <div class="container justify-content-md-end col col-lg-2 col-md-3 col-sm-3 col-2">
+                <a class="navbar-brand centered" id="logo" href="{{ route('home') }}">@yield('titolo')</a>
+                </div>
+
+                <div class=" collapse navbar-collapse col-lg-8 col-md-6 col-sm-6 col-8" id="navbarResponsive">
+         <ul class="nav navbar-right navbar-nav col-lg-6">
          <li class="nav-item">
     <a class="nav-link" aria-current="page" href="{{ route('preferenceSettings.index') }}">Settings</a>
     
@@ -35,7 +39,7 @@
 <a class="nav-link" aria-current="page" href="{{ route('adminUserList.index') }}">Admin</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">Pairs Table</a>
+<a class="nav-link" aria-current="page" href="{{ route('privateSection.index') }}">PairsTable</a>
 </li>
 <li class="nav-item">
     <a class="nav-link"  href="{{ route('bestPairs.index') }}">BestPairs</a>
@@ -44,6 +48,8 @@
     <a class="nav-link" aria-current="page" href="{{ route('favPairs.index') }}">FavoritePairs</a>
 </li>
                 </ul>
+            </div>    
+            <div class="  col-lg-2 col-md-2 col-sm-3 col-2" id="navbarResponsive">
          <ul class="nav navbar-nav navbar-right">
                     @if($logged)
                        <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout')}}"> Logout</a>  </li>
@@ -51,7 +57,9 @@
                        <li><a class="btn btn-outline-dark" href="{{ route('user.login')}}"> Logint</a></li>
 
                     @endif
-                </ul>    
+                </ul>  
+</div>  
+    </div>
     </div>
 </nav>
 

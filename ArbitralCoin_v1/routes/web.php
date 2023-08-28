@@ -32,6 +32,7 @@ Route::get('/',[FrontController::class,'getHome'])->name('home');
 Route::get('/user/login', [AuthController::class, 'authentication'])->name('user.login'); //metodo authentication viene chiamato quando creo la form
 
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
+Route::get('/user/notPayed',[AuthController::class, 'utenteNonPagante'])->name('user.notPayed');
 Route::get('/user/registration', [RegistrationController::class, 'userRegistration'])->name('user.registration');
 Route::post('/user/register', [RegistrationController::class, 'registration'])->name('user.register');
 Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
@@ -39,8 +40,8 @@ Route::get('/registrationEmailCheck', [RegistrationController::class, 'registrat
 Route::get('/registrationUsernameCheck', [RegistrationController::class, 'registrationCheckForUsername']);
 
 //Route per pagamenti
-Route::get('create-transaction', [PayPalController::class, 'createTransaction'])->name('createTransaction');
-Route::get('process-transaction/{username}', [PayPalController::class, 'processTransaction'])->name('processTransaction');
+Route::get('error-transaction', [PayPalController::class, 'trransactionError'])->name('transactionError');
+Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 
@@ -56,8 +57,9 @@ Route::middleware(['authCustom'])->group(function () {
         Route::get('/ajaxUpdateUserTable',[AdminController::class,'updateTable']);
         Route::get('/adminUserList/addUser',[AdminController::class,'createNewUser'])->name('adminUserList.addUser');
         Route::post('/adminUserList',[AdminController::class,'store'])->name('adminUserList.store');
-        
-        
+        Route::get('/adminUserList/registerAssistance',[RegistrationController::class,'adminSubAssistance'])->name('adminUserList.register');
+        Route::post('/adminUserList/AddUser',[RegistrationController::class,'adminAddUser'])->name('adminUserList.addUser');
+
         Route::get('/adminMockup',[MockupController::class,'index'])->name('adminMockup.index');
         Route::delete('/adminMockup/{pair}',[MockupController::class,'destroy'])->name('adminMockup.destroy');
         Route::get('/adminMockup/{pair}/destroy/confirm', [MockupController::class, 'confirmDestroy'])->name('adminMockup.destroy.confirm');
@@ -67,7 +69,9 @@ Route::middleware(['authCustom'])->group(function () {
         Route::put('/adminMockup/{pair}',[MockupController::class,'update'])->name('adminMockup.update');
         Route::get('/adminMockupCheck', [MockupController::class, 'adminMockupCheckForPair']);
         
+        
         });
+
 
 Route::get('/privateSection',[TableController::class,'index'])->name('privateSection.index');
 Route::get('/ajaxUpdateTable',[TableController::class,'ajaxUpdate']);
@@ -88,6 +92,7 @@ Route::get('/favPairs/{pair}/destroy/confirm', [FavPairsController::class, 'conf
 Route::get('/ajaxGetFavList',[FavPairsController::class,'ajaxGetFavList']);
 Route::get('/favPairsCheckPair', [FavPairsController::class, 'favPairCheckForPair']);
 
+Route::get('/adminAccessError',[AdminController::class,'adminAccessError'])->name('admin.loginError');
 //Route::post('/pairTable/updateIsDone', WebsocketUpdate::class)->name('pair.updateDone');
 
 

@@ -10,23 +10,25 @@ use App\Models\User;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 class PayPalController extends Controller
 {
-    private $username;
+    
     /**
      * create transaction.
      *
      * @return \Illuminate\Http\Response
      */
-    public function createTransaction()
+    public function trransactionError()
     {
-        return view('paywithpaypal');
+       
+        return view('paymentErrorPage');
     }
     /**
      * process transaction.
      *
      * @return \Illuminate\Http\Response
      */
-    public function processTransaction(Request $request,$username)
+    public function processTransaction(Request $request)
     {
+        
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
@@ -49,17 +51,17 @@ class PayPalController extends Controller
             // redirect to approve href
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
-                    $this->username= $username;
+                    
                     
                     return redirect()->away($links['href']);
                 }
             }
             return redirect()
-                ->route('createTransaction')
+                ->route('transactionError')
                 ->with('error', 'Something went wrong.');
         } else {
             return redirect()
-                ->route('createTransaction')
+                ->route('transactionError')
                 ->with('error', $response['message'] ?? 'Something went wrong.');
         }
     }
@@ -76,15 +78,17 @@ class PayPalController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             
-            $user=User::where('username',$this->username);
+            $username=session('username',0);
+            $user=User::where('username',$username);
             $user->update(['pagante'=> 1]);
+            session()->forget('username');
             return redirect()
                 ->route('user.login');
               
                 
         } else {
             return redirect()
-                ->route('createTransaction')
+                ->route('transactionError')
                 ->with('error', $response['message'] ?? 'Something went wrong.');
         }
     }
@@ -96,7 +100,7 @@ class PayPalController extends Controller
     public function cancelTransaction(Request $request)
     {
         return redirect()
-        ->route('createTransaction')
+        ->route('transactionError')
         ->with('error', $response['message'] ?? 'Something went wrong.');
     }
 }

@@ -11,7 +11,7 @@ class RegistrationController extends Controller
     public function userRegistration() {
 
         
-        return view('subscription.userRegistration')->with('logged', false)->with('pagato',false);
+        return view('subscription.userRegistration')->with('admin', false);//->with('pagato',false);
 
     }
 
@@ -20,11 +20,12 @@ class RegistrationController extends Controller
         session_start();
         $dl = new DataLayer();
         
+        $userName= $req->input('name');
         $dl->addUser($req->input('name'), $req->input('password'), $req->input('email'));
 
        
-       
-        return Redirect::to(route('processTransaction',['username' =>$req->input('name')]));
+        session(['username'=>$userName]);
+        return Redirect::to(route('processTransaction'));
     }
 
     public function registrationCheckForEmail(Request $req) {
@@ -49,5 +50,20 @@ class RegistrationController extends Controller
             $response = array('found'=>false);
         }
         return response()->json($response);
+    }
+
+    public function adminSubAssistance()
+    {
+        return view('subscription.userRegistration')->with('admin', true);//->with('pagato',false);
+    }
+
+    public function adminAddUser(Request $req)
+    {
+         $dl = new DataLayer();
+        
+        
+        $dl->addUser($req->input('name'), $req->input('password'), $req->input('email'));
+        $dl->editPagamento($req->input('name'));
+        return Redirect::to(route('adminUserList.index'));
     }
 }
