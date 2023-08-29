@@ -530,6 +530,16 @@ public function findFavPair($pair,$userID)
     }
 }
 
+public function findFavouritePair($pair)
+{
+    $occurence = FavPair::where('pair',$pair)->get();
+    if (count($occurence) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 
 
 public function deleteUserNotPaying()
@@ -554,4 +564,13 @@ public function checkPagamento($userName)
     }
 }
     
+public function calcoloScadenzaAbbo($userName)
+{
+    $data=User::where('username',$userName)->get();
+
+    if($data==0)
+    {
+        
+    }
+}
 }

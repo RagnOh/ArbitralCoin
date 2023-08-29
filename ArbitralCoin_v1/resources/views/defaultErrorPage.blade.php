@@ -19,6 +19,7 @@ ArbitralCoin
                 @else
                 <p>Il tuo Account non risulta pagante</p>
                 <p><a class="btn btn-secondary" href="{{ route('user.logout') }}"><i class="bi-box-arrow-left"></i> Back </a></p>
+                <p><a class="btn btn-secondary" href="{{ route('user.logout') }}"><i class="bi-box-arrow-left"></i> Procedi al pagamento </a></p>
                 @endif
             </div>
         </div>

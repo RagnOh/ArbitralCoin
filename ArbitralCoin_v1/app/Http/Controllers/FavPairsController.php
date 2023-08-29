@@ -49,7 +49,7 @@ class FavPairsController extends Controller
     public function confirmDestroy($pairName)
    {
        $dl = new DataLayer();
-       $pair = $dl->findFavPair($pairName);
+       $pair = $dl->findFavouritePair($pairName);
        if ($pair !== null) {
            return view('tablePage.deleteFavPair')->with('logged', true)->with('loggedName', $_SESSION["loggedName"])->with('pair', $pairName);
        } else {

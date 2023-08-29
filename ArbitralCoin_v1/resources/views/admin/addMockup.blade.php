@@ -12,12 +12,13 @@ ArbitralCoin
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('privateSection.index') }}">PrivateSection</a></li>
         <li class="breadcrumb-item"><a href="{{ route('adminUserList.index') }}">Admin</a></li>
         <li class="breadcrumb-item"><a href="{{ route('adminMockup.index') }}">MockupData</a></li>
         @if(isset($pair))
-        <li class="breadcrumb-item" aria-current="page">Edit Mockup</li>
+        <li class="breadcrumb-item" aria-current="page">Edit</li>
         @else
-        <li class="breadcrumb-item" aria-current="page">Add Mockup</li>
+        <li class="breadcrumb-item" aria-current="page">Add</li>
         @endif
         
        
@@ -35,7 +36,7 @@ ArbitralCoin
         @endif
 
 @csrf
-<div class="form-group">
+<div class="form-group" style="margin-top: 4em">
 @if(isset($pair))
 <input type="deposito" name="pairName" class="form-control" placeholder="Pair Name" value="{{$pair}}"/>
 <span class="invalid-input" id="invalid-Input"></span>

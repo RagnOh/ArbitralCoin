@@ -6,7 +6,7 @@ ArbitralCoin
 
 
 @section('contenuto')
-<div class="row">
+<div class="row" style="margin-top: 7em">
     <div class="col-md-6">
         <div class="card text-center border-secondary">
             <div class='card-header'>
@@ -29,7 +29,7 @@ ArbitralCoin
             <form class="form-horizontal" name="destroy" method="POST" action="{{ route('adminMockup.destroy', ['pair' => $pair]) }}">
                 @csrf
                 @method('DELETE')
-                <button type='submit' class="btn btn-danger" data-toggle="tooltip" ><i class="bi-trash3"></i> Elimina </button>
+                <button type='submit' class="btn btn-danger" data-toggle="tooltip" style="margin-bottom: 1em" ><i class="bi-trash3"></i> Elimina </button>
                </form>
                
                 

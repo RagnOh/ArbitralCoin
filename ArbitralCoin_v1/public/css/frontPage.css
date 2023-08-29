@@ -126,15 +126,16 @@ th, tr {
 
 
 .intro-exchanges{
-  padding-top: 30px;
-  padding-left: 30px;
+  padding-top: 3vw;
+  padding-left: 3vw;
+  padding-bottom: 3vw;
   font-size: 23px;
   color: white;
 }
 
 .exchangeName{
-  padding-top: 90px;
-  padding-left: 30px;
+  padding-top: 3vw;
+  padding-left: 3vw;
   font-size: 23px;
   color: white;
 }
@@ -188,6 +189,5 @@ th, tr {
     width:100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 3vw;
-  
+
   }

@@ -16,3 +16,16 @@ body {
     border-radius: 30px;
     padding: 12px 15px 11px;
   }
+
+  .buttons{
+    margin-left: 1vw;
+  }
+
+  .logoBar{
+    margin-left: 4vw;
+  }
+
+  .image-info{
+    margin-top: 4vw;
+    
+  }

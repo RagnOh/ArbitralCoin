@@ -27,14 +27,14 @@
                 
                
                 
-                <div class="container justify-content-md-end col col-lg-9 col-md-6 col-sm-6 col-5">
+                <div class=" logoBar container justify-content-md-end col col-lg-9 col-md-3 col-sm-3 col-4">
                 <a class="navbar-brand centered" id="logo" href="#page-top">@yield('titolo')</a>
                 </div>
                 
                
                 
    
-                <div class="  col-lg-3 col-md-4 col-sm-4 col-7" id="navbarResponsive">
+                <div class=" buttons  col-lg-3 col-md-5 col-sm-6 col-7" id="navbarResponsive">
                 @if($logged)
                        <i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  
                        

@@ -81,6 +81,7 @@ class PayPalController extends Controller
             $username=session('username',0);
             $user=User::where('username',$username);
             $user->update(['pagante'=> 1]);
+            //$user->update(['giorno_paga'=>date('d-m-y')]);
             session()->forget('username');
             return redirect()
                 ->route('user.login');
@@ -102,5 +103,24 @@ class PayPalController extends Controller
         return redirect()
         ->route('transactionError')
         ->with('error', $response['message'] ?? 'Something went wrong.');
+    }
+
+    public function checkUserMail(Request $request)
+    {
+        $dl= new DataLayer();
+
+        return $dl->checkEmail($request->input('userMail'));
+
+    }
+
+    public function renewAbbo(Request $request)
+    {
+          
+         
+        $userName=User::where('email',$request->input('insertMail'))->get('username');
+        session(['username'=>$userName]);
+        
+         return redirect()
+        ->route('processTransaction');
     }
 }

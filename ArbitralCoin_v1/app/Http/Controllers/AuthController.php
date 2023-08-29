@@ -72,7 +72,7 @@ class AuthController extends Controller
 
     public function utenteNonPagante()
     {
-        return view('defaultErrorPage')->with('admin', false);
+        return view('rinnovoAbbonamento');
     }
 
    
