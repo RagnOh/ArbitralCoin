@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Facades\Redirect;
 
 class DataLayer {
 
@@ -110,6 +110,7 @@ class DataLayer {
         $user->password = md5($password);
         $user->email = $email;
         $user->pagante = false;
+        $user->giorno_pagato=date('d-m-y');
         $user->save();
     }
     
@@ -564,13 +565,36 @@ public function checkPagamento($userName)
     }
 }
     
-public function calcoloScadenzaAbbo($userName)
+private function calcoloScadenzaAbbo($userName)
 {
-    $data=User::where('username',$userName)->get();
+    $data=User::where('username',$userName)->value('giorno_pagato');
+    $dataPagamento = new \DateTime($data);
 
-    if($data==0)
+    $oggi = new \DateTime();
+
+    $differenza = $dataPagamento->diff($oggi);
+
+
+    $giorniTrascorsi = $differenza->days;
+
+    
+
+    if($giorniTrascorsi>=30)
     {
-        
+        $user=User::where('username',$userName);
+            $user->update(['pagante'=> 0]);
+    }
+
+   
+}
+
+public function controlloScadenze()
+{
+    $user_list=User::all();
+
+    foreach($user_list as $user)
+    {
+        $this->calcoloScadenzaAbbo($user['username']);
     }
 }
 }

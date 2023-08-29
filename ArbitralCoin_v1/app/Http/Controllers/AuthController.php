@@ -22,10 +22,12 @@ class AuthController extends Controller
         session_start();
         $dl = new DataLayer();
         
+        //$dl->controlloScadenze();
         
         if($dl->validUser($req->input('email'),$req->input('password'))){
             
             $user_name = $dl->getUserName($req->input('email'));
+
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = $user_name;
             $_SESSION['loggedEmail'] = $req->input('email'); 

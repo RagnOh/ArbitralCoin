@@ -81,10 +81,10 @@ class PayPalController extends Controller
             $username=session('username',0);
             $user=User::where('username',$username);
             $user->update(['pagante'=> 1]);
-            //$user->update(['giorno_paga'=>date('d-m-y')]);
+            $user->update(['giorno_pagato'=>date('d-m-y')]);
             session()->forget('username');
             return redirect()
-                ->route('user.login');
+                ->route('user.login')->with($username);
               
                 
         } else {
@@ -105,22 +105,34 @@ class PayPalController extends Controller
         ->with('error', $response['message'] ?? 'Something went wrong.');
     }
 
+
+    public function renewAbbo(Request $request)
+    {
+        session_start();
+        session_destroy();
+
+        session_start();
+         
+        $mail=$request->input('insertMail');
+        $userName=User::where('email',$mail)->value('username');
+       // echo 'this'+$mail;
+        session(['username'=>$userName]);
+        
+         return Redirect::to(route('processTransaction'));
+    }
+
     public function checkUserMail(Request $request)
     {
         $dl= new DataLayer();
 
-        return $dl->checkEmail($request->input('userMail'));
+        if($dl->checkEmail($request->input('userMail')))
+        {
+            $response = array('found'=>true);
+        } else {
+            $response = array('found'=>false);
+        }
+        return response()->json($response);
+       
 
-    }
-
-    public function renewAbbo(Request $request)
-    {
-          
-         
-        $userName=User::where('email',$request->input('insertMail'))->get('username');
-        session(['username'=>$userName]);
-        
-         return redirect()
-        ->route('processTransaction');
     }
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('admin')->default(false)->nullable();
             $table->boolean('pagante')->default(true)->nullable();
+            $table->date('giorno_pagato');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
             $x=60/$secondi_update;
             do{
             $dl = new DataLayer();
-            $dl->deleteUserNotPaying();
+            //$dl->controlloScadenze();
            $dl->resetDone();
            sleep(4);
            Pair::truncate();
