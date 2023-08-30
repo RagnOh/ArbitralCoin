@@ -25,16 +25,17 @@
       
     <div class="container-fluid text-centered row">
     
-    <div class="container justify-content-md-end col col-lg-2 col-md-1 col-sm-6 col-5">
+    <div class="logo-box container justify-content-md-end  col-lg-1 col-md-10 col-sm-10 col-10">
                 <a class="navbar-brand centered" id="logo" href="{{ route('home') }}">@yield('titolo')</a>
                 </div>
-    <div class="col-lg-2 col-md-1 col-sm-2 col-3">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarResponsive" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="col-lg-2 col-md-1 col-sm-2 col-2 c-button">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <a class="navbar-brand col-lg-3 me-0" href="#">&nbsp;</a>
 </div>
-                <div class=" collapse navbar-collapse  col-lg-6 col-md-5 col-sm-5 " id="navbarResponsive">
-         <ul class="nav navbar-right navbar-nav col-lg-6">
+                <div class=" collapse navbar-collapse  col-lg-7 col-md-5 col-sm-5 col-2 " id="navbarResponsive">
+         <ul class="nav  navbar-nav col-lg-9">
          <li class="nav-item">
     <a class="nav-link" aria-current="page" href="{{ route('preferenceSettings.index') }}">Settings</a>
     
@@ -53,12 +54,12 @@
 </li>
                 </ul>
             </div>    
-            <div class="  col-lg-4 col-md-3 col-sm-4 col-4" id="navbarResponsive">
+            <div class=" collapse navbar-collapse col-lg-3 col-md-3 col-sm-4 col-4" id="navbarResponsive">
          <ul class="nav navbar-nav navbar-right">
                     @if($logged)
-                       <li><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout')}}"> Logout</a>  </li>
+                       <li class="nav-item"><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout')}}"> Logout</a>  </li>
                     @else
-                       <li><a class="btn btn-outline-dark" href="{{ route('user.login')}}"> Logint</a></li>
+                       <li class="nav-item"><a class="btn btn-outline-dark" href="{{ route('user.login')}}"> Logint</a></li>
 
                     @endif
                 </ul>  

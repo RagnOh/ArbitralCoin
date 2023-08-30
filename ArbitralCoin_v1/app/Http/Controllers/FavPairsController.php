@@ -27,7 +27,7 @@ class FavPairsController extends Controller
 
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
 
-        $favourite->pair=$request->input('insertPair');
+        $favourite->pair=strtoupper($request->input('insertPair'));
         $favourite->user_id=$userID;
 
         $favourite->save();     

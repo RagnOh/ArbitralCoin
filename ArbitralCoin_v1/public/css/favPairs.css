@@ -3,6 +3,16 @@
     margin-top: 5vw;
 }
 
+#favTable tbody{
+    height: 3px !important;
+}
 #insertPair{
     margin-top: 3vw;
 }
+
+#riga{
+    max-height: 3% !important;
+}
+
+
+

@@ -24,7 +24,7 @@ class MockupController extends Controller
       $pair=new Mockup();
 
       $pair->exchange = $this->exchangeName;
-      $pair->pair = $request->input('pairName');
+      $pair->pair = strtoupper($request->input('pairName'));
       $pair->price = $request->input('price');
       $pair->save();
       

@@ -22,7 +22,7 @@ ArbitralCoin
 
 @section('contenuto')
 
-<div class="card  border-secondary" style="margin-top: 5em">
+<div class="card  border-secondary" style="margin-top: 2em">
 <div class='card-body'>
 <form class="form-horizontal" name="userPreferences" id="user-pref" method="post" action="{{ route('preferenceSettings.store')}}">
 @csrf

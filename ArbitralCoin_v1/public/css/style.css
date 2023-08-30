@@ -110,3 +110,12 @@ div#menu li li { border:none; width:150px; }
 .hidden {
     display: none;
 }
+
+.nav-item{
+    text-align: right;
+}
+
+.c-button{
+    display: flex;
+    align-items: center;
+}

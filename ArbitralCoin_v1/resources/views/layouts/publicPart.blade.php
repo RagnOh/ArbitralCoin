@@ -34,7 +34,7 @@
                
                 
    
-                <div class=" buttons  col-lg-3 col-md-5 col-sm-6 col-7" id="navbarResponsive">
+                <div class=" buttons  col-lg-3 col-md-5 col-sm-6 col-5" id="navbarResponsive">
                 @if($logged)
                        <i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  
                        

@@ -568,23 +568,21 @@ public function checkPagamento($userName)
 private function calcoloScadenzaAbbo($userName)
 {
     $data=User::where('username',$userName)->value('giorno_pagato');
-    $dataPagamento = new \DateTime($data);
-
-    $oggi = new \DateTime();
-
-    $differenza = $dataPagamento->diff($oggi);
-
-
-    $giorniTrascorsi = $differenza->days;
-
     
+    $data=date('y-m-d');
+   
+    $currentDate = new \DateTime();
+    $paidDate = new \DateTime($data);
+    $interval = $currentDate->diff($paidDate);
+    $daysDifference = $interval->days;
 
-    if($giorniTrascorsi>=30)
+    if($daysDifference>=30)
     {
         $user=User::where('username',$userName);
             $user->update(['pagante'=> 0]);
     }
 
+    //return Redirect::to(route($data));
    
 }
 

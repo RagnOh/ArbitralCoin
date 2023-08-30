@@ -11,7 +11,7 @@ $(document).ready(function(){
                     $('#favTable tbody').empty();
                     $.each(data,function(index,pair){
     
-                        var newRow = '<tr>' +
+                        var newRow = '<tr class="riga">' +
                         '<td>' + pair['pair']+ '</td>' +
                         '<td>' + pair['binance'] + '</td>' +
                         '<td>' + pair['kraken'] + '</td>' +

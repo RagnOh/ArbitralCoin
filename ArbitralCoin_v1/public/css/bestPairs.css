@@ -2,6 +2,7 @@
     padding-top: 2vw;
 }
 .User-Param{
+    margin-top: 2vw;
     display: flex;
     justify-content: left;
     
@@ -9,7 +10,7 @@
 }
 #setting-logo{
     background-color: #36304a;
-    height: 2vw;
+    
     margin-top: 2vw;
     color: white;
     text-align: center;
@@ -26,6 +27,13 @@
     overflow: hidden; 
 }
 
+
+
 #lista-ultimo{
     border-radius: 5px;
+}
+
+#logo-box{
+    display: flex;
+   margin-left: 1vw;
 }
