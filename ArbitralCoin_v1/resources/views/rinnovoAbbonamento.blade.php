@@ -32,7 +32,7 @@ ArbitralCoin
 
         <label for="mySubmit" class="btn btn-primary"><i class="bi-check-lg"></i> Procedi con il pagamento</label>
         <input id="mySubmit" type="submit" value="Save" class="hidden" onclick="event.preventDefault(); checkMailInput();"/>
-        <p><a class="btn btn-secondary" style="margin-top: 2em" href="{{ route('user.logout') }}"><i class="bi-box-arrow-left"></i> Back </a></p>
+        <p><a class="btn btn-secondary" style="margin-top: 2em" href="{{ route('user.logout') }}"><i class="bi-box-arrow-left"></i> Logout </a></p>
     </form> 
                
             </div>

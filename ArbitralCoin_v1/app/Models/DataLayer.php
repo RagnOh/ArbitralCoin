@@ -119,6 +119,12 @@ class DataLayer {
         return $users[0]->id;
     }
 
+    public function getIdByName($username)
+    {
+        $users = User::where('username',$username)->get(['id']);
+        return $users[0]->id; 
+    }
+
     public function getUserName($email) {
         $users = User::where('email',$email)->get();
         return $users[0]->username;
@@ -297,6 +303,12 @@ public function deleteUserPreferences($userID)
 
 public function deleteFavExchanges($id) {
     $favTable = Exchange::where('user_id',$id);
+    $favTable->delete();
+}
+
+public function deleteFavPairs($userId)
+{
+    $favTable = FavPair::where('user_id',$userId);
     $favTable->delete();
 }
 

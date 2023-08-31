@@ -27,7 +27,7 @@
                 
                
                 
-                <div class=" logoBar container justify-content-md-end col col-lg-9 col-md-3 col-sm-3 col-4">
+                <div class=" logoBar container justify-content-md-end col col-lg-9 col-md-3 col-sm-3 col-3">
                 <a class="navbar-brand centered" id="logo" href="#page-top">@yield('titolo')</a>
                 </div>
                 

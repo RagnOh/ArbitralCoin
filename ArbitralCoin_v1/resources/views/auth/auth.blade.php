@@ -31,7 +31,7 @@ ArbitralCoin
                         
                             </form>
 
-                            <a href="/user/registration" class="my-3 bottom-link">First time? Register an account</a>
+                            <a href="/user/registration" class="my-3 bottom-link">Prima volta? Registra un account</a>
                         </div>
                      
                     </div>

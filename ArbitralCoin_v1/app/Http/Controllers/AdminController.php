@@ -28,9 +28,10 @@ class AdminController extends Controller
    public function destroy($userName)
    {
       $dl=new DataLayer();
-      $userID=$dl->getUserID($_SESSION["loggedEmail"]);
+      $userID=$dl->getIdByName($userName);
       $dl->deleteUserPreferences($userID);
       $dl->deleteFavExchanges($userID);
+      $dl->deleteFavPairs($userID);
       $user=User::where('userName',$userName);
       $user->delete();
 

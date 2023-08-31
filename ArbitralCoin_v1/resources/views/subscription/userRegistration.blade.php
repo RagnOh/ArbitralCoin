@@ -22,6 +22,7 @@ ArbitralCoin
 
 @section('contenuto')
 <div class="row" style="margin-top: 4em">
+<p class="testo-accesso"> Registrati </p>
                             @if($admin)
                             <form id="register-form" action="{{ route('adminUserList.addUser') }}" method="post" style="margin-top: 2em">
                             @else
@@ -29,7 +30,7 @@ ArbitralCoin
                              @endif   
                             @csrf
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Name" value=""/>
+                                    <input type="text" name="name" class="form-control" placeholder="Nome" value=""/>
                                     <span class="invalid-input" id="invalid-registrationName"></span>
                                 </div>
 
@@ -63,7 +64,7 @@ ArbitralCoin
                             
 
                             @if(!$admin)
-                            <a href="/user/login" class="my-3 bottom-link">Already have an account? Log In!</a>
+                            <a href="/user/login" class="my-3 bottom-link">Possiedi già un account? Accedi!</a>
                             @endif
 <div>        
 @endsection        

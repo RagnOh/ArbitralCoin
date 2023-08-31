@@ -23,10 +23,10 @@ ArbitralCoin
     <div class="col-md-6">
         <div class="card text-center border-secondary">
             <div class='card-header'>
-                Revert
+                Annulla
             </div>
             <div class='card-body'>
-                <p>The User <strong>will not be removed</strong> from the database</p>
+                <p>L'utente <strong>non verrà rimosso </strong> dal database</p>
                 <p><a class="btn btn-secondary" href="{{ route('adminUserList.index') }}"><i class="bi-box-arrow-left"></i> Back</a></p>
             </div>
         </div>
@@ -35,10 +35,10 @@ ArbitralCoin
     <div class="col-md-6">
         <div class="card text-center border-danger">
             <div class='card-header'>
-                Confirm
+                Conferma
             </div>
             <div class='card-body'>
-                <p>The User <strong>will be removed</strong> from the database</p>
+                <p>L'utente <strong>verrà rimosso</strong> dal database</p>
                 <form class="form-horizontal" name="destroy" method="POST" action="{{ route('adminUserList.destroy', ['user' => $user]) }}">
                 @csrf
                 @method('DELETE')

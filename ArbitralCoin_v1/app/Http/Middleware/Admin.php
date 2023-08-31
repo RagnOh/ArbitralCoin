@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Support\Facades\Redirect;
 
 use Closure;
 use Illuminate\Http\Request;
