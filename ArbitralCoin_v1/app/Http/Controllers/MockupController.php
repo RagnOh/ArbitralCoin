@@ -58,6 +58,18 @@ class MockupController extends Controller
        }
    }
 
+   public function confirmDestroyAll()
+   {
+      return view('admin.deleteMockupPair')->with('logged', true)->with('loggedName', $_SESSION["loggedName"])->with('pair', null);
+   }
+
+   public function destroyAll()
+   {
+      Mockup::truncate();
+
+      return Redirect::to(route('adminMockup.index'));
+   }
+
    
 
    public function edit($pairName)

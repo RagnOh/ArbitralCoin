@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
             $dl = new DataLayer();
             //$dl->controlloScadenze();
            $dl->resetDone();
-           sleep(4);
+           sleep(1);
            Pair::truncate();
            $dl->updateTable();
            

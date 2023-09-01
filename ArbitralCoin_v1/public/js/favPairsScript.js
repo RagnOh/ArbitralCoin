@@ -1,5 +1,30 @@
 $(document).ready(function(){
 
+
+    function checkStatus(){
+
+        $.ajax('\ajaxCheckUpdate',{
+
+       
+            type:'GET',
+            success: function(data){
+                
+                
+               
+                console.log(data);
+                $.each(data,function(index,p){
+                    console.log(p['done']);
+                    if(p['done']==1){
+                        updateBestPairsTable();
+                    }
+                });
+            },
+            error: function() {
+                console.log('Si è verificato un errore durante la richiesta.');
+              }
+            });
+    }
+
     function updateBestPairsTable()
         {
             $.ajax('\ajaxGetFavList',{
@@ -53,5 +78,5 @@ $(document).ready(function(){
                 });
         }
     
-        setInterval(updateBestPairsTable,1000);
+        setInterval(checkStatus,1000);
     });

@@ -26,7 +26,7 @@ ArbitralCoin
                 Annulla
             </div>
             <div class='card-body'>
-                <p>L'utente <strong>non verrà rimosso </strong> dal database</p>
+                <p>L'utente <strong> {{$user}} non verrà rimosso </strong> dal database</p>
                 <p><a class="btn btn-secondary" href="{{ route('adminUserList.index') }}"><i class="bi-box-arrow-left"></i> Back</a></p>
             </div>
         </div>
@@ -38,7 +38,7 @@ ArbitralCoin
                 Conferma
             </div>
             <div class='card-body'>
-                <p>L'utente <strong>verrà rimosso</strong> dal database</p>
+                <p>L'utente <strong> {{$user}} verrà rimosso</strong> dal database</p>
                 <form class="form-horizontal" name="destroy" method="POST" action="{{ route('adminUserList.destroy', ['user' => $user]) }}">
                 @csrf
                 @method('DELETE')

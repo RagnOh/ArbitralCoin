@@ -181,6 +181,7 @@ class DataLayer {
 
     public function setDone()
     {
+        UpdateStatus::truncate();
         $tableStatus=new UpdateStatus();
         $tableStatus->done = 1;
 
@@ -189,6 +190,7 @@ class DataLayer {
 
     public function resetDone()
     {
+        UpdateStatus::truncate();
         $tableStatus=new UpdateStatus();
         $tableStatus->done = 0;
 
@@ -204,6 +206,19 @@ class DataLayer {
 
         $this->setDone();
         //return Redirect::to(route('pair.updateDone'));
+    }
+
+    public function getCommonsPairs($exchange_list)
+    {
+        $commonPairs=Pair::whereIn('exchange',$exchange_list)
+             ->select('pair')
+             ->groupBy('pair')
+             ->havingRaw('COUNT(DISTINCT exchange) = ?', [count($exchange_list)])
+             ->orderBy('pair')
+             ->pluck('pair')
+             ->toArray();
+
+             return $commonPairs;
     }
 
     public function getPairs($exchange_list)

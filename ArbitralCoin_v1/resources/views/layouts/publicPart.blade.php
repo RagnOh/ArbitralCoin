@@ -36,11 +36,11 @@
    
                 <div class=" buttons  col-lg-3 col-md-5 col-sm-6 col-5" id="navbarResponsive">
                 @if($logged)
-                       <i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}"> Il mio Account</a>  
+                       <i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-light" href="{{ route('privateSection.index')}}">@lang('labels.myaccount')</a>  
                        
                     @else
-                       <a class="btn btn-outline-light " href="{{ route('user.login')}}"> Accedi</a>
-                       <a class="btn btn-outline-light " href="{{ route('user.registration')}}" > Registrati</a>
+                       <a class="btn btn-outline-light " href="{{ route('user.login')}}"> @lang('labels.login')</a>
+                       <a class="btn btn-outline-light " href="{{ route('user.registration')}}" >@lang('labels.subscribe')</a>
                     @endif
                 </div>
 </ul>

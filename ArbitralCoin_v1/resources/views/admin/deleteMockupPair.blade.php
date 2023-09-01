@@ -13,7 +13,12 @@ ArbitralCoin
                 Revert
             </div>
             <div class='card-body'>
-                <p>The Pair <strong>will not be removed</strong> from the database</p>
+                @if(!isset($pair))
+                <p>All the Pairs <strong>  will not be removed</strong> from the database</p>
+                @else
+                <p>The Pair <strong> {{$pair}} will not be removed</strong> from the database</p>
+
+                @endif
                 <p><a class="btn btn-secondary" href="{{ route('adminMockup.index') }}"><i class="bi-box-arrow-left"></i> Back</a></p>
             </div>
         </div>
@@ -25,13 +30,17 @@ ArbitralCoin
                 Confirm
             </div>
             <div class='card-body'>
-            <p>The Pair <strong>will be removed</strong> from the database</p>
+            @if(!isset($pair))
+            <p>All the Pairs <strong> will be removed</strong> from the database</p>
+            <p><a class="btn btn-danger" href="{{ route('adminMockup.destroyAll') }}"><i class="bi-trash3"></i> Elimina</a></p>
+            @else
+            <p>The Pair <strong> {{$pair}} will be removed</strong> from the database</p>
             <form class="form-horizontal" name="destroy" method="POST" action="{{ route('adminMockup.destroy', ['pair' => $pair]) }}">
                 @csrf
                 @method('DELETE')
                 <button type='submit' class="btn btn-danger" data-toggle="tooltip" style="margin-bottom: 1em" ><i class="bi-trash3"></i> Elimina </button>
                </form>
-               
+               @endif  
                 
             </div>
         </div>

@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MockupController;
 use App\Http\Controllers\WebsocketUpdate;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\LangController;
 
 
 
@@ -27,6 +28,7 @@ use App\Http\Controllers\PayPalController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/',[FrontController::class,'getHome'])->name('home');
 Route::get('/user/login', [AuthController::class, 'authentication'])->name('user.login'); //metodo authentication viene chiamato quando creo la form
@@ -65,6 +67,8 @@ Route::middleware(['authCustom'])->group(function () {
         Route::get('/adminMockup',[MockupController::class,'index'])->name('adminMockup.index');
         Route::delete('/adminMockup/{pair}',[MockupController::class,'destroy'])->name('adminMockup.destroy');
         Route::get('/adminMockup/{pair}/destroy/confirm', [MockupController::class, 'confirmDestroy'])->name('adminMockup.destroy.confirm');
+        Route::get('/adminMockup/all/destroying/confirm', [MockupController::class, 'confirmDestroyAll'])->name('adminMockup.destroyAll.confirmation');
+        Route::get('/adminMockup/all/destroy', [MockupController::class, 'destroyAll'])->name('adminMockup.destroyAll');
         Route::get('/adminMockup/addElement',[MockupController::class,'createNewElement'])->name('administrator.addNewMockup');
         Route::post('/adminMockup',[MockupController::class,'store'])->name('adminMockup.store');
         Route::get('/adminMockup/{pair}/edit',[MockupController::class,'edit'])->name('adminMockup.edit');

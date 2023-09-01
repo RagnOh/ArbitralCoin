@@ -25,7 +25,7 @@ ArbitralCoin
                 Revert
             </div>
             <div class='card-body'>
-                <p>The favourite pair <strong>will not be removed</strong> from the database</p>
+                <p>The favourite pair <strong> {{$pair}} will not be removed</strong> from the database</p>
                 <p><a class="btn btn-secondary"  href="{{ route('favPairs.index') }}"><i class="bi-box-arrow-left"></i> Back</a></p>
             </div>
         </div>
@@ -37,7 +37,7 @@ ArbitralCoin
                 Confirm
             </div>
             <div class='card-body'>
-                <p>The favourite pair <strong>will be removed</strong> from the database</p>
+                <p>The favourite pair <strong> {{$pair}} will be removed</strong> from the database</p>
                 <form class="form-horizontal" name="destroy" method="POST" action="{{ route('favPairs.destroy', ['favPair' => $pair]) }}">
                 @csrf
                 @method('DELETE')

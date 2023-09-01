@@ -3,6 +3,38 @@ $(document).ready(function(){
 
     var alertShown = false;
 
+    function checkStatus(){
+
+        $.ajax('\ajaxCheckUpdate',{
+
+       
+            type:'GET',
+            success: function(data){
+                
+                
+               
+                console.log(data);
+                $.each(data,function(index,p){
+                    console.log(p['done']);
+                    if(p['done']==1){
+                        updateBestPairsTable();
+                    }
+                    /*else{
+                        $('#bestTable tbody').empty();
+                        var loading= '<div class="spinner-border" role="status">'+
+                        '<span class="visually-hidden">Loading...</span>'+
+                      '</div>';
+                        $('#bestTable tbody').append(loading);
+                    }*/
+                });
+            },
+            error: function() {
+                console.log('Si è verificato un errore durante la richiesta.');
+              }
+            });
+    }
+
+
 function updateBestPairsTable()
     {
         $.ajax('\ajaxUpdateBestPairs',{
@@ -41,5 +73,5 @@ function updateBestPairsTable()
             });
     }
 
-    setInterval(updateBestPairsTable,1000);
+    setInterval(checkStatus,1000);
 });
