@@ -110,7 +110,7 @@ class DataLayer {
         $user->password = md5($password);
         $user->email = $email;
         $user->pagante = false;
-        $user->giorno_pagato=date('d-m-y');
+        $user->giorno_pagato=date('y-m-d');
         $user->save();
     }
     
@@ -596,13 +596,14 @@ private function calcoloScadenzaAbbo($userName)
 {
     $data=User::where('username',$userName)->value('giorno_pagato');
     
-    $data=date('y-m-d');
+    //$data=date('y-m-d');
    
     $currentDate = new \DateTime();
     $paidDate = new \DateTime($data);
     $interval = $currentDate->diff($paidDate);
     $daysDifference = $interval->days;
 
+    
     if($daysDifference>=30)
     {
         $user=User::where('username',$userName);
@@ -621,5 +622,36 @@ public function controlloScadenze()
     {
         $this->calcoloScadenzaAbbo($user['username']);
     }
+}
+
+
+public function pairExistent($nome)
+{
+    $nomi2=Pair::select('pair')->pluck('pair')->toArray();
+    
+    $nomi = array_values(array_unique($nomi2));
+    
+   
+    $risultato = "";
+    if (strlen($nome) > 0) {
+        for ($i = 0; $i < count($nomi); $i++) {
+            if (strtoupper($nome) == strtoupper(substr($nomi[$i], 0, strlen($nome)))) {
+                if ($risultato == "") {
+                    $risultato = $nomi[$i];
+                }
+                else {
+                    $risultato .= ", " . $nomi[$i];
+                }
+            }
+        } 
+    } 
+    if ($risultato == "") {
+        return $risultato;
+    }
+    else {
+        return $risultato;
+    }
+
+
 }
 }

@@ -81,7 +81,7 @@ class PayPalController extends Controller
             $username=session('username',0);
             $user=User::where('username',$username);
             $user->update(['pagante'=> 1]);
-            $user->update(['giorno_pagato'=>date('d-m-y')]);
+            $user->update(['giorno_pagato'=>date('y-m-d')]);
             session()->forget('username');
             return redirect()
                 ->route('user.success');

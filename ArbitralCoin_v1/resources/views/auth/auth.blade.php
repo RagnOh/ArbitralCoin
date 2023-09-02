@@ -4,9 +4,19 @@
 ArbitralCoin
 @endsection
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb" style="margin-top: 4em">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+        <li class="breadcrumb-item" aria-current="page">Login</li>
+
+        </ol>
+</nav>
+@endsection
+
 
 @section('contenuto')
-            <div class="row" style="margin-top: 4em">
+            <div class="row" style="margin-top: 2em">
                 <div>
                     <p class="testo-accesso"> Accedi </p>
                     @if($pagamento)

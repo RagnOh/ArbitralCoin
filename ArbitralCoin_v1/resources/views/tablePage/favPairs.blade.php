@@ -12,6 +12,7 @@ ArbitralCoin
 @section('pageScript')
 <script src="{{ url('/') }}/js/favPairsScript.js"></script>
 <script src="{{ url('/') }}/js/favPairInputControl.js"></script>
+<script src="{{ url('/') }}/js/pairNameAssistant.js"></script>
 @endsection
 
 @section('breadcrumb')
@@ -31,8 +32,9 @@ ArbitralCoin
 @csrf
 
 <div class="form-group" >
-   <input type="deposito" name="insertPair" id="insertPair" class="form-control" placeholder="Aggiungi Pair"/>
+   <input type="text" name="insertPair" id="insertPair" class="form-control" placeholder="Aggiungi Pair"/>
    <span class="invalid-input" id="invalid-Input"></span>
+   <div id="risultati"></div>
 </div>
 
         <label for="mySubmit" class="btn btn-primary"><i class="bi-check-lg"></i> Add</label>

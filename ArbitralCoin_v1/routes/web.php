@@ -98,6 +98,7 @@ Route::get('/favPairs/{pair}/destroy/confirm', [FavPairsController::class, 'conf
 Route::get('/ajaxGetFavList',[FavPairsController::class,'ajaxGetFavList']);
 Route::get('/favPairsCheckPair', [FavPairsController::class, 'favPairCheckForPair']);
 
+Route::get('/ajaxPairAssistant',[FavPairsController::class,'ajaxInputAssistant']);
 Route::get('/adminAccessError',[AdminController::class,'adminAccessError'])->name('admin.loginError');
 //Route::post('/pairTable/updateIsDone', WebsocketUpdate::class)->name('pair.updateDone');
 

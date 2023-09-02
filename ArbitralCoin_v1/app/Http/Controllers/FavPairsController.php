@@ -96,4 +96,12 @@ class FavPairsController extends Controller
         return response()->json($response);
     }
 
+    public function ajaxInputAssistant(Request $req)
+    {
+
+        $dl=new DataLayer();
+
+        return $dl->pairExistent($req->input('nome'));
+    }
+
 }

@@ -9,19 +9,24 @@ ArbitralCoin
 @endsection
 
 @section('breadcrumb')
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb" style="margin-top: 4em">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+        @if($admin)
         <li class="breadcrumb-item"><a href="{{ route('privateSection.index') }}">PrivateSection</a></li>
         <li class="breadcrumb-item"><a href="{{ route('adminUserList.index') }}">Admin</a></li>
-        <li class="breadcrumb-item" aria-current="page">UsersList</li>
+        <li class="breadcrumb-item"><a href="{{ route('adminUserList.index') }}">UsersList</a></li>
+        <li class="breadcrumb-item" aria-current="page">AddUser</li>
+        @else
+        <li class="breadcrumb-item" aria-current="page">Register</li>
+        @endif
        
     </ol>
 </nav>
 @endsection
 
 @section('contenuto')
-<div class="row" style="margin-top: 4em">
+<div class="row" style="margin-top: 2em">
 <p class="testo-accesso"> Registrati </p>
                             @if($admin)
                             <form id="register-form" action="{{ route('adminUserList.addUser') }}" method="post" style="margin-top: 2em">

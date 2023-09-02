@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
             $x=60/$secondi_update;
             do{
             $dl = new DataLayer();
-            //$dl->controlloScadenze();
+            $dl->controlloScadenze();
            $dl->resetDone();
            sleep(1);
            Pair::truncate();
