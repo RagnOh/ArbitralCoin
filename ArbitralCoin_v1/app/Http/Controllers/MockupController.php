@@ -21,12 +21,9 @@ class MockupController extends Controller
    public function store(Request $request)
    {
      
-      $pair=new Mockup();
+      $dl=new DataLayer();
 
-      $pair->exchange = $this->exchangeName;
-      $pair->pair = strtoupper($request->input('pairName'));
-      $pair->price = $request->input('price');
-      $pair->save();
+      $dl->addMockup($this->exchangeName,$request->input('pairName'),$request->input('price'));
       
       return Redirect::to(route('adminMockup.index'));
 
@@ -40,8 +37,11 @@ class MockupController extends Controller
    public function destroy($pair)
    {
 
-      $pair = Mockup::where('pair',$pair)->where('exchange',$this->exchangeName);
-      $pair->delete();
+      $dl=new DataLayer();
+
+      $dl->deleteMockupPair($pair,$this->exchangeName);
+
+      
 
       return Redirect::to(route('adminMockup.index'));
 
@@ -81,12 +81,10 @@ class MockupController extends Controller
 
    public function update(Request $request)
    {
-      Mockup::where('pair',$request->pairName)->update(['price' => $request->input('price')]);
-      //$mockupTable->exchange= $this->exchangeName;
-      //$mockupTable->pair = $request->input('pairName');
-      //$mockupTable->price = $request->input('price');
-
-      //$mockupTable->save();
+      $dl=new DataLayer();
+      $dl->updateMockupPrice($request->pairName,$request->input('price'));
+      
+     
 
       return Redirect::to(route('adminMockup.index'));
    }

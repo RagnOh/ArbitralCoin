@@ -52,7 +52,7 @@ ArbitralCoin
    
 </div>
 <div class="form-group">
-   <input type="valuta preferita" name="price" id="priceInput" class="form-control" placeholder="Price"/>
+   <input type="valuta preferita" name="price" id="priceInput" class="form-control" placeholder="Prezzo"/>
    <span class="invalid-price" id="invalid-price"></span>
 </div>
 

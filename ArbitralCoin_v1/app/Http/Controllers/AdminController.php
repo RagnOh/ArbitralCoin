@@ -32,8 +32,8 @@ class AdminController extends Controller
       $dl->deleteUserPreferences($userID);
       $dl->deleteFavExchanges($userID);
       $dl->deleteFavPairs($userID);
-      $user=User::where('userName',$userName);
-      $user->delete();
+      
+      $dl->deleteUser($userName);
 
       return Redirect::to(route('adminUserList.index'));
    }

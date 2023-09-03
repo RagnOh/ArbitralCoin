@@ -43,7 +43,7 @@ Route::get('/registrationEmailCheck', [RegistrationController::class, 'registrat
 Route::get('/registrationUsernameCheck', [RegistrationController::class, 'registrationCheckForUsername']);
 
 //Route per pagamenti
-Route::get('error-transaction', [PayPalController::class, 'trransactionError'])->name('transactionError');
+Route::get('error-transaction', [PayPalController::class, 'transactionError'])->name('transactionError');
 Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
@@ -68,7 +68,7 @@ Route::middleware(['authCustom'])->group(function () {
         Route::delete('/adminMockup/{pair}',[MockupController::class,'destroy'])->name('adminMockup.destroy');
         Route::get('/adminMockup/{pair}/destroy/confirm', [MockupController::class, 'confirmDestroy'])->name('adminMockup.destroy.confirm');
         Route::get('/adminMockup/all/destroying/confirm', [MockupController::class, 'confirmDestroyAll'])->name('adminMockup.destroyAll.confirmation');
-        Route::get('/adminMockup/all/destroy', [MockupController::class, 'destroyAll'])->name('adminMockup.destroyAll');
+        Route::delete('/adminMockup/all/destroy', [MockupController::class, 'destroyAll'])->name('adminMockup.destroyAll');
         Route::get('/adminMockup/addElement',[MockupController::class,'createNewElement'])->name('administrator.addNewMockup');
         Route::post('/adminMockup',[MockupController::class,'store'])->name('adminMockup.store');
         Route::get('/adminMockup/{pair}/edit',[MockupController::class,'edit'])->name('adminMockup.edit');

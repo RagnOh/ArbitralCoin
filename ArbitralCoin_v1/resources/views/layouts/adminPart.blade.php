@@ -58,9 +58,9 @@
 <div class=" collapse navbar-collapse  col-lg-4 col-md-1 col-sm-4 col-4 " id="navbarResponsive">
          <ul class="nav navbar-nav navbar-right">
                     @if($logged)
-                       <li class="nav-item"><i>Welcome {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout')}}"> Logout</a>  </li>
+                       <li class="nav-item"><i>Benvenuto {{ $loggedName }}</i> <a class="btn btn-outline-dark" href="{{ route('user.logout')}}"> Logout</a>  </li>
                     @else
-                       <li class="nav-item"><a class="btn btn-outline-dark" href="{{ route('user.login')}}"> Logint</a></li>
+                       <li class="nav-item"><a class="btn btn-outline-dark" href="{{ route('user.login')}}"> Login</a></li>
 
                     @endif
                 </ul>   

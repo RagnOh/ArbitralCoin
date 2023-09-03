@@ -91,8 +91,33 @@ class DataLayer {
         return response()->json([$filteredData]);
     }
 
+    private function addPair($exchangeName,$pair,$price)
+    {
+      $pairTable=new Pair();
+      
+        
+        $pairTable->exchange =$exchangeName;
+        $pairTable->pair = $pair;
+        $pairTable->price = $price;
+        $pairTable->save();
+       
+      
+    }
+
+    public function updateTable()
+    {
+        Pair::truncate();
+        $this->parseKraken();
+        $this->parseBinance();
+        $this->parseCryptoCom();
+
+        $this->setDone();
+        //return Redirect::to(route('pair.updateDone'));
+    }
+
 /////////////////////////////////////////
 
+//Metodi User
     public function validUser($username, $password) {
         $users = User::where('email',$username)->get(['password']);
         
@@ -103,6 +128,11 @@ class DataLayer {
         
         return (md5($password) == ($users[0]->password));
     }
+
+    public function findUser($username)
+{
+    return User::where('username',$username)->get();
+}
 
     public function addUser($name, $password, $email) {
         $user = new User();
@@ -130,6 +160,11 @@ class DataLayer {
         return $users[0]->username;
     }
 
+    public function deleteUser($userName){
+        $user=User::where('userName',$userName);
+        $user->delete();
+    }
+
     public function isAdmin($username){
         $user= User::where('username',$username)->get();
 
@@ -140,26 +175,17 @@ class DataLayer {
         return true;
     }
 
-   /* public function listPairs()
+    public function updatePagamento($userName)
     {
-       $pairs = PairTable::select('price')->groupBy('pair')->havingRow('COUNT(DISTINCT exchange)= ?',[count($exchanges)])->get();
-       
-       return $pairs;
-    }*/
 
-    private function addPair($exchangeName,$pair,$price)
-    {
-      $pairTable=new Pair();
-      
-        
-        $pairTable->exchange =$exchangeName;
-        $pairTable->pair = $pair;
-        $pairTable->price = $price;
-        $pairTable->save();
-       
-      
+            $user=User::where('username',$userName);
+            $user->update(['pagante'=> 1]);
+            $user->update(['giorno_pagato'=>date('y-m-d')]);
     }
 
+/////////////////////////////////////////
+  
+//Metodi tabella ausiliaria
     public function updateTableStatus()
     {
         $status=UpdateStatus::where('id',1)->get();
@@ -196,17 +222,10 @@ class DataLayer {
 
         $tableStatus->save();
     }
+    
+////////////////////////////////////////
 
-    public function updateTable()
-    {
-        Pair::truncate();
-        $this->parseKraken();
-        $this->parseBinance();
-        $this->parseCryptoCom();
-
-        $this->setDone();
-        //return Redirect::to(route('pair.updateDone'));
-    }
+//Metodi PairList
 
     public function getCommonsPairs($exchange_list)
     {
@@ -297,6 +316,9 @@ return response()->json($formattedArray);
     }
 
 
+////////////////////////////////////////
+
+//Metodi Preferenze Utente
 public function addUserPreferences($deposito,$valuta,$minGuadagno,$userID)
 {
 
@@ -316,24 +338,33 @@ public function deleteUserPreferences($userID)
     $userPref->delete();
 }
 
+public function getMinGuadagno($userId){
+
+    $minGuadagno= UserPreferences::where('user_id',$userId)->value('guadagno');
+
+    return $minGuadagno;
+}
+
+public function getDeposito($userId){
+
+    $deposito= UserPreferences::where('user_id',$userId)->value('deposito');
+    return $deposito;
+}
+
+////////////////////////////////////////
+
+//Metodi Exchange preferiti
 public function deleteFavExchanges($id) {
     $favTable = Exchange::where('user_id',$id);
     $favTable->delete();
 }
 
-public function deleteFavPairs($userId)
-{
-    $favTable = FavPair::where('user_id',$userId);
-    $favTable->delete();
-}
+
 
 public function addFavExchanges($binance,$kraken,$crypto,$userID)
 {
 
-    //Rimuovere da tabella exchange per questo utente
     
-    
- 
     if($binance)
     {
         $addExchange= new Exchange();
@@ -381,7 +412,9 @@ public function findUserPreferencesByID($userId)
     
 }
 
+////////////////////////////////////////
 
+//Metodi tabella BestPairs
 
 public function getBestForEachPair($pairName,$userId)
 {
@@ -400,10 +433,6 @@ public function getBestForEachPair($pairName,$userId)
    $union= $mockupPrice->concat($samePair);
    $pairResults = $union->sortBy('price');
           
-              
-              
-           
-              
               
    //ordino da prezzo più alto a quello più basso
 
@@ -497,6 +526,9 @@ private function confrontValue($pair,$exchange_list)
     
 }
 
+///////////////////////////////////////
+
+//Metodi favTable
 public function getFavPairs($userId)
 {
     $userFavPairs= FavPair::where('user_id',$userId)->get('pair');
@@ -509,43 +541,25 @@ public function getFavPairs($userId)
 
 }
 
+public function saveFavPair($userId,$pairName){
 
+    $favourite=new FavPair();
+    $favourite->pair=strtoupper($pairName);
+    $favourite->user_id=$userId;
 
-public function findUser($username)
+        $favourite->save();  
+}
+
+public function deleteFavPairs($userId)
 {
-    return User::where('username',$username)->get();
+    $favTable = FavPair::where('user_id',$userId);
+    $favTable->delete();
 }
 
-public function findMockupPair($pairName)
+public function deleteFavouritePair($pairName)
 {
-    return Mockup::where('pair',$pairName)->get();
-}
-
-public function checkEmail($email) {
-    $users = User::where('email',$email)->get();
-    if (count($users) == 0) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-public function checkUsername($username) {
-    $users = User::where('username',$username)->get();
-    if (count($users) == 0) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-public function checkPair($pair) {
-    $occurence = Pair::where('pair',$pair)->get();
-    if (count($occurence) == 0) {
-        return false;
-    } else {
-        return true;
-    }
+    $pairElement=FavPair::where('pair',$pairName);
+    $pairElement->delete();
 }
 
 public function findFavPair($pair,$userID)
@@ -568,8 +582,43 @@ public function findFavouritePair($pair)
     }
 }
 
+///////////////////////////////////////
 
 
+//Metodi mockup
+public function findMockupPair($pairName)
+{
+    return Mockup::where('pair',$pairName)->get();
+}
+
+public function addMockup($exchange,$pairName,$price){
+
+    $pair=new Mockup();
+
+      $pair->exchange = $exchange;
+      $pair->pair = strtoupper($pairName);
+      $pair->price = $price;
+      $pair->save();
+      
+}
+
+public function deleteMockupPair($pair,$exchange)
+{
+
+    $pair = Mockup::where('pair',$pair)->where('exchange',$exchange);
+    $pair->delete();
+
+}
+
+public function updateMockupPrice($pair,$price){
+    Mockup::where('pair',$pair)->update(['price' => $price]);
+}
+
+
+
+///////////////////////////////////////
+
+//Metodi Pagamenti
 public function deleteUserNotPaying()
 {
     $users=User::where('pagante',0);
@@ -624,7 +673,9 @@ public function controlloScadenze()
     }
 }
 
+///////////////////////////////////////
 
+//Altri metodi controllo Input
 public function pairExistent($nome)
 {
     $nomi2=Pair::select('pair')->pluck('pair')->toArray();
@@ -653,5 +704,38 @@ public function pairExistent($nome)
     }
 
 
+}
+
+public function checkEmail($email) {
+    $users = User::where('email',$email)->get();
+    if (count($users) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+public function checkUsername($username) {
+    $users = User::where('username',$username)->get();
+    if (count($users) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+public function checkPair($pair) {
+    $occurence = Pair::where('pair',$pair)->get();
+    if (count($occurence) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+public function getTableStatus()
+{
+    $status=UpdateStatus::select('done')->get();
+    return $status;
 }
 }

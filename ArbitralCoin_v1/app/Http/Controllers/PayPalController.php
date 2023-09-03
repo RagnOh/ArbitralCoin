@@ -16,7 +16,7 @@ class PayPalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function trransactionError()
+    public function transactionError()
     {
        
         return view('paymentErrorPage');
@@ -79,9 +79,12 @@ class PayPalController extends Controller
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             
             $username=session('username',0);
-            $user=User::where('username',$username);
-            $user->update(['pagante'=> 1]);
-            $user->update(['giorno_pagato'=>date('y-m-d')]);
+            $dl=new DataLayer();
+
+            $dl->updatePagamento($username);
+            //$user=User::where('username',$username);
+            //$user->update(['pagante'=> 1]);
+           // $user->update(['giorno_pagato'=>date('y-m-d')]);
             session()->forget('username');
             return redirect()
                 ->route('user.success');

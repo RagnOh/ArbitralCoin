@@ -10,13 +10,13 @@ ArbitralCoin
     <div class="col-md-6">
         <div class="card text-center border-secondary">
             <div class='card-header'>
-                Revert
+                Annulla
             </div>
             <div class='card-body'>
                 @if(!isset($pair))
-                <p>All the Pairs <strong>  will not be removed</strong> from the database</p>
+                <p>Turri i Pairs <strong>  non verrà rimosso</strong> dal database</p>
                 @else
-                <p>The Pair <strong> {{$pair}} will not be removed</strong> from the database</p>
+                <p>Il Pair <strong> {{$pair}} non verrà rimosso</strong> dal database</p>
 
                 @endif
                 <p><a class="btn btn-secondary" href="{{ route('adminMockup.index') }}"><i class="bi-box-arrow-left"></i> Back</a></p>
@@ -27,14 +27,19 @@ ArbitralCoin
     <div class="col-md-6">
         <div class="card text-center border-danger">
             <div class='card-header'>
-                Confirm
+                Conferma
             </div>
             <div class='card-body'>
             @if(!isset($pair))
-            <p>All the Pairs <strong> will be removed</strong> from the database</p>
-            <p><a class="btn btn-danger" href="{{ route('adminMockup.destroyAll') }}"><i class="bi-trash3"></i> Elimina</a></p>
+            <p>Tutti i Pairs <strong> verranno rimossi</strong> dal database</p>
+            <form class="form-horizontal" name="destroy" method="POST" action="{{ route('adminMockup.destroyAll') }}">
+                @csrf
+                @method('DELETE')
+                <button type='submit' class="btn btn-danger" data-toggle="tooltip" style="margin-bottom: 1em" ><i class="bi-trash3"></i> Elimina </button>
+               </form>
+            
             @else
-            <p>The Pair <strong> {{$pair}} will be removed</strong> from the database</p>
+            <p>Il Pair <strong> {{$pair}} verrà rimosso</strong> dal database</p>
             <form class="form-horizontal" name="destroy" method="POST" action="{{ route('adminMockup.destroy', ['pair' => $pair]) }}">
                 @csrf
                 @method('DELETE')

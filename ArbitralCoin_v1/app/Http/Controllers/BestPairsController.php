@@ -16,8 +16,8 @@ class BestPairsController extends Controller
         $userID=$dl->getUserID($_SESSION["loggedEmail"]);
         $bestPairs=$dl->getBestForEachPair("ALGOUSDT",4,5);
 
-        $minGuadagno= UserPreferences::where('user_id',$userID)->value('guadagno');
-        $deposito= UserPreferences::where('user_id',$userID)->value('deposito');
+        $minGuadagno= $dl->getMinGuadagno($userID); //UserPreferences::where('user_id',$userID)->value('guadagno');
+        $deposito= $dl->getDeposito($userID);//UserPreferences::where('user_id',$userID)->value('deposito');
 
         return view('tablePage.bestPairs')->with('logged',true)->with('loggedName',$_SESSION["loggedName"])->with('deposito',$deposito)->with('guadagno',$minGuadagno);
 

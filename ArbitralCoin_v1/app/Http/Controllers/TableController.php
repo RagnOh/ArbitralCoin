@@ -35,7 +35,8 @@ class TableController extends Controller
     public function ajaxCheckUpdate()
     {
         $dl=new DataLayer();
-        $status=UpdateStatus::select('done')->get();
+        $status=$dl->getTableStatus();
+        //$status=UpdateStatus::select('done')->get();
 
         return $status;
     }

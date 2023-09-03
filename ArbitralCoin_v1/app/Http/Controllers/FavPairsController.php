@@ -23,14 +23,16 @@ class FavPairsController extends Controller
     public function store(Request $request)
     {
         $dl=new DataLayer();
-        $favourite=new FavPair();
 
-        $userID=$dl->getUserID($_SESSION["loggedEmail"]);
+        $dl->saveFavPair($dl->getUserID($_SESSION["loggedEmail"]),strtoupper($request->input('insertPair')));
+        //$favourite=new FavPair($dl->getUserID($_SESSION["loggedEmail"]),strtoupper($request->input('insertPair')),$userID);
 
-        $favourite->pair=strtoupper($request->input('insertPair'));
-        $favourite->user_id=$userID;
+        //$userID=$dl->getUserID($_SESSION["loggedEmail"]);
 
-        $favourite->save();     
+        //$favourite->pair=strtoupper($request->input('insertPair'));
+        //$favourite->user_id=$userID;
+
+        //$favourite->save();     
 
         return Redirect::to(route('favPairs.index'));
         
@@ -38,10 +40,11 @@ class FavPairsController extends Controller
 
     public function destroy($pairName)
     {
-     
+        $dl=new DataLayer();
+
+        $dl->deleteFavouritePair($pairName);
         
-        $pairElement=FavPair::where('pair',$pairName);
-        $pairElement->delete();
+        
 
         return Redirect::to(route('favPairs.index'));
     }
