@@ -10,6 +10,8 @@ class Pair extends Model
     public $timestamps = false;
     protected $fillable = ['exchange','pair','price'];
 
+    
+
 
    
 

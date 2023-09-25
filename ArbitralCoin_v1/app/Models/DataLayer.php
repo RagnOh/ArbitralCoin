@@ -418,7 +418,8 @@ public function findUserPreferencesByID($userId)
 
 public function getBestForEachPair($pairName,$userId)
 {
-   
+    $guadagnoFinale=0;
+     $ul=new UtilityLayer();
     $exchange=$this->getExchangeList($userId);
     
     $mockupPrice=Mockup::where('pair',$pairName)->get();
@@ -460,21 +461,38 @@ public function getBestForEachPair($pairName,$userId)
        $ultimoExchage=$pair['exchange'];
    }
 
+   $buyCommission= ExchangesFees::where('name',$primoExchage)->value('maker');
+   $sellCommission= ExchangesFees::where('name',$ultimoExchage)->value('maker');
    
+   $token=$ul->dropFiat($pairName,$userId);
+   $minCoinsToBuy= Pairs_commissions::where('exchange_name',$primoExchage)->where('token',$token)->value('minimum');
+
+   $sendingCost= Pairs_commissions::where('exchange_name',$primoExchage)->where('token',$token)->value('cost');
+
    if($primo != 0){
-   $numPurchasedCoins=$deposito/$primo;
+   $numPurchasedCoins=($deposito-($deposito*$buyCommission))/($primo);
+
+   if($numPurchasedCoins<$minCoinsToBuy)
+   {
+       $guadagnoFinale=0;
+   }else{
+
+    $numPurchasedCoins=$numPurchasedCoins-$sendingCost;
+    $guadagno=($numPurchasedCoins*($ultimo));
+    $guadagnoFinale=($guadagno-($guadagno*$sellCommission))-$deposito;
+   }
    
    
-   $guadagno=($numPurchasedCoins*$ultimo)-$deposito;
-   if($guadagno<0 || $guadagno<$minGuadagno){
-    $guadagno=0;
+   
+   if($guadagnoFinale<0 || $guadagnoFinale<$minGuadagno){
+    $guadagnoFinale=0;
    }
 }
-else{$guadagno=0;}
+else{$guadagnoFinale=0;}
 
-   $orderResult= array("pair"=>$pairName,"primo"=>$primoExchage,"ultimo"=>$ultimoExchage,"guadagno"=>$guadagno);
+   $orderResult= array("pair"=>$pairName,"primo"=>$primoExchage,"ultimo"=>$ultimoExchage,"guadagno"=>$guadagnoFinale);
    
-   if($guadagno>=$minGuadagno)
+   if($guadagnoFinale>=$minGuadagno)
    {
     
     

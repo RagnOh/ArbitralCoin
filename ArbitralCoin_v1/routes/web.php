@@ -14,6 +14,7 @@ use App\Http\Controllers\MockupController;
 use App\Http\Controllers\WebsocketUpdate;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\ImportJsonController;
 
 
 
@@ -30,8 +31,11 @@ use App\Http\Controllers\LangController;
 */
 
 
+
 Route::get('/',[FrontController::class,'getHome'])->name('home');
 Route::get('/user/login', [AuthController::class, 'authentication'])->name('user.login'); //metodo authentication viene chiamato quando creo la form
+
+Route::get('/import-json', [ImportJsonController::class, 'importData']);
 
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
 Route::get('/user/notPayed',[AuthController::class, 'utenteNonPagante'])->name('user.notPayed');
